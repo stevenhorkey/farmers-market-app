@@ -1,0 +1,23 @@
+{
+  "name": "farmers-market-app",
+  "version": "1.0.0",
+  "description": "Farmers Market App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenhorkey/farmers-market-app.git"
+  },
+  "keywords": [
+    "farmers-market"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenhorkey/farmers-market-app/issues"
+  },
+  "homepage": "https://github.com/stevenhorkey/farmers-market-app#readme"
+}
