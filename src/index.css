@@ -70,6 +70,10 @@ body {
   color: #02B8B2 !important;
 }
 
+.d-inherit{
+  display: inherit;
+}
+
 /* Calendly */
 .calendly-overlay{
   background-color: rgba(31,31,31,0.6);

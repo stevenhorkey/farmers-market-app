@@ -16,7 +16,7 @@ var comparePassword = function(candidatePassword,password){
     return bcrypt.compareSync(candidatePassword, password)
 }
 // Api Post to signup 
-router.post('/api/auth/signup', function(req, res) {
+router.post('/signup', function(req, res) {
     if (!req.body.email || !req.body.password || !req.body.phone || !req.body.company) {
       res.json({success: false, msg: 'Please pass email, password, phone number, and company name.'});
     } else {
@@ -37,7 +37,7 @@ router.post('/api/auth/signup', function(req, res) {
     }
 });
 // Api post to login
-router.post('/api/auth/login', function(req, res) {
+router.post('/login', function(req, res) {
     db.User.findOne({
       email: req.body.email
     }).then(function(user){
