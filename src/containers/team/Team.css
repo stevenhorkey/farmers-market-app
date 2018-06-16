@@ -1,0 +1,85 @@
+.team .jumbotron {
+    padding: 23vh 0 15vh 0;
+    color: #2c2c2d;
+    background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .45)), url("../../assets/desktop.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 0;
+}
+
+.team h2 {
+    font-weight: 300;
+    font-size: 28px;
+}
+
+
+
+.team .team-p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+
+
+.team .w-400 {
+    max-width: 460px;
+}
+
+.team h3 {
+    font-weight: 300;
+    font-size: 22px;
+}
+
+.team .member-cap {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.team .future-p{
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 30px;
+}
+.team .future-h1{
+    font-weight: 300;
+}
+
+.team .card {
+    height: 100%;
+}
+
+.team .image-1 {
+    height: 260px;
+    background: url("https://www.pamhendrickson.com/images/ask-logo.jpg") no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.team .image-2 {
+    height: 260px;
+    background: url("https://cityofwater.files.wordpress.com/2011/11/cbd_2_626px.jpg") no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.team .image-3 {
+    height: 260px;
+    background: url("https://www.groovehq.com/attachments/blog/best-business-books/the-lean-startup.png") no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.team .image-4 {
+    height: 260px;
+    background: url("https://static1.squarespace.com/static/557ab74de4b042dc8bccafc0/t/59a01e5de58c62bd0fcebdcc/1503665787358/asset52.jpg") no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

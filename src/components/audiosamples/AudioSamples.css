@@ -1,0 +1,53 @@
+.audiosamples .bg {
+    height: 100vh;
+    background: url("../../assets/contact-bg.svg") center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+.audiosamples .players{
+    text-align: center;
+}
+.audiosamples .players .player{
+    display: inline-block;
+}
+.audiosamples .players .player .label{
+    border-radius: 4px;
+    font-size: x-large;
+    background: #02b8b2;
+    color: white;
+    margin: 0px 31px;
+    font-weight: 200;
+}
+.audiosamples .players iframe{
+    max-width: 350px;
+    min-width: 320px;
+}
+.audiosamples .w-580 {
+    max-width: 500px;
+}
+
+.audiosamples .card {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.audiosamples h1 {
+    font-weight: 300;
+    font-size: 28px;
+}
+
+.audiosamples p {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+}
+.audiosamples .choice{
+    margin-top: 50px;
+    font-size: large;
+    font-weight: 300;
+}
+
+.audiosamples form .error{
+    color: red;
+}

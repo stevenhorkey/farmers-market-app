@@ -1,0 +1,33 @@
+nav img {
+    position: relative;
+    top: -2px;
+    height: 30px;
+}
+
+nav .brand-name, nav .brand-caption {
+    font-weight: 500;
+    font-family: "Montserrat", "sans-serif";
+}
+
+.navbar-collapse{
+    text-align: center;
+}
+
+.nav-link {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.15ch;
+    text-transform: uppercase;
+}
+
+nav .brand-caption {
+    font-size: 12px;
+}
+
+nav {
+    transition: all 0.5s ease;
+}
+
+.login-btn:hover{
+    color: black !important;
+}

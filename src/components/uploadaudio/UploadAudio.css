@@ -1,0 +1,55 @@
+.UploadAudio .bg {
+    height: 100vh;
+    background: url("../../assets/contact-bg.svg") center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+.UploadAudio .info{
+    font-size: small;
+    margin-bottom: 14px;
+    margin-top: 5px;
+    color: red;
+    font-style: italic;
+}
+.UploadAudio .w-580 {
+    max-width: 500px;
+}
+.UploadAudio .error {
+    margin-top: 9px;
+}
+.UploadAudio .error .label{
+    color: red;
+}
+
+.UploadAudio .card {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.UploadAudio h1 {
+    font-weight: 300;
+    font-size: 28px;
+}
+
+.UploadAudio p {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+    text-align: justify;
+}
+.UploadAudio label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.UploadAudio strong {
+    font-weight: 500;
+}
+
+
+.team .team-p {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+}

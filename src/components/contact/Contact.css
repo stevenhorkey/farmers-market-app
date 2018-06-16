@@ -1,0 +1,46 @@
+.contact .bg {
+    height: 100vh;
+    background: url("../../assets/contact-bg.svg") center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+.contact .w-580 {
+    max-width: 500px;
+}
+
+.contact .card {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.contact h1 {
+    font-weight: 300;
+    font-size: 28px;
+}
+
+.contact p {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+}
+.contact label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.contact .error{
+    color: red;
+}
+
+.contact strong {
+    font-weight: 500;
+}
+
+
+.team .team-p {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+}

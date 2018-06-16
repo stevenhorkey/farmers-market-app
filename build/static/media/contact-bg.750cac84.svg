@@ -1,0 +1,11 @@
+<svg 
+    width="1440" 
+    height="4875" 
+    viewBox="0 0 1440 4875" 
+    xmlns="http://www.w3.org/2000/svg" 
+    style="background:#f5f7f8">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#2c2c2d" d="M0 3339.578V1775h1440v1143.498z"/>
+        <path fill="#02B8B2" d="M1440 2643.857L0 2034.01V905.881h1440z"/>
+    </g>
+</svg>

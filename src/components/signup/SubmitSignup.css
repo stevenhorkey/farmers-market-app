@@ -1,0 +1,36 @@
+.signup .bg {
+    height: 100vh;
+    background: url("../../assets/login-bg.svg") center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+.signup .w-580 {
+    max-width: 500px;
+}
+
+.signup .card {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.signup h1 {
+    font-weight: 300;
+    font-size: 28px;
+}
+
+.signup p {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+}
+.signup label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+.signup strong {
+    font-weight: 500;
+}
