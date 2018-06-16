@@ -17,15 +17,17 @@ var comparePassword = function(candidatePassword,password){
 }
 // Api Post to signup 
 router.post('/signup', function(req, res) {
-    if (!req.body.email || !req.body.password || !req.body.phone || !req.body.company) {
-      res.json({success: false, msg: 'Please pass email, password, phone number, and company name.'});
+    if (!req.body.email || !req.body.password) {
+      res.json({success: false, msg: 'Please pass email, password, and your full name name.'});
     } else {
         
       var newUser = new db.User({
-        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         password: generateHash(req.body.password),
-        phone: req.body.phone,
-        company: req.body.company
+        email: req.body.email,
+        userType: req.body.userType,
+        profileImage: req.body.profileImage
       });
       // save the user
       newUser.save(function(err) {

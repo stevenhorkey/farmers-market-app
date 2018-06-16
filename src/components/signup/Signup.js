@@ -66,11 +66,11 @@ class Signup extends Component {
                                 </div>
                                 <div className="form-group my-4 mb-5">
                                     <label htmlFor="signupPhone">Your <strong>phone number.</strong></label>
-                                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0"  name='phone' placeholder="520-234-5678" value={phone} onChange={this.onChange} required/>
+                                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0"  name='phone' placeholder="520-234-5678" onChange={this.onChange} required/>
                                 </div>
                                 <div className="form-group my-4 mb-5">
                                     <label htmlFor="signupCompany">Your <strong>company.</strong></label>
-                                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0"  name='company' placeholder="My Company Name" value={company} onChange={this.onChange}
+                                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0"  name='company' placeholder="My Company Name" onChange={this.onChange}
                                     required />
                                 </div>
                                 <button type="submit" className="btn btn-primary text-uppercase px-3 pt-2">Continue &nbsp;<i className="ion-android-arrow-forward"> </i></button>
