@@ -1,41 +1,45 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
-import SignupForm from './SignupForm'
+import { Link } from 'react-router-dom';
 
 import './SubmitSignup.css';
 
 class Signup extends Component {
 
-    state = {
-        success: false
+    constructor() {
+        super();
+        this.state = {
+          email: '',
+          password: '',
+          phone: '',
+          company: '',
+          success: false
+        };
     }
-
-    submit = values => {
-        // print the form values to the console
-        console.log(values);
-        var that = this;
-
-        // Send signup rest request	
-        axios.post('https://api.audivity.com/user/signup', {
-            email: values.email,
-            password: values.password,
-            phone: values.phone,
-            company: values.company,
+    onChange = (e) => {
+        const state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+    }
+    
+    onSubmit = (e) => {
+        e.preventDefault();
+    
+        const { email, password, phone, company } = this.state;
+    
+        axios.post('/api/auth/signup', { email, password, phone, company })
+          .then((res) => {
+            this.setState({success:true});
+            this.props.history.push("/login");
+        }).catch((err) => {
+            console.log(err);
         })
-            .then(function (response) {
-                console.log(response);
-                console.log('Signed Up Successfully')
-                //Request success
-                that.setState({ success: true })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
 
     render() {
-        const { success } = this.state;
-
+        const { success, email, password, phone, company } = this.state;
+        
         return (
             <main className="signup">
                 <div className="bg pb-5 pt-5">
@@ -49,7 +53,27 @@ class Signup extends Component {
                             
                         </header>
                         <section>
-                        {!success ? <SignupForm onSubmit={this.submit} /> : null}
+                            <form onSubmit={this.onSubmit}>
+                                <div className="form-group mt-4 mb-5">
+                                    <label htmlFor="signupEmail">Your <strong>email address</strong>.</label>
+                                    <input type="email" className="form-control border-top-0 border-left-0 border-right-0"  aria-describedby="emailHelp" placeholder="john@dough.com" name='email' value={email} onChange={this.onChange} required
+                                    />
+                                </div>
+                                <div className="form-group my-4 mb-5">
+                                    <label htmlFor="signupPassword">Your <strong>password.</strong></label>
+                                    <input type="password" className="form-control border-top-0 border-left-0 border-right-0"  name='password' placeholder="************" value={password} onChange={this.onChange} required />
+                                </div>
+                                <div className="form-group my-4 mb-5">
+                                    <label htmlFor="signupPhone">Your <strong>phone number.</strong></label>
+                                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0"  name='phone' placeholder="520-234-5678" value={phone} onChange={this.onChange} required/>
+                                </div>
+                                <div className="form-group my-4 mb-5">
+                                    <label htmlFor="signupCompany">Your <strong>company.</strong></label>
+                                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0"  name='company' placeholder="My Company Name" value={company} onChange={this.onChange}
+                                    required />
+                                </div>
+                                <button type="submit" className="btn btn-primary text-uppercase px-3 pt-2">Continue &nbsp;<i className="ion-android-arrow-forward"> </i></button>
+                            </form>
                         </section>
                     </div>
                     </div>

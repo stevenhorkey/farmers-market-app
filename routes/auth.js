@@ -16,14 +16,16 @@ var comparePassword = function(candidatePassword,password){
     return bcrypt.compareSync(candidatePassword, password)
 }
 // Api Post to signup 
-router.post('/register', function(req, res) {
-    if (!req.body.email || !req.body.password) {
-      res.json({success: false, msg: 'Please pass email and password.'});
+router.post('/api/auth/signup', function(req, res) {
+    if (!req.body.email || !req.body.password || !req.body.phone || !req.body.company) {
+      res.json({success: false, msg: 'Please pass email, password, phone number, and company name.'});
     } else {
         
       var newUser = new db.User({
         email: req.body.email,
-        password: generateHash(req.body.password)
+        password: generateHash(req.body.password),
+        phone: req.body.phone,
+        company: req.body.company
       });
       // save the user
       newUser.save(function(err) {
@@ -35,7 +37,7 @@ router.post('/register', function(req, res) {
     }
 });
 // Api post to login
-router.post('/login', function(req, res) {
+router.post('/api/auth/login', function(req, res) {
     db.User.findOne({
       email: req.body.email
     }).then(function(user){
