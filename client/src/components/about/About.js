@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-import './UpcomingMarkets.css';
+import './About.css';
 
-class UpcomingMarkets extends Component {
+class About extends Component {
     render(){
         return(
-            <section className="upcoming-markets">
+            <section className="about">
                 <div className="container">
                     <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
-                        <div className="about-heading">
-                            <h1>Upcoming Markets</h1>
-                            <span className="subheading"></span>
+                        <div className="about-heading text-center">
+                            <h1>About</h1>
+                            <span className="subheading">A Blog Theme by Start Bootstrap</span>
                         </div>
                         <p></p>
                     </div>
@@ -22,4 +22,4 @@ class UpcomingMarkets extends Component {
     }
 }
 
-export default UpcomingMarkets;
+export default About;

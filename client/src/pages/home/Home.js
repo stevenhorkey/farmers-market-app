@@ -10,7 +10,7 @@ class Home extends Component {
     render(){
         return(
             <div>
-                <Hero/>
+                <Hero siteName={this.props.siteName} />
                 <UpcomingMarkets/>
                 <About/>
             </div>

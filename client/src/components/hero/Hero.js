@@ -4,17 +4,18 @@ import './Hero.css';
 
 class Hero extends Component {
     render(){
+
         return(
-            // Page Header
-            <header className="masthead">
+            <header className="masthead d-flex">
                 <div className="overlay"></div>
-                <div className="container">
+                <div className="container align-self-center">
                     <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span className="subheading">A Blog Theme by Start Bootstrap</span>
+                            <h1>{this.props.siteName}</h1>
+                            <span className="subheading">Connecting people to their communities, and communities to their food.</span>
                         </div>
+                        <button className="btn btn-primary mx-auto">Find My Food</button>
                     </div>
                     </div>
                 </div>
