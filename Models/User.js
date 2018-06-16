@@ -2,27 +2,33 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
-        email: {
+        firstName: {
             type: DataTypes.STRING,
-            unique: true,
             allowNull: false,
-            validate: {
-                isEmail: true
-            }
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        company: {
+        email: {
             type: DataTypes.STRING,
-            allowNull: true,
+            unique: true,
+            validate: {
+                isEmail: true
+            }
         },
-        phone: {
+        userType: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false
+        },
+        profileImage: {
+            type: DataTypes.STRING,
+            defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
         }
-
     });
 
     User.associate = function (models) {

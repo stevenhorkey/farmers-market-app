@@ -10,11 +10,12 @@ class Signup extends Component {
     constructor() {
         super();
         this.state = {
-          email: '',
+          firstName: '',
+          lastName: '',
           password: '',
-          phone: '',
-          company: '',
-          success: false
+          email: '',
+          userType: '',
+          profileImage: ''
         };
     }
     onChange = (e) => {
@@ -26,9 +27,9 @@ class Signup extends Component {
     onSubmit = (e) => {
         e.preventDefault();
     
-        const { email, password, phone, company } = this.state;
+        const { firstName, lastName, password, email, userType, profileImage } = this.state;
     
-        axios.post('/api/auth/signup', { email, password, phone, company })
+        axios.post('/api/auth/signup', { firstName, lastName, password, email, userType, profileImage })
           .then((res) => {
             this.setState({success:true});
             this.props.history.push("/login");
@@ -38,7 +39,7 @@ class Signup extends Component {
     }
 
     render() {
-        const { success, email, password, phone, company } = this.state;
+        const { success, firstName, lastName, password, email, userType, profileImage } = this.state;
         
         return (
             <main className="signup">

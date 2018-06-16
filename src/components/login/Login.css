@@ -1,6 +1,5 @@
 .login .bg {
     height: 100vh;
-    background: url("../../assets/login-bg.svg") center center no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

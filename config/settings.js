@@ -1,4 +1,4 @@
 // Secret
 module.exports = {
-    'secret':'audivitysecure'
+    'secret':'farmersmarketsecure'
 };
