@@ -22,10 +22,17 @@
   },
   "homepage": "https://github.com/stevenhorkey/farmers-market-app#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4",
     "sequelize": "^4.37.10",
     "serve-favicon": "^2.5.0"
   }

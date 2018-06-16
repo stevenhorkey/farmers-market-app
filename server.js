@@ -7,6 +7,7 @@ var db = require('./Models');
 var PORT = process.env.PORT || 5000;
 var mysql2 = require('mysql2');
 var apiRoutes = require('./routes/api-routes');
+var auth = require('./routes/auth');
 var app = express();
 
 app.use(logger('dev'));
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api', apiRoutes);
+app.use('/api/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -34,10 +36,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-db.sequelize.sync({force: true}).then(function () {
-    app.listen(PORT, function () {
-      console.log("App listening on PORT " + PORT);
-    });
-  });
+db.sequelize.sync({force: true});
 
 module.exports = app;
