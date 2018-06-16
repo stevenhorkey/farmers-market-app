@@ -50,7 +50,7 @@ class Signup extends Component {
                         
                             {success ? <h1 className='mb-4'><i className="ion-checkmark-circled"> </i> &nbsp;<strong>Sign Up success!</strong> </h1>:<h1><i className="ion-clock"> </i>&nbsp;<strong>Sign Up</strong></h1>}
 
-                            {success ? <p>You have successfully signed up!<br/><br/>You'll get an email asking for feedback once the first take is ready. </p>:<p>To get started with Audivity</p>}
+                            {success ? <p>You have successfully signed up!<br/><br/>You'll get an email asking for feedback once the first take is ready. </p>:<p>To get started with farmers-market-app</p>}
                             
                         </header>
                         <section>

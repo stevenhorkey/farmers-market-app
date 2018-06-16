@@ -48,7 +48,7 @@ class Login extends Component {
                     <div className="mt-5 card w-580 mx-auto p-5">
                         <header className="text-center">
                             <h1><strong>Log In</strong></h1>
-                            <p>Or <Link to="/signup">Sign Up</Link> to continue using Audivity</p>
+                            <p>Or <Link to="/signup">Sign Up</Link> to continue using Farmers Market App</p>
                         </header>
                         <section>
                             <form onSubmit={this.onSubmit}>
