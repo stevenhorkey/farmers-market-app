@@ -25,6 +25,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        farmerLocation: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         profileImage: {
             type: DataTypes.STRING,
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
@@ -32,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     User.associate = function (models) {
-        
+
     }
 
     return User;
