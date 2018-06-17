@@ -18,7 +18,17 @@ getToken = function (headers) {
   }
 };
 
-router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
+
+router.get('/getfarmer', function (req, res) {
+  db.User.findOne({ where: { firstName: 'Matt' } }).then(function (err, farmers) {
+    if (err) return next(err);
+    res.json(farmers);
+  });
+
+
+});
+
+router.get('/', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
   if (token) {
     db.User.findAll(function (err, users) {
@@ -26,12 +36,12 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
       res.json(users);
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
-  
+
 });
 
-router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
+router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
   if (token) {
     db.User.create(req.body, function (err, post) {
@@ -39,7 +49,7 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
       res.json(post);
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
 });
 
