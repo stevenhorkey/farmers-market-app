@@ -3,7 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
+var PORT = process.env.PORT || "3001";
 var apiRoutes = require('./routes/api-routes');
 var app = express();
 var auth = require('./routes/auth');
@@ -11,7 +11,9 @@ var auth = require('./routes/auth');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
-app.use(express.static(path.join(__dirname, 'build')));
+if(process.env.PORT){
+  app.use(express.static(path.join(__dirname, '/client/build')));
+}
 
 app.use('/api', apiRoutes);
 app.use('/api/auth', auth);
