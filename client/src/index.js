@@ -20,7 +20,7 @@ import Footer from './components/footer/Footer'
 class Site extends Component{
 
     state = {
-        siteName: 'Farmers Market Test',
+        siteName: 'Farmers Market App',
         loggedIn: false
     }
 

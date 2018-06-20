@@ -11,13 +11,15 @@ body {
 }
 
 .btn-primary {
-  background-color: #02B8B2;
-  border-color: #02B8B2;
+  background-color: #D1262B;
+  border-color: #D1262B;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .btn-primary:hover {
-  background-color: #90E0DF;
-  border-color: #90E0DF;
+  background-color: rgb(163, 22, 26);
+  border-color: rgb(163, 22, 26);
 }
 
 .btn-secondary {
@@ -67,9 +69,13 @@ body {
 }
 
 .text-primary {
-  color: #02B8B2 !important;
+  color: #D1262B !important;
 }
 
 .d-inherit{
   display: inherit;
+}
+
+.bhs {
+  font-family: 'Black Han Sans', sans-serif;
 }

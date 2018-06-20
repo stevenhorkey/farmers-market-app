@@ -1,6 +1,6 @@
 header.masthead {
     margin-bottom: 50px;
-    background-image: url('https://images.unsplash.com/photo-1516463746734-30c21edde5af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=392a63643b386b23431c363d97c3bfa1&auto=format&fit=crop&w=2850&q=80');
+    background-image: url('https://files.slack.com/files-pri/T7ZJC2VSM-FBA2FT7T3/main.jpg');
     /* background: no-repeat center center; */
     /* background-color: #868e96; */
     background-attachment: scroll;
@@ -26,7 +26,7 @@ header.masthead {
   header.masthead .page-heading,
   header.masthead .post-heading,
   header.masthead .site-heading {
-    padding: 200px 0 150px;
+    padding: 50px 0 40px;
     color: white;
   }
   
@@ -34,7 +34,7 @@ header.masthead {
     header.masthead .page-heading,
     header.masthead .post-heading,
     header.masthead .site-heading {
-      padding: 200px 0;
+      padding: 50px 0;
     }
   }
   

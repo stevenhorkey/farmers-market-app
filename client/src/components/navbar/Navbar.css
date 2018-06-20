@@ -1,13 +1,13 @@
 #mainNav {
     position: absolute;
     border-bottom: 1px solid #e9ecef;
-    background-color: white;
+    background-color: #D1262B;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
   #mainNav .navbar-brand {
     font-weight: 800;
-    color: #343a40;
+    color: white;
   }
   
   #mainNav .navbar-toggler {
@@ -15,7 +15,7 @@
     font-weight: 800;
     padding: 13px;
     text-transform: uppercase;
-    color: #343a40;
+    color: white;
   }
   
   #mainNav .navbar-nav > li.nav-item > a {
