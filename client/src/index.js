@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 //hello bitches
 
@@ -15,7 +15,28 @@ import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import Home from './pages/home/Home'
 import Footer from './components/footer/Footer'
+import Test from './components/test/Test';
+import Axios from 'axios';
 
+const isLoggedIn = () => {
+    Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    Axios.post("/api/auth/jwt").then( (res)=> {
+        if(res.data.success){
+            return true
+        }
+    })
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+      isLoggedIn() ?
+          <Component {...props} />
+        : <Redirect to={{
+            pathname: '/login',
+            state: { from: props.location }
+          }} />
+    )} />
+   )
 
 class Site extends Component{
 
@@ -28,6 +49,7 @@ class Site extends Component{
 
         let siteName = this.state.siteName;
 
+        
 
         return(
             <Router>
@@ -36,6 +58,9 @@ class Site extends Component{
                     <Switch>
 
                         <Route exact path="/" render={() => <Home siteName={siteName} />} />
+                        <Route exact path="/signup" render={() => <Signup />} />
+                        <Route exact path="/login" render={() => <Login />} />
+                        <PrivateRoute path="/protected" component={Test} />
 
                     </Switch>
                     <Footer />

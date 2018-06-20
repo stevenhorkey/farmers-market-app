@@ -24,17 +24,22 @@ class Login extends Component {
 
         const { email, password } = this.state;
 
+        console.log(email)
+        console.log(password)
+
         axios.post('/api/auth/login', { email, password })
             .then((res) => {
                 console.log('axios post login')
                 localStorage.setItem('jwtToken', res.data.token);
                 this.setState({ message: '' });
-                this.props.history.push('/')
+                console.log(res);
+                // this.props.history.push('/')
             })
             .catch((error) => {
-            if(error.response.status === 401) {
-                this.setState({ message: 'Login failed. email or password not match' });
-            }
+            // if(error.response.status === 401) {
+            //     this.setState({ message: 'Login failed. email or password not match' });
+            // }
+            console.log(error)
         });
     }
 

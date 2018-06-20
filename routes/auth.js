@@ -15,6 +15,40 @@ var generateHash = function(password){
 var comparePassword = function(candidatePassword,password){
     return bcrypt.compareSync(candidatePassword, password)
 }
+
+// get jwt token:
+// Auth Token
+getToken = function (headers) {
+ if (headers && headers.authorization) {
+   var parted = headers.authorization.split(' ');
+   if (parted.length === 2) {
+     return parted[1];
+   } else {
+     return null;
+   }
+ } else {
+   return null;
+ }
+};
+
+//Api get to check jwt token:
+
+router.post('/jwt', passport.authenticate('jwt', { session: false}), function(req, res) {
+    console.log("inside router jwt route")
+    var token = getToken(req.headers);
+    if (token) {
+      db.User.findAll(function (err, users) {
+        if (err) return next(err);
+        res.json(users);
+        console.log(res);
+        console.log("hahah")
+      });
+    } else {
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+    
+  });
+
 // Api Post to signup 
 router.post('/signup', function(req, res) {
     if (!req.body.email || !req.body.password) {
@@ -41,11 +75,14 @@ router.post('/signup', function(req, res) {
 // Api post to login
 router.post('/login', function(req, res) {
     db.User.findOne({
-      email: req.body.email
+        where: {
+            email: req.body.email
+        }
     }).then(function(user){
-  
+        console.log("made it here")
         if (!user) {
             res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
+            console.log("made it inside if statement")
         } else {
             // check if password matches
             if (comparePassword(req.body.password,user.password)){
@@ -54,6 +91,7 @@ router.post('/login', function(req, res) {
                  // return the information including token as JSON
                  res.json({success: true, token: 'JWT ' + token});
             } else {
+                console.log('test')
                 res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
             }
         }

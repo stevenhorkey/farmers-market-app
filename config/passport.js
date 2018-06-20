@@ -13,11 +13,14 @@ module.exports = function(passport) {
     User.findOne({id: jwt_payload.id}, function(err, user) {
           if (err) {
               return done(err, false);
+              console.log("there's an error")
           }
           if (user) {
               done(null, user);
+              console.log('in user')
           } else {
               done(null, false);
+              console.log("bad password")
           }
       });
   }));
