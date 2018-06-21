@@ -15,17 +15,22 @@ import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import Home from './pages/home/Home'
 import Footer from './components/footer/Footer'
+import FarmersPage from './pages/farmers/FarmersPage';
+import Products from './pages/products/Products';
+import Markets from './pages/markets/Markets';
+import NoMatch from './pages/NoMatch/NoMatch';
 import Test from './components/test/Test';
-import Axios from 'axios';
+import Axios from 'axios'; 
 
-const isLoggedIn = () => {
-    Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-    Axios.post("/api/auth/jwt").then( (res)=> {
-        if(res.data.success){
-            return true
-        }
-    })
-}
+// For private route method below (not currently using)
+// const isLoggedIn = () => {
+//     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+//     Axios.post("/api/auth/jwt").then( (res)=> {
+//         if(res.data.success){
+//             return true
+//         }
+//     })
+// }
 
 // For private route method (not currently using):
 // const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -39,20 +44,20 @@ const isLoggedIn = () => {
 //     )} />
 //    )
 
-class Site extends Component{
+class Site extends Component {
 
     state = {
         siteName: 'Farmers Market App',
         loggedIn: false
     }
 
-    render(){
+    render() {
 
         let siteName = this.state.siteName;
 
         
 
-        return(
+        return (
             <Router>
                 <div>
                     <Navbar siteName={siteName} />
@@ -62,6 +67,12 @@ class Site extends Component{
                         <Route exact path="/signup" render={() => <Signup />} />
                         <Route exact path="/login" render={() => <Login />} />
                         <Route exact path="/protected" component={Test} />
+                        <Route exact path="/farmerspage" render={FarmersPage} />
+                        <Route exact path="/dashboard" render={Dashboard} />
+                        <Route exact path="/products" render={Products} />
+                        <Route exact path="/markets" render={Markets} />
+                        <Route component={NoMatch} />
+
 
                     </Switch>
                     <Footer />
@@ -70,6 +81,6 @@ class Site extends Component{
         )
     }
 }
-    
-ReactDOM.render(<Site/>,document.getElementById('root'))
+
+ReactDOM.render(<Site />, document.getElementById('root'))
 registerServiceWorker();

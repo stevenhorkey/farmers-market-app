@@ -7,15 +7,18 @@ import UpcomingMarkets from '../../components/upcomingMarkets/UpcomingMarkets'
 import About from '../../components/about/About'
 
 class Home extends Component {
-    render(){
-        return(
+
+    render() {
+        return (
             <div>
                 <Hero siteName={this.props.siteName} />
-                <UpcomingMarkets/>
-                <About/>
+                <UpcomingMarkets />
+                <About />
             </div>
         )
     }
 }
 
 export default Home;
+
+
