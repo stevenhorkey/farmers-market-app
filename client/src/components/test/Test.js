@@ -33,14 +33,16 @@ class Test extends Component {
     }
 
     render() {
-        const { loading } = this.state.loading;
+        // const { loading } = this.state.loading;
         
-        if(loading) {
-            return null
-        }
+        // if(loading) {
+        //     return null
+        // }
         
         return (
-            <div className="title">Protected Page for ID: {this.state.userId}</div>
+            this.state.loading ? 
+            (null)
+            : <div className="title">Protected Page for ID: {this.state.userId}</div>
         );
     }
 }
