@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 //hello bitches
 
@@ -19,7 +19,30 @@ import FarmersPage from './pages/farmers/FarmersPage';
 import Products from './pages/products/Products';
 import Markets from './pages/markets/Markets';
 import NoMatch from './pages/NoMatch/NoMatch';
+import Test from './components/test/Test';
+import Axios from 'axios'; 
 
+// For private route method below (not currently using)
+// const isLoggedIn = () => {
+//     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+//     Axios.post("/api/auth/jwt").then( (res)=> {
+//         if(res.data.success){
+//             return true
+//         }
+//     })
+// }
+
+// For private route method (not currently using):
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//     <Route {...rest} render={(props) => (
+//       isLoggedIn() ?
+//           <Component {...props} />
+//         : <Redirect to={{
+//             pathname: '/login',
+//             state: { from: props.location }
+//           }} />
+//     )} />
+//    )
 
 class Site extends Component {
 
@@ -32,6 +55,7 @@ class Site extends Component {
 
         let siteName = this.state.siteName;
 
+        
 
         return (
             <Router>
@@ -40,6 +64,9 @@ class Site extends Component {
                     <Switch>
 
                         <Route exact path="/" render={() => <Home siteName={siteName} />} />
+                        <Route exact path="/signup" render={() => <Signup />} />
+                        <Route exact path="/login" render={() => <Login />} />
+                        <Route exact path="/protected" component={Test} />
                         <Route exact path="/farmerspage" render={FarmersPage} />
                         <Route exact path="/dashboard" render={Dashboard} />
                         <Route exact path="/products" render={Products} />

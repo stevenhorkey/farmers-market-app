@@ -37,7 +37,7 @@ class Signup extends Component {
             console.log(err);
         })
     }
-
+ 
     render() {
         const { success, firstName, lastName, password, email, userType, profileImage } = this.state;
         
