@@ -2,7 +2,7 @@ var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // load up the user model
-var User = require('../models/user');
+var db = require('../Models');
 var settings = require('../config/settings'); // get settings file
 
 module.exports = function(passport) {
@@ -10,8 +10,10 @@ module.exports = function(passport) {
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
   opts.secretOrKey = settings.secret;
   passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    User.findOne({id: jwt_payload.id}, function(err, user) {
-          if (err) {
+      console.log("inside passport.use")
+    db.User.findOne({where: {id: jwt_payload.id}})
+        .then( function(user) {
+          if (!user) {
               return done(err, false);
               console.log("there's an error")
           }

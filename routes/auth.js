@@ -37,13 +37,16 @@ router.post('/jwt', passport.authenticate('jwt', { session: false}), function(re
     console.log("inside router jwt route")
     var token = getToken(req.headers);
     if (token) {
-      db.User.findAll(function (err, users) {
-        if (err) return next(err);
-        res.json(users);
-        console.log(res);
-        console.log("hahah")
-      });
-    } else {
+        console.log(req.user)
+        res.status(200).send({
+              success: true,
+              id: req.user.dataValues.id,
+              firstName: req.user.dataValues.firstName,
+              lastName: req.user.dataValues.lastName,
+              userType: req.user.dataValues.userType,
+              profileImage: req.user.dataValues.profileImage })
+    } 
+    else {
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
     

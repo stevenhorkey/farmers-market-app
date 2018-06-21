@@ -27,16 +27,17 @@ const isLoggedIn = () => {
     })
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-      isLoggedIn() ?
-          <Component {...props} />
-        : <Redirect to={{
-            pathname: '/login',
-            state: { from: props.location }
-          }} />
-    )} />
-   )
+// For private route method (not currently using):
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//     <Route {...rest} render={(props) => (
+//       isLoggedIn() ?
+//           <Component {...props} />
+//         : <Redirect to={{
+//             pathname: '/login',
+//             state: { from: props.location }
+//           }} />
+//     )} />
+//    )
 
 class Site extends Component{
 
@@ -60,7 +61,7 @@ class Site extends Component{
                         <Route exact path="/" render={() => <Home siteName={siteName} />} />
                         <Route exact path="/signup" render={() => <Signup />} />
                         <Route exact path="/login" render={() => <Login />} />
-                        <PrivateRoute path="/protected" component={Test} />
+                        <Route exact path="/protected" component={Test} />
 
                     </Switch>
                     <Footer />
