@@ -15,10 +15,11 @@ import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import Home from './pages/home/Home'
 import Footer from './components/footer/Footer'
+import Dashboard from './pages/dashboard/Dashboard';
 import FarmersPage from './pages/farmers/FarmersPage';
 import Products from './pages/products/Products';
 import Markets from './pages/markets/Markets';
-import NoMatch from './pages/NoMatch/NoMatch';
+// import NoMatch from './pages/NoMatch/NoMatch';
 import Test from './components/test/Test';
 import Axios from 'axios'; 
 
@@ -71,7 +72,7 @@ class Site extends Component {
                         <Route exact path="/dashboard" render={Dashboard} />
                         <Route exact path="/products" render={Products} />
                         <Route exact path="/markets" render={Markets} />
-                        <Route component={NoMatch} />
+                        {/* <Route component={NoMatch} /> */}
 
 
                     </Switch>

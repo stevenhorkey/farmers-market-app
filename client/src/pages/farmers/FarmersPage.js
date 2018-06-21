@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import './Home.css';
+// import './Home.css';
 
 import Hero from '../../components/hero/Hero'
 import About from '../../components/about/About'
+import Navbar from '../../components/navbar/Navbar'
 
 class FarmersPage extends Component {
 
