@@ -13,8 +13,9 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Markets.associate = function (models) {
-
-    }
+        Markets.hasMany(models.Users);
+        Markets.hasMany(models.Products);
+    };
 
     return Markets;
 };
