@@ -32,7 +32,12 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     User.associate = function (models) {
-
+        User.hasMany(models.Products);
+        User.belongsTo(models.Markets, {
+            foreignKey: {
+                allowNull: true
+            }
+        })
     }
 
     return User;
