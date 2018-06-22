@@ -33,6 +33,7 @@ module.exports = function (sequelize, DataTypes) {
 
     User.associate = function (models) {
         User.hasMany(models.Product);
+        User.hasMany(models.Request);
         User.belongsTo(models.Market, {
             foreignKey: {
                 allowNull: true
