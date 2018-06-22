@@ -24,26 +24,27 @@ import Test from './components/test/Test';
 import Axios from 'axios'; 
 
 // For private route method below (not currently using)
-// const isLoggedIn = () => {
-//     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-//     Axios.post("/api/auth/jwt").then( (res)=> {
-//         if(res.data.success){
-//             return true
-//         }
-//     })
-// }
+// const 
+
+const isLoggedIn = () => {
+    Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    return(Axios.post("/api/auth/jwt"))
+}
 
 // For private route method (not currently using):
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//     <Route {...rest} render={(props) => (
-//       isLoggedIn() ?
-//           <Component {...props} />
-//         : <Redirect to={{
-//             pathname: '/login',
-//             state: { from: props.location }
-//           }} />
-//     )} />
-//    )
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    return(isLoggedIn().then( (res)=> {
+        if(res.data.success){
+             return (<Route {...rest} render={(props) => (<Component {...props} />)} />)
+        }
+        else {
+            return (<Redirect to={{
+                pathname: '/login',
+                // state: { from: props.location }
+              }} />)
+        }
+    }))
+}
 
 class Site extends Component {
 
@@ -51,6 +52,27 @@ class Site extends Component {
         siteName: 'Farmers Market App',
         loggedIn: false
     }
+
+    // isLoggedIn=() => {
+    //     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    //     return(Axios.post("/api/auth/jwt"))
+    // }
+
+    // PrivateRoute=({ component: Component, ...rest }) => {
+    //     this.isLoggedIn().then( (res)=> {
+    //         if(res.data.success){
+    //              return (<Route {...rest} render={(props) => (<Component {...props} />)} />)
+    //         }
+    //         else {
+    //             return (<Redirect to={{
+    //                 pathname: '/login',
+    //                 state: { from: this.props.location }
+    //               }} />)
+    //         }
+    //     })
+    // }
+
+
 
     render() {
 
@@ -67,11 +89,12 @@ class Site extends Component {
                         <Route exact path="/" render={() => <Home siteName={siteName} />} />
                         <Route exact path="/signup" render={() => <Signup />} />
                         <Route exact path="/login" render={() => <Login />} />
-                        <Route exact path="/protected" component={Test} />
+                        <PrivateRoute exact path="/protected" component={Test} />
                         <Route exact path="/farmerspage" render={FarmersPage} />
                         <Route exact path="/dashboard" render={Dashboard} />
                         <Route exact path="/products" render={Products} />
                         <Route exact path="/markets" render={Markets} />
+                        
                         {/* <Route component={NoMatch} /> */}
 
 
