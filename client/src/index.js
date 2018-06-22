@@ -21,7 +21,7 @@ import Products from './pages/products/Products';
 import Markets from './pages/markets/Markets';
 // import NoMatch from './pages/NoMatch/NoMatch';
 import Test from './components/test/Test';
-import Axios from 'axios'; 
+import Axios from 'axios';
 
 // For private route method below (not currently using)
 // const isLoggedIn = () => {
@@ -56,7 +56,7 @@ class Site extends Component {
 
         let siteName = this.state.siteName;
 
-        
+
 
         return (
             <Router>
@@ -64,7 +64,7 @@ class Site extends Component {
                     <Navbar siteName={siteName} />
                     <div id='content'>
                         <Switch>
-    
+
                             <Route exact path="/" render={() => <Home siteName={siteName} />} />
                             <Route exact path="/signup" render={() => <Signup />} />
                             <Route exact path="/login" render={() => <Login />} />
@@ -73,10 +73,10 @@ class Site extends Component {
                             <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/markets" component={Markets} />
-                            
+
                             {/* <Route component={NoMatch} /> */}
-    
-    
+
+
                         </Switch>
                     </div>
                     <Footer />

@@ -11,26 +11,40 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          loading: true,
-          userType: "",
-          products: [],
-          markets: [],
-          requests: [],
-
+            loading: true,
+            user: [],
+            products: [],
+            markets: [],
+            requests: [],
         };
-    }
+    };
+
 
     componentDidMount() {
         console.log(this.state)
         console.log(localStorage.getItem('jwtToken'));
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.post("/api/auth/jwt").then( (res)=> {
-            console.log(res.success)
-            if(res.data.success){
-                this.setState({loading: false, userType: res.data.userType})
+        axios.post("/api/auth/jwt").then((res) => {
+            console.log(res.data.success)
+            if (res.data.success) {
+                if (res.data.user.userType == "Vendor") {
+                    axios.get("/api/populateDashboardVendor/" + res.data.user.id).then((response) => {
+                        console.log("this is the res.data: " + JSON.stringify(response.data))
+
+                        this.setState({ loading: false })
+
+                    });
+                }
+                // else {
+                //     axios.get("/api/populateDashboardMarket").then((res) => {
+
+                //     });
+                // }
+
+                // this.setState({ loading: false, userType: res.data.userType })
                 console.log(this.state)
             }
-            
+
         }).catch((error) => {
             console.log(error)
             this.props.history.push("/login");
@@ -39,9 +53,9 @@ class Dashboard extends Component {
 
     render() {
         return (
-            this.state.loading ? 
-            (null)
-            : <div className="title">Protected Page for ID: {this.state.userType}</div>
+            this.state.loading ?
+                (null)
+                : <div className="title">Products: {this.state.products}</div>
         );
     }
 }

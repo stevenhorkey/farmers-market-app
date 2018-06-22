@@ -1,6 +1,7 @@
 footer {
     padding: 50px 0 65px;
-    
+    position: relative;
+    bottom: -225px;
 }
 
 footer .list-inline {
