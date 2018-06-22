@@ -4,6 +4,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+a{
+  color: #D1262B;
+}
+
 .btn, .form-control {
   border-radius: 2px;
   font-weight: 300;

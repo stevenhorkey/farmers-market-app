@@ -5,7 +5,7 @@ import './Footer.css';
 class Footer extends Component {
     render(){
         return(
-            <footer>
+            <footer className='mt-5'>
             <div className="container">
                 <div className="row">
                 <div className="col-lg-8 col-md-10 mx-auto">
@@ -35,7 +35,7 @@ class Footer extends Component {
                         </a>
                     </li>
                     </ul>
-                    <p className="copyright text-muted">Copyright &copy; Your Website 2018</p>
+                    <p className="copyright text-muted mt-3">Copyright &copy; Your Website 2018</p>
                 </div>
                 </div>
             </div>
