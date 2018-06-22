@@ -14,7 +14,7 @@ module.exports = function(passport) {
     db.User.findOne({where: {id: jwt_payload.id}})
         .then( function(user) {
           if (!user) {
-              return done(err, false);
+              return done(null, false);
               console.log("there's an error")
           }
           if (user) {

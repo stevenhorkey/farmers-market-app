@@ -15,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
     Market.associate = function (models) {
         Market.hasMany(models.User);
         Market.hasMany(models.Product);
+        Market.hasMany(models.Request);
     };
 
     return Market;
