@@ -1,5 +1,5 @@
 #mainNav {
-    position: absolute;
+    position: fixed;
     border-bottom: 1px solid #e9ecef;
     background-color: #D1262B;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -28,7 +28,7 @@
   @media only screen and (min-width: 992px) {
     #mainNav {
       border-bottom: 1px solid transparent;
-      background: transparent;
+      /* background: transparent; */
     }
     #mainNav .navbar-brand {
       padding: 10px 20px;

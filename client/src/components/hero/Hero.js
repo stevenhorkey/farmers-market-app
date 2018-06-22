@@ -15,7 +15,7 @@ class Hero extends Component {
                             <h1 className="bhs">{this.props.siteName}</h1>
                             <span className="subheading">Connecting people to their communities, and communities to their food.</span>
                         </div>
-                        <button className="btn btn-primary mx-auto w-100">Find My Food</button>
+                        <a href='/products'><button className="btn btn-primary mx-auto w-100">Find My Food</button></a>
                     </div>
                     </div>
                 </div>

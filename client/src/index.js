@@ -62,20 +62,22 @@ class Site extends Component {
             <Router>
                 <div>
                     <Navbar siteName={siteName} />
-                    <Switch>
-
-                        <Route exact path="/" render={() => <Home siteName={siteName} />} />
-                        <Route exact path="/signup" render={() => <Signup />} />
-                        <Route exact path="/login" render={() => <Login />} />
-                        <Route exact path="/protected" component={Test} />
-                        <Route exact path="/farmerspage" render={FarmersPage} />
-                        <Route exact path="/dashboard" render={Dashboard} />
-                        <Route exact path="/products" render={Products} />
-                        <Route exact path="/markets" render={Markets} />
-                        {/* <Route component={NoMatch} /> */}
-
-
-                    </Switch>
+                    <div id='content'>
+                        <Switch>
+    
+                            <Route exact path="/" render={() => <Home siteName={siteName} />} />
+                            <Route exact path="/signup" render={() => <Signup />} />
+                            <Route exact path="/login" render={() => <Login />} />
+                            <Route exact path="/protected" component={Test} />
+                            <Route exact path="/farmerspage" component={FarmersPage} />
+                            <Route exact path="/dashboard" component={Dashboard} />
+                            <Route exact path="/products" component={Products} />
+                            <Route exact path="/markets" component={Markets} />
+                            {/* <Route component={NoMatch} /> */}
+    
+    
+                        </Switch>
+                    </div>
                     <Footer />
                 </div>
             </Router >

@@ -79,3 +79,8 @@ body {
 .bhs {
   font-family: 'Black Han Sans', sans-serif;
 }
+
+#content{
+  position: relative;
+  top: 67px;
+}
