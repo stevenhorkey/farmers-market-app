@@ -25,10 +25,12 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+db.sequelize.sync({force:true}).then(function() {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -90,4 +92,3 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-db.sequelize.sync({force:false}).then(function() {});

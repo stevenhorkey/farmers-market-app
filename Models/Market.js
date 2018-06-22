@@ -1,7 +1,7 @@
 
 
 module.exports = function (sequelize, DataTypes) {
-    var Markets = sequelize.define("User", {
+    var Market = sequelize.define("Market", {
         marketName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -12,10 +12,10 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Markets.associate = function (models) {
-        Markets.hasMany(models.Users);
-        Markets.hasMany(models.Products);
+    Market.associate = function (models) {
+        Market.hasMany(models.User);
+        Market.hasMany(models.Product);
     };
 
-    return Markets;
+    return Market;
 };
