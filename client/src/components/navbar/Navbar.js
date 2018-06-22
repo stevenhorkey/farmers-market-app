@@ -22,10 +22,10 @@ class Navbar extends Component {
                                 <a className="nav-link" href="#about">About</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="post.html">Sample Post</a>
+                                <a className="nav-link" href="/login">Login</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="contact.html">Contact</a>
+                                <a className="nav-link" href="/signup">Sign Up</a>
                             </li>
                         </ul>
                     </div>
