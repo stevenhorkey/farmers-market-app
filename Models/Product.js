@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        farmerID: {
+        UserId: {
             type: DataTypes.STRING,
             allowNull: false
         }

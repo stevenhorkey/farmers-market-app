@@ -55,6 +55,31 @@ router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: f
 
 });
 
+
+router.get('/populateFarmerPage/:id', function (req, res) {
+  db.User.findOne({
+    where: { id: req.params.id }
+  })
+    .then(function (farmer, err) {
+      if (err) return (err);
+      else {
+        res.json(farmer);
+      }
+    });
+});
+
+router.get('/populateProducts/:id', function (req, res) {
+  db.Product.findAll(
+    { where: { UserId: req.params.id } })
+    .then(function (products, err) {
+      if (err) return (err);
+      else {
+        res.json(products);
+      }
+    });
+});
+
+
 router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
   if (token) {
