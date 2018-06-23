@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import './Dashboard.css';
-import '../../components/sidebar/Sidebar';
+import Sidebar from '../../components/sidebar/Sidebar';
 import Product from '../../components/products/product/Product';
 
 
