@@ -18,6 +18,8 @@ getToken = function (headers) {
   }
 };
 
+//dashboard pages routes
+
 router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   var userId = parseInt(req.params.id);
   var token = getToken(req.headers);
@@ -56,6 +58,8 @@ router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: f
 });
 
 
+//farmer page routes
+
 router.get('/populateFarmerPage/:id', function (req, res) {
   db.User.findOne({
     where: { id: req.params.id }
@@ -68,6 +72,22 @@ router.get('/populateFarmerPage/:id', function (req, res) {
     });
 });
 
+//markets page routes 
+//will need to be populated by location, use zipcode 
+
+router.get('/populateMarketsCard', function (req, res) {
+  db.Market.findAll({})
+    .then(function (markets, err) {
+      if (err) return (err);
+      else {
+        res.json(markets);
+      }
+    });
+});
+
+
+//products routes- associated with farmers 
+
 router.get('/populateProducts/:id', function (req, res) {
   db.Product.findAll(
     { where: { UserId: req.params.id } })
@@ -79,6 +99,7 @@ router.get('/populateProducts/:id', function (req, res) {
     });
 });
 
+//passport 
 
 router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);

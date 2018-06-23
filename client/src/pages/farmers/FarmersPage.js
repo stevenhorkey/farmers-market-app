@@ -62,7 +62,7 @@ class FarmersPage extends Component {
 
                             <div className="col-lg-3">
 
-                                {/* <h1 className="my-4">{farmersName}</h1> */}
+                                <h1 className="my-4">{this.state.farmer.firstName}</h1>
 
                                 {/* <FarmerPhoto /> */}
                                 {/* <FarmerBio /> */}
