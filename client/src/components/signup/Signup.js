@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import './SubmitSignup.css';
+import './Signup.css';
 
 class Signup extends Component {
 

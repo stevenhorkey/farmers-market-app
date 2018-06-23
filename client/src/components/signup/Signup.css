@@ -1,9 +1,11 @@
 .signup .bg {
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;    
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; 
+    background-image: url('../../assets/images/hero.jpg');
 }
 
 .signup .w-580 {
