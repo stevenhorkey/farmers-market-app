@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import './Dashboard.css';
 import '../../components/sidebar/Sidebar';
-import '../../components/products/product/Product';
+import Product from '../../components/products/product/Product';
 
 
 class Dashboard extends Component {
@@ -29,9 +29,9 @@ class Dashboard extends Component {
             if (res.data.success) {
                 if (res.data.user.userType == "Vendor") {
                     axios.get("/api/populateDashboardVendor/" + res.data.user.id).then((response) => {
-                        console.log("this is the res.data: " + JSON.stringify(response.data))
+                        console.log( response.data)
 
-                        this.setState({ loading: false })
+                        this.setState({ loading: false, products: response.data });
 
                     });
                 }
@@ -51,11 +51,17 @@ class Dashboard extends Component {
         })
     }
 
+    
+
     render() {
         return (
             this.state.loading ?
                 (null)
-                : <div className="title">Products: {this.state.products}</div>
+                : <div className="title">Products: {this.state.products[0].item}>
+                    <Product isDashboard={true}
+                             item={this.state.products[0].item}
+                             img={this.state.products[0].image}></Product>
+                  </div>
         );
     }
 }

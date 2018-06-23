@@ -8,13 +8,18 @@ class Product extends Component{
                     <a href="#"><img className="card-img-top" src={this.props.img} alt=""/></a>
                     <div className="card-body">
                     <h4 className="card-title">
-                        <a href="#">{this.props.title}</a>
+                        {this.props.item}
                     </h4>
                     <h5>{this.props.price}</h5>
                     <p className="card-text">{this.props.description}</p>
                     </div>
                     <div className="card-footer">
-                    <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        {this.props.isDashboard ? <div>
+                                                    <div className = "btn btn-primary edit-button"> Edit Button </div>
+                                                    <div className = "btn btn-danger delete-button"> Delete Button </div>
+                                                  </div>
+                                                : (null)}
+                        <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                     </div>
                 </div>
             </div>
