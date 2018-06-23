@@ -15,7 +15,7 @@ class Product extends Component {
                     </div>
                     <div className="card-footer">
                         {this.props.isDashboard ? <div>
-                                                    <div className = "btn btn-primary edit-button"> Edit Button </div>
+                                                    <div className = "btn btn-primary edit-button" onClick={this.props.modalOpen}> Edit Button </div>
                                                     <div className = "btn btn-danger delete-button"> Delete Button </div>
                                                   </div>
                                                 : (null)}

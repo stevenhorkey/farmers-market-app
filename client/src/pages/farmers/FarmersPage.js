@@ -113,8 +113,8 @@ class FarmersPage extends Component {
                             </div>
                             {/* <!-- /.col-lg-9 --> */}
 
-//                         </div>
-//                         {/* <!-- /.row --> */}
+                            </div>
+                         {/* <!-- /.row --> */}
 
                     </div>
                 </container>)
