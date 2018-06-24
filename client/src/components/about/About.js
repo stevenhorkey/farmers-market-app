@@ -5,7 +5,7 @@ import './About.css';
 class About extends Component {
     render(){
         return(
-            <section className="about" id='about'>
+            <section className="about py-5" id='about'>
                 <div className="container">
                     <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">

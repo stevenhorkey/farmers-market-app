@@ -28,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
         profileImage: {
             type: DataTypes.STRING,
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
+        },
+        bio: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 

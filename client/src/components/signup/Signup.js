@@ -56,6 +56,16 @@ class Signup extends Component {
                             <section>
                                 <form onSubmit={this.onSubmit}>
                                     <div className="form-group mt-4 mb-5">
+                                        <label htmlFor="firstName">Your <strong>first name</strong>.</label>
+                                        <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="firstName" placeholder="John" name='firstName' value={firstName} onChange={this.onChange} required
+                                        />
+                                    </div>
+                                    <div className="form-group mt-4 mb-5">
+                                        <label htmlFor="lastName">Your <strong>last name</strong>.</label>
+                                        <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="lastName" placeholder="Dough" name='lastName' value={lastName} onChange={this.onChange} required
+                                        />
+                                    </div>
+                                    <div className="form-group mt-4 mb-5">
                                         <label htmlFor="signupEmail">Your <strong>email address</strong>.</label>
                                         <input type="email" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="emailHelp" placeholder="john@dough.com" name='email' value={email} onChange={this.onChange} required
                                         />
@@ -65,13 +75,8 @@ class Signup extends Component {
                                         <input type="password" className="form-control border-top-0 border-left-0 border-right-0" name='password' placeholder="************" value={password} onChange={this.onChange} required />
                                     </div>
                                     <div className="form-group my-4 mb-5">
-                                        <label htmlFor="signupPhone">Your <strong>phone number.</strong></label>
-                                        <input type="text" className="form-control border-top-0 border-left-0 border-right-0" name='phone' placeholder="520-234-5678" onChange={this.onChange} required />
-                                    </div>
-                                    <div className="form-group my-4 mb-5">
-                                        <label htmlFor="signupCompany">Your <strong>company.</strong></label>
-                                        <input type="text" className="form-control border-top-0 border-left-0 border-right-0" name='company' placeholder="My Company Name" onChange={this.onChange}
-                                            required />
+                                        <label htmlFor="profileImage">Your <strong>profile picture url.</strong></label>
+                                        <input type="text" className="form-control border-top-0 border-left-0 border-right-0" name='profileImage' placeholder="https://picture.com/profile_img" value={profileImage} onChange={this.onChange} />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="sel1">Select Your User Type:</label>
@@ -80,7 +85,7 @@ class Signup extends Component {
                                             <option>Market</option>
                                         </select>
                                     </div>
-                                    <button type="submit" className="btn btn-primary text-uppercase px-3 pt-2">Continue &nbsp;<i className="ion-android-arrow-forward"> </i></button>
+                                    <button type="submit" className="btn btn-primary text-uppercase px-3 pt-2 mt-4 w-100">Continue &nbsp;<i className="ion-android-arrow-forward"> </i></button>
                                 </form>
                             </section>
                         </div>

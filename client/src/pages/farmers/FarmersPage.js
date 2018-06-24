@@ -4,7 +4,8 @@ import axios from 'axios';
 
 import './FarmersPage.css';
 import Product from '../../components/products/product/Product';
-
+import Carousel from '../../components/carousel/Carousel';
+import FarmerPhoto from '../../components/farmers/farmerPhoto/FarmerPhoto';
 
 class FarmersPage extends Component {
 
@@ -54,58 +55,40 @@ class FarmersPage extends Component {
                 (null)
 
 
-                : (<container>
+                : (
 
-                    <div className="container">
+                    <div className="container pb-5">
 
                         <div className="row">
 
                             <div className="col-lg-3">
 
-                                <h1 className="my-4">{this.state.farmer.firstName}</h1>
+                                <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
 
-                                {/* <FarmerPhoto /> */}
+                                <FarmerPhoto />
                                 {/* <FarmerBio /> */}
 
                             </div>
 
                             <div className="col-lg-9">
 
-                                <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
-                                    <ol className="carousel-indicators">
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                    </ol>
-                                    <div className="carousel-inner" role="listbox">
-                                        <div className="carousel-item active">
-                                            <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide" />
-                                        </div>
-                                        <div className="carousel-item">
-                                            <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide" />
-                                        </div>
-                                        <div className="carousel-item">
-                                            <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide" />
-                                        </div>
-                                    </div>
-                                    <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span className="sr-only">Previous</span>
-                                    </a>
-                                    <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span className="sr-only">Next</span>
-                                    </a>
-                                </div>
+                                <Carousel/>
 
+
+                                <div className="row mb-4">
+                                    <button className='w-100 mx-3 btn btn-primary'>Add an item</button>
+                                </div>
                                 <div className="row">
 
+                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
+                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
+                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
+                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
                                     {this.state.products.map(product => (
                                         <Product
                                             img={product.image}
                                         />
                                     ))}
-
 
                                 </div>
                                 {/* <!-- /.row --> */}
@@ -117,7 +100,7 @@ class FarmersPage extends Component {
                          {/* <!-- /.row --> */}
 
                     </div>
-                </container>)
+            )
         )
     }
 }

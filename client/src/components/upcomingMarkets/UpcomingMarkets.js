@@ -33,7 +33,7 @@ function detailResultHandler(detailresults) {
 class UpcomingMarkets extends Component {
     render() {
         return (
-            <section className="upcoming-markets">
+            <section className="upcoming-markets py-5">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-md-10 mx-auto">
@@ -41,7 +41,9 @@ class UpcomingMarkets extends Component {
                                 <h1>Upcoming Markets</h1>
                                 <span className="subheading"></span>
                             </div>
-                            <p></p>
+                            <div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

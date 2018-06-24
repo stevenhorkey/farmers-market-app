@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import Product from '../../components/products/product'
 import Categories from '../../components/products/categories'
-import Carousel from '../../components/products/carousel';
+import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
 
 class Products extends Component {
     render() {
         return (
-            <div className="container">
+            <div className="container pb-5">
 
                 <div className="row">
 
