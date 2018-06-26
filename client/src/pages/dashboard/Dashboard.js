@@ -144,12 +144,15 @@ class Dashboard extends Component {
                     </Modal>
                     </div>)
                   : (<div className="title">Products: {this.state.products[0].item}>
-                    <Product isDashboard={true}
-                             item={this.state.products[0].item}
-                             img={this.state.products[0].image}
-                             id={this.state.products[0].id}
-                             modalOpen= {()=>{this.openModalUpdate()}}>
-                    </Product>
+                        {this.state.products.map(product => (
+                            <Product isDashboard={true}
+                                item={product.item}
+                                img={product.image}
+                                id={product.id}
+                                modalOpen= {()=>{this.openModalUpdate()}}>
+                            </Product>
+                        ))}
+                    
                     <button className = "btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
                     <Modal  isOpen={this.state.modalIsOpenCreate}
                             onAfterOpen={this.afterOpenModalCreate}
