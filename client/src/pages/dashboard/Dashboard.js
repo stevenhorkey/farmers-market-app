@@ -44,11 +44,12 @@ class Dashboard extends Component {
                         console.log(this.state)
                     });
                 }
-                // else {
-                //     axios.get("/api/populateDashboardMarket").then((res) => {
-
-                //     });
-                // }
+                else {
+                    let userInfo = res.data.user;
+                    axios.get("/api/populateDashboardMarket/" + userInfo.id).then((response) => {
+                        this.setState({loading: false, markets: response.data, user: userInfo});
+                    });
+                }
 
                 // this.setState({ loading: false, userType: res.data.userType })
                 
@@ -135,7 +136,11 @@ class Dashboard extends Component {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.delete('/api/deleteProduct/' + id)
         .then((res) => {
-            this.setState({products: res.data});
+            axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+            axios.get('/api/populateProducts/'+this.state.user.id)
+            .then((res) => {
+                this.setState({products: res.data})
+            })
         }).catch((err) => {
             console.log(err);
         })
@@ -155,7 +160,8 @@ class Dashboard extends Component {
         return (
             this.state.loading ?
                 (null)
-                : this.state.products[0] === undefined ?
+                : this.state.user.userType === "Vendor" ?
+                (this.state.products[0] === undefined ?
                 
                     (<div>
                       <div><h1>You don't have any products.....Would you like to create one?</h1> <button className = "btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button></div>
@@ -224,7 +230,7 @@ class Dashboard extends Component {
                             // style={customStyles}
                             contentLabel="Example Modal">
 
-                        <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                        <h2 ref={subtitle => this.subtitle = subtitle}>Edit Your Product</h2>
                         <div>Product Information</div>
                         <form onSubmit={this.onSubmitUpdate}>
                             <div className="form-group mt-4 mb-5">
@@ -241,7 +247,8 @@ class Dashboard extends Component {
                     </Modal>
                   
                   </div>)
-        );
+                ) : (null)
+        )
     }
 }
 
