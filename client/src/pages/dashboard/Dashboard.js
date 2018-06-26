@@ -21,7 +21,8 @@ class Dashboard extends Component {
             modalIsOpenCreate: false, 
             modalProductID: '',
             item: '',
-            image: ''
+            image: '',
+            id: ''
 
         };
     };
@@ -59,8 +60,11 @@ class Dashboard extends Component {
         })
     }
 
-    openModalUpdate=()=> {
-        this.setState({modalIsOpenUpdate: true});
+    openModalUpdate=(childData, event)=> {
+        const prodItem = childData.item;
+        const prodImg = childData.image;
+        const prodId = childData.id;
+        this.setState({modalIsOpenUpdate: true, item: prodItem, image: prodImg, id: prodId });
       }
 
     afterOpenModalUpdate=()=> {
@@ -69,8 +73,29 @@ class Dashboard extends Component {
       }  
     
     closeModalUpdate=()=> {
-        this.setState({modalIsOpenUpdate: false});
+        this.setState({modalIsOpenUpdate: false, item: '', image: '' });
       }
+
+    onSubmitUpdate = (e) => {
+        e.preventDefault();
+        console.log(this.state.user)
+        const item = this.state.item;
+        const image = this.state.image;
+        const id = this.state.id;
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.put('/api/updateProduct/' +  id, {item, image})
+            .then((res) => {
+                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                axios.get('/api/populateProducts/' + this.state.user.id)
+                .then((res) => {
+                    this.setState({ products: res.data, modalIsOpenUpdate: false, item: '', image: '', id: ''  });
+                    console.log(this.state)
+                })
+                // this.props.history.push("/login");
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
 
     openModalCreate=()=>{
         this.setState({modalIsOpenCreate: true});
@@ -81,10 +106,10 @@ class Dashboard extends Component {
     }
     
     closeModalCreate=()=>{
-        this.setState({modalIsOpenCreate: false});
+        this.setState({modalIsOpenCreate: false, item: '', image: '' });
     }
 
-    onSubmit = (e) => {
+    onSubmitCreate = (e) => {
         e.preventDefault();
         console.log(this.state.user)
         const item = this.state.item;
@@ -129,7 +154,7 @@ class Dashboard extends Component {
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
                         
                         <div>Product Information</div>
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmitCreate}>
                             <div className="form-group mt-4 mb-5">
                                 <label htmlFor="item">Product Name</label>
                                 <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required/>
@@ -143,16 +168,18 @@ class Dashboard extends Component {
                         <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
                     </Modal>
                     </div>)
-                  : (<div className="title">Products: {this.state.products[0].item}>
-                        {this.state.products.map(product => (
-                            <Product isDashboard={true}
-                                item={product.item}
-                                img={product.image}
-                                id={product.id}
-                                modalOpen= {()=>{this.openModalUpdate()}}>
-                            </Product>
-                        ))}
-                    
+                  : (<div>
+                        <div className= "row"><h1>Products</h1></div>
+                        <div className="row">
+                            {this.state.products.map(product => (
+                                <Product isDashboard={true}
+                                    item={product.item}
+                                    img={product.image}
+                                    id={product.id}
+                                    modalOpen= {(e)=>{this.openModalUpdate(product, e)}}>
+                                </Product>
+                            ))}
+                        </div>
                     <button className = "btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
                     <Modal  isOpen={this.state.modalIsOpenCreate}
                             onAfterOpen={this.afterOpenModalCreate}
@@ -163,7 +190,7 @@ class Dashboard extends Component {
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
                         
                         <div>Product Information</div>
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmitCreate}>
                             <div className="form-group mt-4 mb-5">
                                 <label htmlFor="item">Product Name</label>
                                 <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required/>
@@ -183,15 +210,19 @@ class Dashboard extends Component {
                             contentLabel="Example Modal">
 
                         <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                        <button onClick={this.closeModalUpdate}>close</button>
-                        <div>I am a modal</div>
-                        <form>
-                            <input />
-                            <button>tab navigation</button>
-                            <button>stays</button>
-                            <button>inside</button>
-                            <button>the modal</button>
+                        <div>Product Information</div>
+                        <form onSubmit={this.onSubmitUpdate}>
+                            <div className="form-group mt-4 mb-5">
+                                <label htmlFor="item">Product Name</label>
+                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required/>
+                            </div>
+                            <div className="form-group mt-4 mb-5">
+                                <label htmlFor="image">Image URL</label>
+                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required/>
+                            </div>
+                            <button className="btn" type="submit">Submit</button>
                         </form>
+                        <button className="btn" onClick={this.closeModalUpdate}>Cancel</button>
                     </Modal>
                   
                   </div>)

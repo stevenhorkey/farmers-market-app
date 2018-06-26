@@ -99,6 +99,29 @@ router.post('/newProduct',  passport.authenticate('jwt', { session: false }), fu
 
 })
 
+//Dashboard update a product route
+
+router.put('/updateProduct/:id',  passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+  let id = parseInt(req.params.id); 
+  if(token){
+    db.Product.update(
+      { item: req.body.item,
+        image: req.body.image},
+      {where:{ id: id}})
+      .then(function(product, err){
+        if(err){
+          return (err);
+        }
+        else{
+          res.json(product)
+        }
+      });
+  } else {
+      return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+})
+
 
 //farmer page routes
 
