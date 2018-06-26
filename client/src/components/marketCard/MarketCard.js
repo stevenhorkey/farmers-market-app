@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class MarketCard extends Component {
     render() {
         return (
-            <div className="col-lg-4 col-md-6 mb-4">
+            <div className="col-lg-4 col-md-6 mb-4 d-inline">
                 <div className="card h-100">
                     <div className="card-body">
-                        <h3 className="card-title text-center">{this.props.marketName}</h3>
+                        <h3 className="card-title text-center">{this.props.name}</h3>
                         <p className="card-text text-center">{this.props.location}</p>
                         <p className="card-text text-center">{this.props.time}</p>
                     </div>

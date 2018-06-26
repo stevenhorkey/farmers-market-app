@@ -13,10 +13,6 @@ module.exports = function (sequelize, DataTypes) {
         marketName: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        UserId: {
-            type: DataTypes.STRING,
-            allowNull: false
         }
     });
 

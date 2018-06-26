@@ -19,7 +19,7 @@ getToken = function (headers) {
 };
 
 //dashboard pages routes
-
+// Auth route - populate vendor dashboard based on their user id.
 router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   var userId = parseInt(req.params.id);
   var token = getToken(req.headers);
@@ -43,7 +43,7 @@ router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { sessio
 
 });
 
-
+// Auth route - populate market dashboard.
 router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: false }), function (req, res) {
   var userId = parseInt(req.params.id)
   var token = getToken(req.headers);
@@ -64,7 +64,6 @@ router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: f
 
 
 //farmer page routes
-
 router.get('/populateFarmerPage/:id', function (req, res) {
   db.User.findOne({
     where: { id: req.params.id }
@@ -79,7 +78,6 @@ router.get('/populateFarmerPage/:id', function (req, res) {
 
 //markets page routes 
 //will need to be populated by location, use zipcode 
-
 router.get('/populateMarketsCard', function (req, res) {
   db.Market.findAll({})
     .then(function (markets, err) {
@@ -102,20 +100,6 @@ router.get('/populateProducts/:id', function (req, res) {
         res.json(products);
       }
     });
-});
-
-//passport 
-
-router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
-  var token = getToken(req.headers);
-  if (token) {
-    db.User.create(req.body, function (err, post) {
-      if (err) return next(err);
-      res.json(post);
-    });
-  } else {
-    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
-  }
 });
 
 module.exports = router;

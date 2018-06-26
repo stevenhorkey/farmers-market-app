@@ -74,10 +74,6 @@ class FarmersPage extends Component {
 
                                 <Carousel/>
 
-
-                                <div className="row mb-4">
-                                    <button className='w-100 mx-3 btn btn-primary'>Add an item</button>
-                                </div>
                                 <div className="row">
 
                                     <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />

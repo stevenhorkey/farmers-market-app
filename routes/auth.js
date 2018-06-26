@@ -60,7 +60,7 @@ router.post('/signup', function (req, res) {
     if (!req.body.email || !req.body.password) {
         res.json({ success: false, msg: 'Please pass email, password, and your full name name.' });
     } else {
-
+ 
         var newUser = new db.User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -72,6 +72,7 @@ router.post('/signup', function (req, res) {
         // save the user
         newUser.save(function (err) {
             if (err) {
+                console.log(err);
                 return res.json({ success: false, msg: 'Email already exists.' });
             }
             res.json({ success: true, msg: 'Successful created new user.' });
@@ -85,7 +86,6 @@ router.post('/login', function (req, res) {
             email: req.body.email
         }
     }).then(function (user) {
-        console.log("made it here")
         if (!user) {
             res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
             console.log("made it inside if statement")

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import marketCard from '../marketCard/MarketCard';
 
 import './UpcomingMarkets.css';
 import $ from 'jquery';
+import MarketCard from '../marketCard/MarketCard';
 
 
 
@@ -42,7 +44,21 @@ class UpcomingMarkets extends Component {
                                 <span className="subheading"></span>
                             </div>
                             <div>
-                                
+                                <MarketCard
+                                    name='Sata Rita Market'
+                                    location='1111 W Rd'
+                                    time='11:00AM'
+                                />
+                                <MarketCard
+                                    name='Pueblo Market'
+                                    location='2222 W Rd'
+                                    time='9:00AM'
+                                />
+                                <MarketCard
+                                    name='Rice Market'
+                                    location='3333 W Rd'
+                                    time='10:00AM'
+                                />
                             </div>
                         </div>
                     </div>
