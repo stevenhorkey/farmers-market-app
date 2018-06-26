@@ -45,6 +45,7 @@ router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { sessio
 
 // Auth route - populate market dashboard.
 router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: false }), function (req, res) {
+  console.log('in');
   var userId = parseInt(req.params.id)
   var token = getToken(req.headers);
   if (token) {
@@ -61,6 +62,84 @@ router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: f
     return res.status(403).send({success: false, msg: 'Unauthorized'});
   }
 });
+
+//Dashboard create product route
+
+router.post('/newProduct',  passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+
+  console.log(req.user.dataValues.id);
+  console.log("here is the res.data:")
+  console.log(req.user.dataValues);
+
+  if (token) {
+    console.log(req.user.dataValues.id);
+    var newProduct = {
+    item: req.body.item,
+    image: req.body.image,
+    UserId: req.user.dataValues.id
+  }
+
+    console.log("in if statement")
+
+    db.Product.create(newProduct)
+    .then(function (products, err) {
+      console.log(products);
+      console.log('success');
+      console.log(err);
+      if (err) {
+        return (err);
+      }
+      else {
+        res.json(products);
+      }
+    });
+  } else {
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+
+})
+
+//Dashboard update a product route
+
+router.put('/updateProduct/:id',  passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+  let id = parseInt(req.params.id); 
+  if(token){
+    db.Product.update(
+      { item: req.body.item,
+        image: req.body.image},
+      {where:{ id: id}})
+      .then(function(product, err){
+        if(err){
+          return (err);
+        }
+        else{
+          res.json(product)
+        }
+      });
+  } else {
+      return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+})
+
+router.delete('/deleteProduct/:id', passport.authenticate('jwt', {session: false}), function (req, res) {
+  let token = getToken(req.headers);
+  let id = parseInt(req.params.id);
+  if(token){
+    db.Product.destroy({
+      where: {UserId: id}
+    }).then(function(product, err){
+      if(err){
+        return (err);
+      } else {
+        res.json(product);
+      }
+    });
+  } else {
+      return res.status(403).send({success: false, msg: 'Unauthorized'});
+  }
+})
 
 
 //farmer page routes
@@ -92,8 +171,9 @@ router.get('/populateMarketsCard', function (req, res) {
 //products routes- associated with farmers 
 
 router.get('/populateProducts/:id', function (req, res) {
+  let id = parseInt(req.params.id);
   db.Product.findAll(
-    { where: { UserId: req.params.id } })
+    { where: { UserId: id } })
     .then(function (products, err) {
       if (err) return (err);
       else {
