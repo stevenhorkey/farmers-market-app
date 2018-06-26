@@ -12,18 +12,14 @@ module.exports = function (sequelize, DataTypes) {
         },
         marketName: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        UserId: {
-            type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
         }
     });
 
     Product.associate = function (models) {
         Product.belongsTo(models.User, {
             foreignKey: {
-                allowNull: true
+                allowNull: false
             }
         });
     };
