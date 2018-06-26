@@ -45,6 +45,7 @@ router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { sessio
 
 
 router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: false }), function (req, res) {
+  console.log('in');
   var userId = parseInt(req.params.id)
   var token = getToken(req.headers);
   if (token) {
@@ -119,6 +120,24 @@ router.put('/updateProduct/:id',  passport.authenticate('jwt', { session: false 
       });
   } else {
       return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+})
+
+router.delete('/deleteProduct/:id', passport.authenticate('jwt', {session: false}), function (req, res) {
+  let token = getToken(req.headers);
+  let id = parseInt(req.params.id);
+  if(token){
+    db.Product.destroy({
+      where: {UserId: id}
+    }).then(function(product, err){
+      if(err){
+        return (err);
+      } else {
+        res.json(product);
+      }
+    });
+  } else {
+      return res.status(403).send({success: false, msg: 'Unauthorized'});
   }
 })
 

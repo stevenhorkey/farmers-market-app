@@ -129,6 +129,20 @@ class Dashboard extends Component {
             })
     }
 
+    onDeleteProducts = (childData) => {
+        console.log('clicked');
+        const id = childData.id;
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.delete('/api/deleteProduct/' + id)
+        .then((res) => {
+            this.setState({products: res.data});
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+    }
+
     onChange = (e) => {
         const state = this.state;
         state[e.target.name] = e.target.value;
@@ -176,7 +190,8 @@ class Dashboard extends Component {
                                     item={product.item}
                                     img={product.image}
                                     id={product.id}
-                                    modalOpen= {(e)=>{this.openModalUpdate(product, e)}}>
+                                    modalOpen= {(e)=>{this.openModalUpdate(product, e)}}
+                                    deleteProduct = {()=>{this.onDeleteProducts(product)}}>
                                 </Product>
                             ))}
                         </div>
