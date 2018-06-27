@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import './Navbar.css';
 
 class Navbar extends Component {
+
+    logout = () => {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+    }
+
     render() {
         return (
             // Navigation
@@ -21,12 +27,20 @@ class Navbar extends Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="#about">About</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/login">Login</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/signup">Sign Up</a>
-                            </li>
+                            {!localStorage.getItem('jwtToken') ? (
+                                <Fragment>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/login">Login</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/signup">Sign Up</a>
+                                    </li>
+                                </Fragment>
+                            ) : (
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/" onClick={this.logout}>Log Out</a>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>

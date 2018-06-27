@@ -16,8 +16,9 @@ class Signup extends Component {
             email: '',
             userType: 'Vendor',
             profileImage: '',
-            failed: false,
             success: false,
+            message: '',
+            pwdMsg: ''
         };
     }
 
@@ -49,23 +50,33 @@ class Signup extends Component {
         const { firstName, lastName, password, email, userType, profileImage } = this.state;
 
         if (this.checkPwd(password)){
+            this.setState({
+                pwdMsg: ''
+            })
             axios.post('/api/auth/signup', { firstName, lastName, password, email, userType, profileImage })
             .then((res) => {
-                this.setState({ success: true });
-                console.log(this.state.success);
+                console.log(res.data.message);
+                this.setState({
+                    success: res.data.success,
+                    message: res.data.message
+                });
             }).catch((err) => {
                 console.log(err);
                 this.setState({
                     failed: true
                 })
             })
-        }  
+        } else {
+            this.setState({
+                pwdMsg: 'Password must be between 6 and 50 characters, include at least one number, and include at least one letter!'
+            })
+        }
     }
 
     render() {
         const { success, firstName, lastName, password, email, userType, profileImage, message } = this.state;
         if (this.state.success) {
-            return <Redirect to='/login'/>
+            return (<Redirect to='/login'/>);
         } else {
             return(
             <main className="signup">
@@ -96,14 +107,15 @@ class Signup extends Component {
                                         <input type="email" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="emailHelp" placeholder="john@dough.com" name='email' value={email} onChange={this.onChange} required
                                         />
 
-                                        {!this.state.failed ? (null) : (<p className='text-center text-primary'>Email already in use!</p>)}
+                                        <p className='text-center text-primary'>{this.state.message}</p>
 
 
                                     </div>
-                                    <div className="form-group my-4 mb-3">
+                                    <div className="form-group my-4 mb-5">
                                         <label htmlFor="signupPassword">Your <strong>password.</strong></label>
                                         <input type="password" className="form-control border-top-0 border-left-0 border-right-0" name='password' placeholder="************" value={password} onChange={this.onChange} required />
-                                        <p className='text-center text-primary'>Password must be between 6 and 50 characters, include at least one number, and include at least one letter!</p>
+                                        
+                                        <p className='text-center text-primary'>{this.state.pwdMsg}</p>
 
 
                                     </div>
