@@ -32,7 +32,7 @@ class Dashboard extends Component {
             if (res.data.success) {
                 if (res.data.user.userType == "Vendor") {
                     axios.get("/api/populateDashboardVendor/" + res.data.user.id).then((response) => {
-                        console.log( response.data)
+                        console.log(response.data)
 
                         this.setState({ loading: false, products: response.data });
 
@@ -54,18 +54,18 @@ class Dashboard extends Component {
         })
     }
 
-    openModal=()=> {
-        this.setState({modalIsOpen: true});
-      }
+    openModal = () => {
+        this.setState({ modalIsOpen: true });
+    }
 
-    afterOpenModal=()=> {
+    afterOpenModal = () => {
         // references are now sync'd and can be accessed.
         // this.subtitle.style.color = '#f00';
-      }  
-    
-    closeModal=()=> {
-        this.setState({modalIsOpen: false});
-      }
+    }
+
+    closeModal = () => {
+        this.setState({ modalIsOpen: false });
+    }
 
     render() {
         return (
@@ -73,16 +73,16 @@ class Dashboard extends Component {
                 (null)
                 : <div className="title">Products: {this.state.products[0].item}>
                     <Product isDashboard={true}
-                             item={this.state.products[0].item}
-                             img={this.state.products[0].image}
-                             id={this.state.products[0].id}
-                             modalOpen= {()=>{this.openModal()}}>
+                        item={this.state.products[0].item}
+                        img={this.state.products[0].image}
+                        id={this.state.products[0].id}
+                        modalOpen={() => { this.openModal() }}>
                     </Product>
-                    <Modal  isOpen={this.state.modalIsOpen}
-                            onAfterOpen={this.afterOpenModal}
-                            onRequestClose={this.closeModal}
-                            // style={customStyles}
-                            contentLabel="Example Modal">
+                    <Modal isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        // style={customStyles}
+                        contentLabel="Example Modal">
 
                         <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
                         <button onClick={this.closeModal}>close</button>
@@ -95,7 +95,7 @@ class Dashboard extends Component {
                             <button>the modal</button>
                         </form>
                     </Modal>
-                  </div>
+                </div>
         );
     }
 }

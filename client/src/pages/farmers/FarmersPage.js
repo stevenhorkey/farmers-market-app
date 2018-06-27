@@ -5,7 +5,7 @@ import axios from 'axios';
 import './FarmersPage.css';
 import Product from '../../components/products/product/Product';
 import Carousel from '../../components/carousel/Carousel';
-import FarmerPhoto from '../../components/farmers/farmerPhoto/FarmerPhoto';
+import FarmerCard from '../../components/farmers/farmerCard/FarmerCard';
 
 class FarmersPage extends Component {
 
@@ -62,17 +62,18 @@ class FarmersPage extends Component {
                         <div className="row">
 
                             <div className="col-lg-3">
-
+                                <h2>ABOUT THIS VENDOR</h2>
+                                // should maybe be vendor name not first name and last name ie company or farm name 
                                 <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
 
-                                <FarmerPhoto />
-                                {/* <FarmerBio /> */}
+                                <FarmerCard />
+
 
                             </div>
 
                             <div className="col-lg-9">
 
-                                <Carousel/>
+                                <Carousel />
 
 
                                 <div className="row mb-4">
@@ -80,10 +81,7 @@ class FarmersPage extends Component {
                                 </div>
                                 <div className="row">
 
-                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
-                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
-                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
-                                    <Product title='Item 1' price='24.99' description='This is a description' img='http://placehold.it/700x400' />
+
                                     {this.state.products.map(product => (
                                         <Product
                                             img={product.image}
@@ -96,11 +94,11 @@ class FarmersPage extends Component {
                             </div>
                             {/* <!-- /.col-lg-9 --> */}
 
-                            </div>
-                         {/* <!-- /.row --> */}
+                        </div>
+                        {/* <!-- /.row --> */}
 
                     </div>
-            )
+                )
         )
     }
 }
