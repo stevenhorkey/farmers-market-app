@@ -17,8 +17,12 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Market.associate = function (models) {
-        Market.hasMany(models.User);
         Market.hasMany(models.Request);
+        Market.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
 
     return Market;

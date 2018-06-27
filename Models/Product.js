@@ -1,5 +1,3 @@
-
-
 module.exports = function (sequelize, DataTypes) {
     var Product = sequelize.define("Product", {
         item: {
@@ -13,8 +11,7 @@ module.exports = function (sequelize, DataTypes) {
         marketName: {
             type: DataTypes.STRING,
             allowNull: true,
-        },
-
+        }
     });
 
     Product.associate = function (models) {

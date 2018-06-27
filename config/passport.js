@@ -18,10 +18,10 @@ module.exports = function(passport) {
               console.log("there's an error")
           }
           if (user) {
-              done(null, user);
+              return done(null, user);
               console.log('in user')
           } else {
-              done(null, false);
+              return done(null, false);
               console.log("bad password")
           }
       });

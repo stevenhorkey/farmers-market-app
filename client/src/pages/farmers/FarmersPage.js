@@ -75,10 +75,6 @@ class FarmersPage extends Component {
 
                                 <Carousel />
 
-
-                                <div className="row mb-4">
-                                    <button className='w-100 mx-3 btn btn-primary'>Add an item</button>
-                                </div>
                                 <div className="row">
 
 
