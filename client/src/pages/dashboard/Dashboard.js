@@ -22,7 +22,11 @@ class Dashboard extends Component {
             modalProductID: '',
             item: '',
             image: '',
-            id: ''
+            id: '',
+            market: '',
+            marketImage: '',
+            marketTime: '',
+            modalIsOpenCreateMarket: false,
 
         };
     };
@@ -154,6 +158,39 @@ class Dashboard extends Component {
         this.setState(state);
     }
 
+     openModalCreateMarket = () => {
+        this.setState({modalIsOpenCreateMarket: true});
+    }
+
+    afterOpenModalCreateMarket = () => {
+
+    }
+
+    closeModalCreateMarket =() => {
+       this.setState({modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+    }
+
+    onSubmitCreateMarket =(e)=>{
+        e.preventDefault();
+        const market = this.state.market;
+        const image = this.state.marketImage;
+        const marketTime = this.state.marketTime;
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.post('/api/newMarket', { market, image, marketTime})
+            .then((res) => {
+                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                axios.get('/api/populateDashboardMarket/' + this.state.user.id)
+                .then((res) => {
+                    this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: ''  });
+                    console.log(this.state)
+                })
+                // this.props.history.push("/login");
+            }).catch((err) => {
+                console.log(err);
+            })
+
+    }
+   
    
 
     render() {
@@ -250,6 +287,7 @@ class Dashboard extends Component {
                 </div>
             </div>  
         )
+    )
     }
 }
 export default Dashboard;

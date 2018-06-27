@@ -100,6 +100,42 @@ router.post('/newProduct',  passport.authenticate('jwt', { session: false }), fu
 
 })
 
+router.post('/newMarket',  passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+
+  console.log(req.user.dataValues.id);
+  console.log("here is the res.data:")
+  console.log(req.user.dataValues);
+
+  if (token) {
+    console.log(req.user.dataValues.id);
+    var newProduct = {
+    marketName: req.body.market,
+    marketImage: req.body.image,
+    marketTime: req.body.marketTime,
+    UserId: req.user.dataValues.id
+  }
+
+    console.log("in if statement")
+
+    db.Market.create(newProduct)
+    .then(function (products, err) {
+      console.log(products);
+      console.log('success');
+      console.log(err);
+      if (err) {
+        return (err);
+      }
+      else {
+        res.json(products);
+      }
+    });
+  } else {
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+
+})
+
 //Dashboard update a product route
 
 router.put('/updateProduct/:id',  passport.authenticate('jwt', { session: false }), function (req, res) {
