@@ -74,7 +74,7 @@ class Dashboard extends Component {
     
     closeModalUpdate=()=> {
         this.setState({modalIsOpenUpdate: false, item: '', image: '' });
-      }
+    }
 
     onSubmitUpdate = (e) => {
         e.preventDefault();

@@ -51,7 +51,7 @@ class Signup extends Component {
         if (this.checkPwd(password)){
             axios.post('/api/auth/signup', { firstName, lastName, password, email, userType, profileImage })
             .then((res) => {
-                this.setState({ success: false });
+                this.setState({ success: true });
                 console.log(this.state.success);
             }).catch((err) => {
                 console.log(err);
