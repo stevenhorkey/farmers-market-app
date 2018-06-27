@@ -22,7 +22,11 @@ class Dashboard extends Component {
             modalProductID: '',
             item: '',
             image: '',
-            id: ''
+            id: '',
+            market: '',
+            marketImage: '',
+            marketTime: '',
+            modalIsOpenCreateMarket: false,
 
         };
     };
@@ -154,6 +158,39 @@ class Dashboard extends Component {
         this.setState(state);
     }
 
+     openModalCreateMarket = () => {
+        this.setState({modalIsOpenCreateMarket: true});
+    }
+
+    afterOpenModalCreateMarket = () => {
+
+    }
+
+    closeModalCreateMarket =() => {
+       this.setState({modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+    }
+
+    onSubmitCreateMarket =(e)=>{
+        e.preventDefault();
+        const market = this.state.market;
+        const image = this.state.marketImage;
+        const marketTime = this.state.marketTime;
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.post('/api/newMarket', { market, image, marketTime})
+            .then((res) => {
+                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                axios.get('/api/populateDashboardMarket/' + this.state.user.id)
+                .then((res) => {
+                    this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: ''  });
+                    console.log(this.state)
+                })
+                // this.props.history.push("/login");
+            }).catch((err) => {
+                console.log(err);
+            })
+
+    }
+   
    
 
     render() {
@@ -244,8 +281,38 @@ class Dashboard extends Component {
                     </Modal>
                   
                   </div>)
-                ) : (null)
+                ) : (this.state.markets === null ?
+                    (<div>
+                        <div><h1>You don't have a market.....Would you like to create one?</h1> <button className = "btn" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button></div>
+                        <Modal  isOpen={this.state.modalIsOpenCreateMarket}
+                              onAfterOpen={this.afterOpenModalCreateMarket}
+                              onRequestClose={this.closeModalCreateMarket}
+                              // style={customStyles}
+                              contentLabel="Example Modal">
+                          <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Market</h2>
+                          
+                          <div>Market Information</div>
+                          <form onSubmit={this.onSubmitCreateMarket}>
+                              <div className="form-group mt-4 mb-5">
+                                  <label htmlFor="market">Market Name</label>
+                                  <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Market Name" name='market' value={this.state.market} onChange={this.onChange} required/>
+                              </div>
+                              <div className="form-group mt-4 mb-5">
+                                  <label htmlFor="marketImage">Image URL</label>
+                                  <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.state.marketImage} onChange={this.onChange} required/>
+                              </div>
+                              <div className="form-group mt-4 mb-5">
+                                  <label htmlFor="marketTime">Market Schedule</label>
+                                  <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketTime' value={this.state.marketTime} onChange={this.onChange} required/>
+                              </div>
+                              <button className="btn" type="submit">Submit</button>
+                          </form>
+                          <button className="btn" onClick={this.closeModalCreateMarket}>Cancel</button>
+                      </Modal>
+                      </div>)
+                    :(<div>false</div>)
         )
+    )
     }
 }
 export default Dashboard;
