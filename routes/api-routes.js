@@ -43,8 +43,13 @@ router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { sessio
 
 });
 
+<<<<<<< HEAD
 // Auth route - populate market dashboard.
 router.get('/populateDashboardMarket', passport.authenticate('jwt', { session: false }), function (req, res) {
+=======
+
+router.get('/populateDashboardMarket/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+>>>>>>> bf39a9eb4fa5bfcdda6d630c9f0638d2288e4f6d
   console.log('in');
   var userId = parseInt(req.params.id)
   var token = getToken(req.headers);
@@ -128,7 +133,7 @@ router.delete('/deleteProduct/:id', passport.authenticate('jwt', {session: false
   let id = parseInt(req.params.id);
   if(token){
     db.Product.destroy({
-      where: {UserId: id}
+      where: {id: id}
     }).then(function(product, err){
       if(err){
         return (err);

@@ -2,6 +2,10 @@
 
 module.exports = function (sequelize, DataTypes) {
     var Request = sequelize.define("Request", {
+        farmerId : {
+            type: DataTypes.INTEGER,
+            allownull:false
+        },
         hasAccepted : {
             type: DataTypes.BOOLEAN,
             defaultValue : false
@@ -15,11 +19,6 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: true
             }
         });
-        Request.belongsTo(models.User, {
-            foreginKey: {
-                allowNull: true
-           }
-        })
     }
 
     return Request;
