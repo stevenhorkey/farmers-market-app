@@ -50,16 +50,16 @@ router.get('/populateDashboardMarket/:id', passport.authenticate('jwt', { sessio
   var token = getToken(req.headers);
   if (token) {
     db.Market.findOne({
-      where: {UserId: userId}
-    }).then(function(market, err){
-      if(err){
+      where: { UserId: userId }
+    }).then(function (market, err) {
+      if (err) {
         return err;
       } else {
         res.json(market);
       }
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized'});
+    return res.status(403).send({ success: false, msg: 'Unauthorized' });
   }
 });
 

@@ -170,7 +170,6 @@ class Dashboard extends Component {
                             onRequestClose={this.closeModalCreate}
                             // style={customStyles}
                             contentLabel="Example Modal">
-
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
                         
                         <div>Product Information</div>
@@ -207,7 +206,6 @@ class Dashboard extends Component {
                             onRequestClose={this.closeModalCreate}
                             // style={customStyles}
                             contentLabel="Example Modal">
-
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
                         
                         <div>Product Information</div>
@@ -229,7 +227,6 @@ class Dashboard extends Component {
                             onRequestClose={this.closeModalUpdate}
                             // style={customStyles}
                             contentLabel="Example Modal">
-
                         <h2 ref={subtitle => this.subtitle = subtitle}>Edit Your Product</h2>
                         <div>Product Information</div>
                         <form onSubmit={this.onSubmitUpdate}>
@@ -251,11 +248,8 @@ class Dashboard extends Component {
         )
     }
 }
-
 export default Dashboard;
-
 //First
-
 //SELLER    
 //sidebar (in the container not the root)
    //manage products
@@ -279,7 +273,6 @@ export default Dashboard;
    //manage profile
        //create mission statement
        //profile picture
-
 //ORGANIZER
    //sidebar
        //farmer request (notification)
