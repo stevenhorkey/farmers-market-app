@@ -14,7 +14,7 @@ body i {
   font-family:'FontAwesome'!important;
 }
 a{
-  color: #D1262B;
+  color: #79A174;
 }
 
 .btn, .form-control {
@@ -24,8 +24,8 @@ a{
 }
 
 .btn-primary {
-  background-color: #D1262B;
-  border-color: #D1262B;
+  background-color: #79A174;
+  border-color: #79A174;
   padding: 10px;
   border-radius: 2px;
 }

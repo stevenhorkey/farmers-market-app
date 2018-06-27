@@ -158,7 +158,9 @@ class Dashboard extends Component {
 
     render() {
         return (
-            this.state.loading ?
+            <div className='dashboard'>
+                <div className='container'>
+            {this.state.loading ?
                 (null)
                 : this.state.user.userType === "Vendor" ?
                 (this.state.products[0] === undefined ?
@@ -244,7 +246,9 @@ class Dashboard extends Component {
                     </Modal>
                   
                   </div>)
-                ) : (null)
+                ) : (null)}
+                </div>
+            </div>  
         )
     }
 }

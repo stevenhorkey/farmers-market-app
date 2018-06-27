@@ -49,7 +49,7 @@ import Axios from 'axios';
 class Site extends Component {
 
     state = {
-        siteName: 'Farmers Market App',
+        siteName: "Sellantro",
         loggedIn: false
     }
 
