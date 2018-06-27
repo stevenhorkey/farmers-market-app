@@ -75,7 +75,6 @@ class Site extends Component {
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/markets" component={Markets} />
 
-                            {/* <Route component={NoMatch} /> */}
 
 
                         </Switch>
