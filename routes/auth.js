@@ -61,22 +61,40 @@ router.post('/signup', function (req, res) {
         res.json({ success: false, msg: 'Please pass email, password, and your full name name.' });
     } else {
  
-        var newUser = new db.User({
+        var newUser = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             password: generateHash(req.body.password),
             email: req.body.email,
             userType: req.body.userType,
             profileImage: req.body.profileImage
-        });
+        };
         // save the user
-        newUser.save(function (err) {
-            if (err) {
-                console.log(err);
-                return res.json({ success: false, msg: 'Email already exists.' });
+        db.User.findOne({
+            where:{
+                email: req.body.email
             }
-            res.json({ success: true, msg: 'Successful created new user.' });
-        });
+        }).then(function(exists){
+            console.log(exists);
+            if (exists === null){
+                db.User.create(newUser).then(function(dbUser){
+                    res.json({
+                        success: true,
+                        message: 'Successfully signed up!'
+                    })
+                }).catch(function(err){
+                    console.log(err);
+                })
+            } else {
+                console.log('already exists')
+                res.json({
+                    success: false,
+                    message: 'Email already in use!'
+                });
+            }
+        }).catch(function(err){
+            console.log(err);
+        })
     }
 });
 // Api post to login
@@ -87,7 +105,7 @@ router.post('/login', function (req, res) {
         }
     }).then(function (user) {
         if (!user) {
-            res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
+            res.send({ success: false, eMessage: 'Authentication failed. User not found.' });
             console.log("made it inside if statement")
         } else {
             // check if password matches
@@ -98,7 +116,7 @@ router.post('/login', function (req, res) {
                 res.json({ success: true, token: 'JWT ' + token });
             } else {
                 console.log('test')
-                res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+                res.json({ success: false, pMessage: 'Authentication failed. Wrong password.' });
             }
         }
     }).catch(function (err) {

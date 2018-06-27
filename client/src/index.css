@@ -1,10 +1,10 @@
-* {
+/* * {
   -webkit-transition: all 20ms ease-in-out;
   -moz-transition: all 20ms ease-in-out;
   -ms-transition: all 20ms ease-in-out;
   -o-transition: all 20ms ease-in-out;
   transition: all 20ms ease-in-out;
-}
+} */
 body {
   margin: 0;
   padding: 0;
@@ -93,9 +93,14 @@ a{
   font-family: 'Black Han Sans', sans-serif;
 }
 
+.open-sans{
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;  
+}
+
 .hover-darkred:hover{
   background-color: rgb(153, 29, 33);
 }
+
 #content{
   position: relative;
   top: 67px;
