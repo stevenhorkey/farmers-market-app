@@ -35,7 +35,7 @@ class Footer extends Component {
                         </a>
                     </li>
                     </ul>
-                    <p className="copyright text-white mt-3">Copyright &copy; Your Website 2018</p>
+                    <p className="copyright text-white mt-3">Copyright &copy; {this.props.siteName} 2018</p>
                 </div>
                 </div>
             </div>

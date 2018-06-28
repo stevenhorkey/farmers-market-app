@@ -80,7 +80,7 @@ class Site extends Component {
 
                         </Switch>
                     </div>
-                    <Footer />
+                    <Footer siteName={siteName} />
                 </div>
             </Router >
         )

@@ -287,7 +287,6 @@ class Dashboard extends Component {
                 </div>
             </div>  
         )
-    )
     }
 }
 export default Dashboard;

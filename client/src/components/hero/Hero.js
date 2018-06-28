@@ -12,7 +12,7 @@ class Hero extends Component {
                     <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="site-heading">
-                            <h1 className="bhs">{this.props.siteName}</h1>
+                            <h1 className="bhs"><i class="fab fa-pagelines"></i>{this.props.siteName}</h1>
                             <span className="subheading">Connecting people to their communities and their food.</span>
                         </div>
                         <a href='/products'><button className="btn btn-primary mx-auto w-100 open-sans">Find My Food</button></a>
