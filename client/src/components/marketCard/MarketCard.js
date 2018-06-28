@@ -6,9 +6,9 @@ class MarketCard extends Component {
             <div className="col-lg-4 col-md-6 mb-4 d-inline">
                 <div className="card h-100">
                     <div className="card-body">
-                        <h3 className="card-title text-center">{this.props.name}</h3>
-                        <p className="card-text text-center">{this.props.location}</p>
-                        <p className="card-text text-center">{this.props.time}</p>
+                        <h3 className="card-title text-center">{this.props.marketName}</h3>
+                        <p className="card-text text-center">{this.props.marketLocation}</p>
+                        <p className="card-text text-center">{this.props.marketTime}</p>
                     </div>
                     <div className="card-footer">
                         <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

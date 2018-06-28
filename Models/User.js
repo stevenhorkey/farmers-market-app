@@ -38,7 +38,7 @@ module.exports = function (sequelize, DataTypes) {
     User.associate = function (models) {
         User.hasMany(models.Product);
         User.hasOne(models.Market);
-        
+
     }
 
     return User;

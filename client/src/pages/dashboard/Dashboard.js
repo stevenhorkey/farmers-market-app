@@ -18,7 +18,7 @@ class Dashboard extends Component {
             markets: [],
             requests: [],
             modalIsOpenUpdate: false,
-            modalIsOpenCreate: false, 
+            modalIsOpenCreate: false,
             modalProductID: '',
             item: '',
             image: '',
@@ -42,7 +42,7 @@ class Dashboard extends Component {
                     let userInfo = res.data.user;
                     console.log(userInfo);
                     axios.get("/api/populateDashboardVendor/" + userInfo.id).then((response) => {
-                        console.log( response.data)
+                        console.log(response.data)
 
                         this.setState({ loading: false, products: response.data, user: userInfo });
                         console.log(this.state)
@@ -51,12 +51,12 @@ class Dashboard extends Component {
                 else {
                     let userInfo = res.data.user;
                     axios.get("/api/populateDashboardMarket/" + userInfo.id).then((response) => {
-                        this.setState({loading: false, markets: response.data, user: userInfo});
+                        this.setState({ loading: false, markets: response.data, user: userInfo });
                     });
                 }
 
                 // this.setState({ loading: false, userType: res.data.userType })
-                
+
             }
 
         }).catch((error) => {
@@ -65,20 +65,20 @@ class Dashboard extends Component {
         })
     }
 
-    openModalUpdate=(childData, event)=> {
+    openModalUpdate = (childData, event) => {
         const prodItem = childData.item;
         const prodImg = childData.image;
         const prodId = childData.id;
-        this.setState({modalIsOpenUpdate: true, item: prodItem, image: prodImg, id: prodId });
-      }
+        this.setState({ modalIsOpenUpdate: true, item: prodItem, image: prodImg, id: prodId });
+    }
 
-    afterOpenModalUpdate=()=> {
+    afterOpenModalUpdate = () => {
         // references are now sync'd and can be accessed.
         // this.subtitle.style.color = '#f00';
-      }  
-    
-    closeModalUpdate=()=> {
-        this.setState({modalIsOpenUpdate: false, item: '', image: '' });
+    }
+
+    closeModalUpdate = () => {
+        this.setState({ modalIsOpenUpdate: false, item: '', image: '' });
     }
 
     onSubmitUpdate = (e) => {
@@ -88,30 +88,30 @@ class Dashboard extends Component {
         const image = this.state.image;
         const id = this.state.id;
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.put('/api/updateProduct/' +  id, {item, image})
+        axios.put('/api/updateProduct/' + id, { item, image })
             .then((res) => {
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
                 axios.get('/api/populateProducts/' + this.state.user.id)
-                .then((res) => {
-                    this.setState({ products: res.data, modalIsOpenUpdate: false, item: '', image: '', id: ''  });
-                    console.log(this.state)
-                })
+                    .then((res) => {
+                        this.setState({ products: res.data, modalIsOpenUpdate: false, item: '', image: '', id: '' });
+                        console.log(this.state)
+                    })
                 // this.props.history.push("/login");
             }).catch((err) => {
                 console.log(err);
             })
     }
 
-    openModalCreate=()=>{
-        this.setState({modalIsOpenCreate: true});
+    openModalCreate = () => {
+        this.setState({ modalIsOpenCreate: true });
     }
 
-    afterOpenModalCreate=()=>{
-        
+    afterOpenModalCreate = () => {
+
     }
-    
-    closeModalCreate=()=>{
-        this.setState({modalIsOpenCreate: false, item: '', image: '' });
+
+    closeModalCreate = () => {
+        this.setState({ modalIsOpenCreate: false, item: '', image: '' });
     }
 
     onSubmitCreate = (e) => {
@@ -120,14 +120,14 @@ class Dashboard extends Component {
         const item = this.state.item;
         const image = this.state.image
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.post('/api/newProduct', { item, image})
+        axios.post('/api/newProduct', { item, image })
             .then((res) => {
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
                 axios.get('/api/populateProducts/' + this.state.user.id)
-                .then((res) => {
-                    this.setState({ products: res.data, modalIsOpenCreate: false, item: '', image: ''  });
-                    console.log(this.state)
-                })
+                    .then((res) => {
+                        this.setState({ products: res.data, modalIsOpenCreate: false, item: '', image: '' });
+                        console.log(this.state)
+                    })
                 // this.props.history.push("/login");
             }).catch((err) => {
                 console.log(err);
@@ -139,15 +139,15 @@ class Dashboard extends Component {
         const id = childData.id;
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.delete('/api/deleteProduct/' + id)
-        .then((res) => {
-            axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-            axios.get('/api/populateProducts/'+this.state.user.id)
             .then((res) => {
-                this.setState({products: res.data})
+                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                axios.get('/api/populateProducts/' + this.state.user.id)
+                    .then((res) => {
+                        this.setState({ products: res.data })
+                    })
+            }).catch((err) => {
+                console.log(err);
             })
-        }).catch((err) => {
-            console.log(err);
-        })
 
 
     }
@@ -158,134 +158,134 @@ class Dashboard extends Component {
         this.setState(state);
     }
 
-     openModalCreateMarket = () => {
-        this.setState({modalIsOpenCreateMarket: true});
+    openModalCreateMarket = () => {
+        this.setState({ modalIsOpenCreateMarket: true });
     }
 
     afterOpenModalCreateMarket = () => {
 
     }
 
-    closeModalCreateMarket =() => {
-       this.setState({modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+    closeModalCreateMarket = () => {
+        this.setState({ modalIsOpenCreateMarket: false, market: '', marketImage: '' });
     }
 
-    onSubmitCreateMarket =(e)=>{
+    onSubmitCreateMarket = (e) => {
         e.preventDefault();
         const market = this.state.market;
         const image = this.state.marketImage;
         const marketTime = this.state.marketTime;
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.post('/api/newMarket', { market, image, marketTime})
+        axios.post('/api/newMarket', { market, image, marketTime })
             .then((res) => {
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
                 axios.get('/api/populateDashboardMarket/' + this.state.user.id)
-                .then((res) => {
-                    this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: ''  });
-                    console.log(this.state)
-                })
+                    .then((res) => {
+                        this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+                        console.log(this.state)
+                    })
                 // this.props.history.push("/login");
             }).catch((err) => {
                 console.log(err);
             })
 
     }
-   
-   
+
+
 
     render() {
         return (
             <div className='dashboard'>
                 <div className='container'>
-            {this.state.loading ?
-                (null)
-                : this.state.user.userType === "Vendor" ?
-                (this.state.products[0] === undefined ?
-                
-                    (<div>
-                      <div><h1>You don't have any products.....Would you like to create one?</h1> <button className = "btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button></div>
-                      <Modal  isOpen={this.state.modalIsOpenCreate}
-                            onAfterOpen={this.afterOpenModalCreate}
-                            onRequestClose={this.closeModalCreate}
-                            // style={customStyles}
-                            contentLabel="Example Modal">
-                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
-                        
-                        <div>Product Information</div>
-                        <form onSubmit={this.onSubmitCreate}>
-                            <div className="form-group mt-4 mb-5">
-                                <label htmlFor="item">Product Name</label>
-                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required/>
-                            </div>
-                            <div className="form-group mt-4 mb-5">
-                                <label htmlFor="image">Image URL</label>
-                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required/>
-                            </div>
-                            <button className="btn" type="submit">Submit</button>
-                        </form>
-                        <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
-                    </Modal>
-                    </div>)
-                  : (<div>
-                        <div className= "row"><h1>Products</h1></div>
-                        <div className="row">
-                            {this.state.products.map(product => (
-                                <Product isDashboard={true}
-                                    item={product.item}
-                                    img={product.image}
-                                    id={product.id}
-                                    modalOpen= {(e)=>{this.openModalUpdate(product, e)}}
-                                    deleteProduct = {()=>{this.onDeleteProducts(product)}}>
-                                </Product>
-                            ))}
-                        </div>
-                    <button className = "btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                    <Modal  isOpen={this.state.modalIsOpenCreate}
-                            onAfterOpen={this.afterOpenModalCreate}
-                            onRequestClose={this.closeModalCreate}
-                            // style={customStyles}
-                            contentLabel="Example Modal">
-                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
-                        
-                        <div>Product Information</div>
-                        <form onSubmit={this.onSubmitCreate}>
-                            <div className="form-group mt-4 mb-5">
-                                <label htmlFor="item">Product Name</label>
-                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required/>
-                            </div>
-                            <div className="form-group mt-4 mb-5">
-                                <label htmlFor="image">Image URL</label>
-                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required/>
-                            </div>
-                            <button className="btn" type="submit">Submit</button>
-                        </form>
-                        <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
-                    </Modal>
-                    <Modal  isOpen={this.state.modalIsOpenUpdate}
-                            onAfterOpen={this.afterOpenModalUpdate}
-                            onRequestClose={this.closeModalUpdate}
-                            // style={customStyles}
-                            contentLabel="Example Modal">
-                        <h2 ref={subtitle => this.subtitle = subtitle}>Edit Your Product</h2>
-                        <div>Product Information</div>
-                        <form onSubmit={this.onSubmitUpdate}>
-                            <div className="form-group mt-4 mb-5">
-                                <label htmlFor="item">Product Name</label>
-                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required/>
-                            </div>
-                            <div className="form-group mt-4 mb-5">
-                                <label htmlFor="image">Image URL</label>
-                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required/>
-                            </div>
-                            <button className="btn" type="submit">Submit</button>
-                        </form>
-                        <button className="btn" onClick={this.closeModalUpdate}>Cancel</button>
-                    </Modal>
-                  
-                  </div>)
-                ) : (null)}
+                    {this.state.loading ?
+                        (null)
+                        : this.state.user.userType === "Vendor" ?
+                            (this.state.products[0] === undefined ?
+
+                                (<div>
+                                    <div><h1>You don't have any products...Would you like to create one?</h1> <button className="btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button></div>
+                                    <Modal isOpen={this.state.modalIsOpenCreate}
+                                        onAfterOpen={this.afterOpenModalCreate}
+                                        onRequestClose={this.closeModalCreate}
+                                        // style={customStyles}
+                                        contentLabel="Example Modal">
+                                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
+
+                                        <div>Product Information</div>
+                                        <form onSubmit={this.onSubmitCreate}>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="item">Product Name</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="image">Image URL</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required />
+                                            </div>
+                                            <button className="btn" type="submit">Submit</button>
+                                        </form>
+                                        <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
+                                    </Modal>
+                                </div>)
+                                : (<div>
+                                    <div className="row"><h1>Products</h1></div>
+                                    <div className="row">
+                                        {this.state.products.map(product => (
+                                            <Product isDashboard={true}
+                                                item={product.item}
+                                                img={product.image}
+                                                id={product.id}
+                                                modalOpen={(e) => { this.openModalUpdate(product, e) }}
+                                                deleteProduct={() => { this.onDeleteProducts(product) }}>
+                                            </Product>
+                                        ))}
+                                    </div>
+                                    <button className="btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
+                                    <Modal isOpen={this.state.modalIsOpenCreate}
+                                        onAfterOpen={this.afterOpenModalCreate}
+                                        onRequestClose={this.closeModalCreate}
+                                        // style={customStyles}
+                                        contentLabel="Example Modal">
+                                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
+
+                                        <div>Product Information</div>
+                                        <form onSubmit={this.onSubmitCreate}>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="item">Product Name</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="image">Image URL</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required />
+                                            </div>
+                                            <button className="btn" type="submit">Submit</button>
+                                        </form>
+                                        <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
+                                    </Modal>
+                                    <Modal isOpen={this.state.modalIsOpenUpdate}
+                                        onAfterOpen={this.afterOpenModalUpdate}
+                                        onRequestClose={this.closeModalUpdate}
+                                        // style={customStyles}
+                                        contentLabel="Example Modal">
+                                        <h2 ref={subtitle => this.subtitle = subtitle}>Edit Your Product</h2>
+                                        <div>Product Information</div>
+                                        <form onSubmit={this.onSubmitUpdate}>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="item">Product Name</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="image">Image URL</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required />
+                                            </div>
+                                            <button className="btn" type="submit">Submit</button>
+                                        </form>
+                                        <button className="btn" onClick={this.closeModalUpdate}>Cancel</button>
+                                    </Modal>
+
+                                </div>)
+                            ) : (null)}
                 </div>
-            </div>  
+            </div>
         )
     }
 }

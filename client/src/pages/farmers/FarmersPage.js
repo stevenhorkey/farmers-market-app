@@ -6,6 +6,7 @@ import './FarmersPage.css';
 import Product from '../../components/products/product/Product';
 import Carousel from '../../components/carousel/Carousel';
 import FarmerCard from '../../components/farmers/farmerCard/FarmerCard';
+// import '../assets/images/wood.jpg';
 
 class FarmersPage extends Component {
 
@@ -62,8 +63,9 @@ class FarmersPage extends Component {
                         <div className="row">
 
                             <div className="col-lg-3">
-                                <h2>ABOUT THIS VENDOR</h2>
-                                // should maybe be vendor name not first name and last name ie company or farm name 
+                                <h2><strong>About This Vendor</strong></h2>
+                                {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
+
                                 <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
 
                                 <FarmerCard />

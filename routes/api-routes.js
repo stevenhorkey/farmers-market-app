@@ -65,7 +65,7 @@ router.get('/populateDashboardMarket/:id', passport.authenticate('jwt', { sessio
 
 //Dashboard create product route
 
-router.post('/newProduct',  passport.authenticate('jwt', { session: false }), function (req, res) {
+router.post('/newProduct', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
 
   console.log(req.user.dataValues.id);
@@ -75,25 +75,25 @@ router.post('/newProduct',  passport.authenticate('jwt', { session: false }), fu
   if (token) {
     console.log(req.user.dataValues.id);
     var newProduct = {
-    item: req.body.item,
-    image: req.body.image,
-    UserId: req.user.dataValues.id
-  }
+      item: req.body.item,
+      image: req.body.image,
+      UserId: req.user.dataValues.id
+    }
 
     console.log("in if statement")
 
     db.Product.create(newProduct)
-    .then(function (products, err) {
-      console.log(products);
-      console.log('success');
-      console.log(err);
-      if (err) {
-        return (err);
-      }
-      else {
-        res.json(products);
-      }
-    });
+      .then(function (products, err) {
+        console.log(products);
+        console.log('success');
+        console.log(err);
+        if (err) {
+          return (err);
+        }
+        else {
+          res.json(products);
+        }
+      });
   } else {
     return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
@@ -138,42 +138,44 @@ router.post('/newMarket',  passport.authenticate('jwt', { session: false }), fun
 
 //Dashboard update a product route
 
-router.put('/updateProduct/:id',  passport.authenticate('jwt', { session: false }), function (req, res) {
+router.put('/updateProduct/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
-  let id = parseInt(req.params.id); 
-  if(token){
+  let id = parseInt(req.params.id);
+  if (token) {
     db.Product.update(
-      { item: req.body.item,
-        image: req.body.image},
-      {where:{ id: id}})
-      .then(function(product, err){
-        if(err){
+      {
+        item: req.body.item,
+        image: req.body.image
+      },
+      { where: { id: id } })
+      .then(function (product, err) {
+        if (err) {
           return (err);
         }
-        else{
+        else {
           res.json(product)
         }
       });
   } else {
-      return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
 })
 
-router.delete('/deleteProduct/:id', passport.authenticate('jwt', {session: false}), function (req, res) {
+router.delete('/deleteProduct/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   let token = getToken(req.headers);
   let id = parseInt(req.params.id);
-  if(token){
+  if (token) {
     db.Product.destroy({
-      where: {id: id}
-    }).then(function(product, err){
-      if(err){
+      where: { id: id }
+    }).then(function (product, err) {
+      if (err) {
         return (err);
       } else {
         res.json(product);
       }
     });
   } else {
-      return res.status(403).send({success: false, msg: 'Unauthorized'});
+    return res.status(403).send({ success: false, msg: 'Unauthorized' });
   }
 })
 

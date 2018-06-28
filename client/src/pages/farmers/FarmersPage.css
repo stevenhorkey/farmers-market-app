@@ -1,0 +1,8 @@
+.container {
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: 1000px ;
+    background-repeat: no-repeat;
+    width: 100%;
+    }
