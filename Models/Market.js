@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         marketLocation: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         marketTime: {
             type: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         marketImage: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     });
 
