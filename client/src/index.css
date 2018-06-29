@@ -104,4 +104,5 @@ a{
 #content{
   position: relative;
   top: 67px;
+  background-image: url('./assets/images/wood.jpg');
 }

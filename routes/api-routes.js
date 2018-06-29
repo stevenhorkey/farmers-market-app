@@ -100,7 +100,7 @@ router.post('/newProduct', passport.authenticate('jwt', { session: false }), fun
 
 })
 
-router.post('/newMarket',  passport.authenticate('jwt', { session: false }), function (req, res) {
+router.post('/newMarket', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
 
   console.log(req.user.dataValues.id);
@@ -110,26 +110,26 @@ router.post('/newMarket',  passport.authenticate('jwt', { session: false }), fun
   if (token) {
     console.log(req.user.dataValues.id);
     var newProduct = {
-    marketName: req.body.market,
-    marketImage: req.body.image,
-    marketTime: req.body.marketTime,
-    UserId: req.user.dataValues.id
-  }
+      marketName: req.body.marketName,
+      marketImage: req.body.marketImage,
+      marketTime: req.body.marketTime,
+      UserId: req.user.dataValues.id
+    }
 
     console.log("in if statement")
 
     db.Market.create(newProduct)
-    .then(function (products, err) {
-      console.log(products);
-      console.log('success');
-      console.log(err);
-      if (err) {
-        return (err);
-      }
-      else {
-        res.json(products);
-      }
-    });
+      .then(function (products, err) {
+        console.log(products);
+        console.log('success');
+        console.log(err);
+        if (err) {
+          return (err);
+        }
+        else {
+          res.json(products);
+        }
+      });
   } else {
     return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
