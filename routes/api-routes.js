@@ -100,7 +100,7 @@ router.post('/newProduct', passport.authenticate('jwt', { session: false }), fun
 
 })
 
-router.post('/newMarket',  passport.authenticate('jwt', { session: false }), function (req, res) {
+router.post('/newMarket', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
 
   console.log(req.user.dataValues.id);
@@ -110,26 +110,26 @@ router.post('/newMarket',  passport.authenticate('jwt', { session: false }), fun
   if (token) {
     console.log(req.user.dataValues.id);
     var newProduct = {
-    marketName: req.body.market,
-    marketImage: req.body.image,
-    marketTime: req.body.marketTime,
-    UserId: req.user.dataValues.id
-  }
+      marketName: req.body.market,
+      marketImage: req.body.image,
+      marketTime: req.body.marketTime,
+      UserId: req.user.dataValues.id
+    }
 
     console.log("in if statement")
 
     db.Market.create(newProduct)
-    .then(function (products, err) {
-      console.log(products);
-      console.log('success');
-      console.log(err);
-      if (err) {
-        return (err);
-      }
-      else {
-        res.json(products);
-      }
-    });
+      .then(function (products, err) {
+        console.log(products);
+        console.log('success');
+        console.log(err);
+        if (err) {
+          return (err);
+        }
+        else {
+          res.json(products);
+        }
+      });
   } else {
     return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
@@ -195,12 +195,36 @@ router.get('/populateFarmerPage/:id', function (req, res) {
 
 //markets page routes 
 //will need to be populated by location, use zipcode 
-router.get('/populateMarketsCard', function (req, res) {
+router.get('/populateMarketCard', function (req, res) {
   db.Market.findAll({})
-    .then(function (markets, err) {
+    .then(function (market, err) {
       if (err) return (err);
       else {
-        res.json(markets);
+        res.json(market);
+      }
+    });
+});
+
+router.get('/populateMarketPage/:id', function (req, res) {
+  let id = parseInt(req.params.id);
+  db.Market.findOne(
+    { where: { MarketID: id } })
+    .then(function (market, err) {
+      if (err) return (err);
+      else {
+        res.json(market);
+      }
+    });
+});
+
+router.get('/populateFarmers/:id', function (req, res) {
+  let id = parseInt(req.params.id);
+  db.User.findAll(
+    { where: { MarketID: id } })
+    .then(function (market, err) {
+      if (err) return (err);
+      else {
+        res.json(market);
       }
     });
 });
