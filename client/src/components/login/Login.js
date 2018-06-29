@@ -17,7 +17,6 @@ class Login extends Component {
         };
     }
 
-
     onChange = (e) => {
         const state = this.state
         state[e.target.name] = e.target.value;

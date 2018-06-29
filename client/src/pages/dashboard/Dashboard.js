@@ -6,6 +6,7 @@ import axios from 'axios';
 import './Dashboard.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Product from '../../components/products/product/Product';
+import AddCard from '../../components/products/addcard/AddCard';
 import Categories from '../../components/products/categories/Categories';
 import Carousel from '../../components/carousel/Carousel';
 
@@ -29,7 +30,6 @@ class Dashboard extends Component {
             marketImage: '',
             marketTime: '',
             modalIsOpenCreateMarket: false,
-
         };
     };
 
@@ -205,7 +205,7 @@ class Dashboard extends Component {
 
                     <div className="col-lg-3">
 
-                        <h1 className="my-4">Shop Name</h1>
+                        <h1 className="my-4 text-center">Shop Name</h1>
 
                         <Categories />
 
@@ -216,41 +216,25 @@ class Dashboard extends Component {
                         <Carousel />
 
                         <div className="row">
-
+                        <div className='col'>
                         {this.state.loading ?
                         (null)
                         : this.state.user.userType === "Vendor" ?
                             (this.state.products[0] === undefined ?
 
-                                (<div className="px-3">
+                                (<div className="w-100">
                                     <div>
                                         <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                                        <h1>You don't have any products...Would you like to create one?</h1> 
+                                        <h6>You don't have any products...Would you like to create one?</h6> 
                                     </div>
-                                    <Modal isOpen={this.state.modalIsOpenCreate}
-                                        onAfterOpen={this.afterOpenModalCreate}
-                                        onRequestClose={this.closeModalCreate}
-                                        // style={customStyles}
-                                        contentLabel="Example Modal">
-                                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
-
-                                        <div>Product Information</div>
-                                        <form onSubmit={this.onSubmitCreate}>
-                                            <div className="form-group mt-4 mb-5">
-                                                <label htmlFor="item">Product Name</label>
-                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required />
-                                            </div>
-                                            <div className="form-group mt-4 mb-5">
-                                                <label htmlFor="image">Image URL</label>
-                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required />
-                                            </div>
-                                            <button className="btn" type="submit">Submit</button>
-                                        </form>
-                                        <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
-                                    </Modal>
+                                    
                                 </div>)
-                                : (<div>
-                                    <div className="row"><h1>Products</h1></div>
+                                : (<div className="">
+                                    <div className="row">
+                                        <div className='col'>
+                                            <h1>Products</h1>
+                                        </div>
+                                    </div>
                                     <div className="row">
                                         {this.state.products.map(product => (
                                             <Product isDashboard={true}
@@ -261,29 +245,18 @@ class Dashboard extends Component {
                                                 deleteProduct={() => { this.onDeleteProducts(product) }}>
                                             </Product>
                                         ))}
-                                    </div>
-                                    <button className="btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                                    <Modal isOpen={this.state.modalIsOpenCreate}
-                                        onAfterOpen={this.afterOpenModalCreate}
-                                        onRequestClose={this.closeModalCreate}
-                                        // style={customStyles}
-                                        contentLabel="Example Modal">
-                                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
 
-                                        <div>Product Information</div>
-                                        <form onSubmit={this.onSubmitCreate}>
-                                            <div className="form-group mt-4 mb-5">
-                                                <label htmlFor="item">Product Name</label>
-                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required />
+                                            <div onClick={this.openModalCreate} id="createProduct" className="col-lg-4 col-md-6 mb-4">
+                                                <div className="card row h-100 d-flex">
+                                                    <div className='justify-content-center align-self-center'>
+                                                        <i class="fas fa-plus plus-sign"></i>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="form-group mt-4 mb-5">
-                                                <label htmlFor="image">Image URL</label>
-                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required />
-                                            </div>
-                                            <button className="btn" type="submit">Submit</button>
-                                        </form>
-                                        <button className="btn" onClick={this.closeModalCreate}>Cancel</button>
-                                    </Modal>
+                                    </div>
+                                        
+                                    {/* <button className="btn" >Add a Product</button> */}
+                                    
                                     <Modal isOpen={this.state.modalIsOpenUpdate}
                                         onAfterOpen={this.afterOpenModalUpdate}
                                         onRequestClose={this.closeModalUpdate}
@@ -308,7 +281,10 @@ class Dashboard extends Component {
                                 </div>)
                             ) : this.state.markets === null ?
                             (<div>
-                                <div><h1>You don't have a market.....Would you like to create one?</h1> <button className = "btn" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button></div>
+                                <div>
+                                    <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
+                                    <h1>You don't have a market.....Would you like to create one?</h1> 
+                                </div>
                                 <Modal  isOpen={this.state.modalIsOpenCreateMarket}
                                         onAfterOpen={this.afterOpenModalCreateMarket}
                                         onRequestClose={this.closeModalCreateMarket}
@@ -340,7 +316,27 @@ class Dashboard extends Component {
                                 </Modal>
                                 </div>)
                                 :(<div>null</div>)}
-
+                                <Modal isOpen={this.state.modalIsOpenCreate}
+                                        onAfterOpen={this.afterOpenModalCreate}
+                                        onRequestClose={this.closeModalCreate}
+                                        // style={customStyles}
+                                        contentLabel="Example Modal">
+                                        <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Product to your inventory</h2>
+                                        <form onSubmit={this.onSubmitCreate}>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="item">Product Name</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Product Name" name='item' value={this.state.item} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="image">Image URL</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.state.image} onChange={this.onChange} required />
+                                            </div>
+                                            <button className="btn btn-primary px-3" type="submit">Submit</button>
+                                            <button className="btn btn-danger mx-2 px-3" onClick={this.closeModalCreate}>Cancel</button>
+                                        </form>
+                                        
+                                    </Modal>
+                            </div>
 
 
                         </div>

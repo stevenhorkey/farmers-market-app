@@ -1,0 +1,6 @@
+.delete-button{
+    position: absolute;
+    top: -1px;
+    right: 5px;
+    font-size: 20px;
+}

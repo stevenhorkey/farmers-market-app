@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ import Axios from 'axios';
 class Site extends Component {
 
     state = {
-        siteName: "Sellantro",
+        siteName: "ThymeMarket",
         loggedIn: false
     }
 
@@ -69,7 +69,6 @@ class Site extends Component {
                     <div id='content'>
                         <Switch>
 
-                            <Route exact path="/" render={() => <Home siteName={siteName} />} />
                             <Route exact path="/signup" render={() => <Signup />} />
                             <Route exact path="/login" render={() => <Login />} />
                             <Route exact path="/protected" component={Test} />
@@ -77,8 +76,7 @@ class Site extends Component {
                             <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/markets" component={Markets} />
-
-
+                            <Route render={() => <Home siteName={siteName} />} />
 
                         </Switch>
                     </div>
