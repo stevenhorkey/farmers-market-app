@@ -110,8 +110,13 @@ router.post('/newMarket', passport.authenticate('jwt', { session: false }), func
   if (token) {
     console.log(req.user.dataValues.id);
     var newProduct = {
+<<<<<<< HEAD
       marketName: req.body.market,
       marketImage: req.body.image,
+=======
+      marketName: req.body.marketName,
+      marketImage: req.body.marketImage,
+>>>>>>> 5d56fa8f5ee05f91d7dbd7be3f8623adbf84554c
       marketTime: req.body.marketTime,
       UserId: req.user.dataValues.id
     }
