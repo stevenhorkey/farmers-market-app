@@ -6,6 +6,8 @@ import axios from 'axios';
 import './Dashboard.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Product from '../../components/products/product/Product';
+import Categories from '../../components/products/categories/Categories';
+import Carousel from '../../components/carousel/Carousel';
 
 
 class Dashboard extends Component {
@@ -197,13 +199,34 @@ class Dashboard extends Component {
         return (
             <div className='dashboard'>
                 <div className='container'>
-                    {this.state.loading ?
+                <div className="container pb-5">
+
+                <div className="row">
+
+                    <div className="col-lg-3">
+
+                        <h1 className="my-4">Shop Name</h1>
+
+                        <Categories />
+
+                    </div>
+
+                    <div className="col-lg-9">
+
+                        <Carousel />
+
+                        <div className="row">
+
+                        {this.state.loading ?
                         (null)
                         : this.state.user.userType === "Vendor" ?
                             (this.state.products[0] === undefined ?
 
-                                (<div>
-                                    <div><h1>You don't have any products...Would you like to create one?</h1> <button className="btn" onClick={this.openModalCreate} id="createProduct">Add a Product</button></div>
+                                (<div className="px-3">
+                                    <div>
+                                        <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
+                                        <h1>You don't have any products...Would you like to create one?</h1> 
+                                    </div>
                                     <Modal isOpen={this.state.modalIsOpenCreate}
                                         onAfterOpen={this.afterOpenModalCreate}
                                         onRequestClose={this.closeModalCreate}
@@ -283,14 +306,82 @@ class Dashboard extends Component {
                                     </Modal>
 
                                 </div>)
-                            ) : (null)}
+                            ) : this.state.markets === null ?
+                            (<div>
+                                <div><h1>You don't have a market.....Would you like to create one?</h1> <button className = "btn" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button></div>
+                                <Modal  isOpen={this.state.modalIsOpenCreateMarket}
+                                        onAfterOpen={this.afterOpenModalCreateMarket}
+                                        onRequestClose={this.closeModalCreateMarket}
+                                        // style={customStyles}
+                                        contentLabel="Example Modal">
+                                    <h2 ref={subtitle => this.subtitle = subtitle}>Add a new Market</h2>
+                                                          
+                                    <div>Market Information</div>
+                                    <form onSubmit={this.onSubmitCreateMarket}>
+                                        <div className="form-group mt-4 mb-5">
+                                            <label htmlFor="market">Market Name</label>
+                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Market Name" name='market' value={this.state.market} onChange={this.onChange} required/>
+                                        </div>
+                                        <div className="form-group mt-4 mb-5">
+                                            <label htmlFor="marketImage">Image URL</label>
+                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.state.marketImage} onChange={this.onChange} required/>
+                                        </div>
+                                        <div className="form-group mt-4 mb-5">
+                                            <label htmlFor="marketLocation">Market Location</label>
+                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketLocation' value={this.state.marketLocation} onChange={this.onChange} required/>
+                                        </div>
+                                        <div className="form-group mt-4 mb-5">
+                                            <label htmlFor="marketTime">Market Schedule</label>
+                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketTime' value={this.state.marketTime} onChange={this.onChange} required/>
+                                        </div>
+                                        <button className="btn" type="submit">Submit</button>
+                                    </form>
+                                    <button className="btn" onClick={this.closeModalCreateMarket}>Cancel</button>
+                                </Modal>
+                                </div>)
+                                :(<div>null</div>)}
+
+
+
+                        </div>
+                        {/* <!-- /.row --> */}
+
+                    </div>
+                    {/* <!-- /.col-lg-9 --> */}
+
+                </div>
+                {/* <!-- /.row --> */}
+
+                </div>
+                    
                 </div>
             </div>
         )
     }
 }
 export default Dashboard;
-//First
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// First
 //SELLER    
 //sidebar (in the container not the root)
    //manage products
