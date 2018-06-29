@@ -12,22 +12,9 @@ class About extends Component {
                             <div className="about-heading text-center">
                                 <h1>About</h1>
                                 <span className="subheading text-justify">
-                                    Fresh food and fellowship have always been at the <strong><i>root</i></strong> of a thriving community. Thyme Market seeks to engage and invigorate local neighborhoods to get connected with healthy food sources. blah blah
+                                    Fresh food and fellowship have always been at the <strong><i>root</i></strong> of a thriving community.
                             <br />
-                                    More food puns.
-                                    More puns, less guns.
-                                    Oh I like that.
-                                    PUNS NOT GUNS.
-                                    Puns not guns, nudes not nukes.
-                                    Hey what about App to Apples?
-                                    Carbs Against Humanity
-                                    Grain and Table
-                                    Veggie Tables
-                                    Trader Jocks
-                                    <i>Sell</i>ery
-                                    Nude Food
-                                    Carbs Against Humanity again lmao
-                                    Will you guys open a PUNADERIA with me named that? thanks
+                                    At Sellantro we strive to cultivate relationships between the farmer and the community. We provide a tool for consumers to browse their local farmers market, seeking and engaging in local neighborhoods and connecting with healthy food sources.
                                 </span>
                             </div>
                             <p></p>
