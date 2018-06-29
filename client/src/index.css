@@ -100,8 +100,11 @@ a{
 .hover-darkred:hover{
   background-color: rgb(94, 145, 88);
 }
-
 #content{
   position: relative;
   top: 67px;
-}
+  background-image: linear-gradient(rgba(255, 255, 255, 0.75),rgba(255, 255, 255, 0.75)) ,url('./assets/images/wood.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+ }

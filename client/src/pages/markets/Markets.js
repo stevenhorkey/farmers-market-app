@@ -9,17 +9,27 @@ class Markets extends Component {
 
     state = {
         loading: true,
-        markets: []
+        market: []
     }
 
     componentDidMount() {
         console.log(this.state)
-        axios.get('/api/populateMarketsCard/')
+        axios.get('/api/populateMarketPage/')
             .then((res) => {
                 // console.log(res)
                 this.setState({
                     market: res.data
                 });
+
+                axios.get('/api/populateFarmers/' + this.state.marketID.farmers)
+                    .then((result) => {
+                        // console.log(result)
+                        this.setState({
+                            farmers: result.data,
+                            loading: false
+                        })
+                        console.log(this.state)
+                    })
             })
     }
 
@@ -48,11 +58,11 @@ class Markets extends Component {
 
                         <div className="row">
 
-                            {this.state.markets.map(markets => (
+                            {this.state.market.map(market => (
                                 <MarketCard
                                     marketName={this.state.market.marketName}
-                                    location={this.state.market.location}
-                                    time={this.state.market.time}
+                                    marketLocation={this.state.market.marketLocation}
+                                    marketTime={this.state.market.marketTime}
                                 />
                             ))}
 

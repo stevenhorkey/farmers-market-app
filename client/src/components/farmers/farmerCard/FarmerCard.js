@@ -35,14 +35,10 @@ class FarmerCard extends Component {
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
         )
     }
 }
-
-
 
 export default FarmerCard;

@@ -14,7 +14,7 @@ class Navbar extends Component {
             // Navigation
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
                 <div className="container">
-                    <a className="navbar-brand bhs" href="/"><i class="fab fa-pagelines"></i>{this.props.siteName}</a>
+                    <a className="navbar-brand bhs" href="/"><i className="fab fa-pagelines"></i>{this.props.siteName}</a>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
           <i className="fa fa-bars"></i>
