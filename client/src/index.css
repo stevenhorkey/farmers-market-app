@@ -100,7 +100,6 @@ a{
 .hover-darkred:hover{
   background-color: rgb(94, 145, 88);
 }
-
 #content{
   position: relative;
   top: 67px;
@@ -108,4 +107,5 @@ a{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
 }

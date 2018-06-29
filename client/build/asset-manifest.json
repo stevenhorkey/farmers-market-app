@@ -1,12 +1,13 @@
 {
-  "main.css": "static/css/main.04bad0c2.css",
-  "main.css.map": "static/css/main.04bad0c2.css.map",
-  "main.js": "static/js/main.f5366dcc.js",
-  "main.js.map": "static/js/main.f5366dcc.js.map",
+  "main.css": "static/css/main.6be0c744.css",
+  "main.css.map": "static/css/main.6be0c744.css.map",
+  "main.js": "static/js/main.008d94ce.js",
+  "main.js.map": "static/js/main.008d94ce.js.map",
   "static/media/fontawesome-webfont.eot": "static/media/fontawesome-webfont.674f50d2.eot",
   "static/media/fontawesome-webfont.svg?v=4.7.0": "static/media/fontawesome-webfont.912ec66d.svg",
   "static/media/fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
   "static/media/fontawesome-webfont.woff2?v=4.7.0": "static/media/fontawesome-webfont.af7ae505.woff2",
   "static/media/fontawesome-webfont.woff?v=4.7.0": "static/media/fontawesome-webfont.fee66e71.woff",
-  "static/media/hero.jpg": "static/media/hero.9de9d0d3.jpg"
+  "static/media/hero.jpg": "static/media/hero.9de9d0d3.jpg",
+  "static/media/wood.jpg": "static/media/wood.482d9efe.jpg"
 }
