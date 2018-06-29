@@ -113,6 +113,8 @@ router.post('/newMarket', passport.authenticate('jwt', { session: false }), func
       marketName: req.body.marketName,
       marketImage: req.body.marketImage,
       marketTime: req.body.marketTime,
+      marketAddress: req.body.marketAddress,
+      marketZip: req.body.marketZip,
       UserId: req.user.dataValues.id
     }
 

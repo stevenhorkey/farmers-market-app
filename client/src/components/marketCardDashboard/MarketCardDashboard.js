@@ -11,7 +11,7 @@ class MarketCardDashboard extends Component {
                     <p className="card-text text-center">{this.props.marketTime}</p>
                 </div>
                 <div className="card-footer">
-
+                    <div className = "btn btn-primary edit-button" onClick={this.props.modalOpen} > Edit Market </div>
                 </div>
             </div>
             </div >

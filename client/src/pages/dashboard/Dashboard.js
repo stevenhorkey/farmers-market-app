@@ -179,8 +179,10 @@ class Dashboard extends Component {
         const marketName = this.state.marketName;
         const marketImage = this.state.marketImage;
         const marketTime = this.state.marketTime;
+        const marketAddress = this.state.marketAddress;
+        const marketZip = this.state.marketZip;
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.post('/api/newMarket', { marketName, marketImage, marketTime })
+        axios.post('/api/newMarket', { marketName, marketImage, marketTime, marketAddress, marketZip })
             .then((res) => {
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
                 axios.get('/api/populateDashboardMarket/' + this.state.user.id)
@@ -330,15 +332,19 @@ class Dashboard extends Component {
                                                         <form onSubmit={this.onSubmitCreateMarket}>
                                                             <div className="form-group mt-4 mb-5">
                                                                 <label htmlFor="market">Market Name</label>
-                                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Market Name" name='market' value={this.state.market} onChange={this.onChange} required />
+                                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Market Name" name='marketName' value={this.state.marketName} onChange={this.onChange} required />
                                                             </div>
                                                             <div className="form-group mt-4 mb-5">
                                                                 <label htmlFor="marketImage">Image URL</label>
                                                                 <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.state.marketImage} onChange={this.onChange} required />
                                                             </div>
                                                             <div className="form-group mt-4 mb-5">
-                                                                <label htmlFor="marketLocation">Market Location</label>
-                                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketLocation' value={this.state.marketLocation} onChange={this.onChange} required />
+                                                                <label htmlFor="marketLocation">Market Address</label>
+                                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketAddress' value={this.state.marketAddress} onChange={this.onChange} required />
+                                                            </div>
+                                                            <div className="form-group mt-4 mb-5">
+                                                                <label htmlFor="marketLocation">Market Zip</label>
+                                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketZip' value={this.state.marketZip} onChange={this.onChange} required />
                                                             </div>
                                                             <div className="form-group mt-4 mb-5">
                                                                 <label htmlFor="marketTime">Market Schedule</label>
@@ -349,15 +355,48 @@ class Dashboard extends Component {
                                                         <button className="btn" onClick={this.closeModalCreateMarket}>Cancel</button>
                                                     </Modal>
                                                 </div>)
-                                                : (
+                                                : ( <div>
                                                     <MarketCardDashboard
-                                                        name={this.state.markets.name}
-                                                        marketLocation={this.state.markets.marketLocation}
+                                                        name={this.state.markets.marketName}
+                                                        marketLocation={this.state.markets.marketAddress}
                                                         marketTime={this.state.markets.marketTime}
                                                         modalOpen={(e) => { this.openModalUpdateMarket(this.state.markets, e) }}
                                                         deleteMarket={() => { this.onDeleteMarkets(this.state.markets) }}>
                                                     </MarketCardDashboard>
+                                                    <Modal isOpen={this.state.modalIsOpenUpdateMarket}
+                                                    onAfterOpen={this.afterOpenModalUpdateMarket}
+                                                    onRequestClose={this.closeModalUpdateMarket}
+                                                    // style={customStyles}
+                                                    contentLabel="Example Modal">
+                                                    <h2 ref={subtitle => this.subtitle = subtitle}>Edit Your Market</h2>
 
+                                                    <div>Market Information</div>
+                                                    <form onSubmit={this.onSubmitUpdateMarket}>
+                                                        <div className="form-group mt-4 mb-5">
+                                                            <label htmlFor="market">Market Name</label>
+                                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Market Name" name='marketName' value={this.state.marketName} onChange={this.onChange} required />
+                                                        </div>
+                                                        <div className="form-group mt-4 mb-5">
+                                                            <label htmlFor="marketImage">Image URL</label>
+                                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.state.marketImage} onChange={this.onChange} required />
+                                                        </div>
+                                                        <div className="form-group mt-4 mb-5">
+                                                            <label htmlFor="marketLocation">Market Address</label>
+                                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketAddress' value={this.state.marketAddress} onChange={this.onChange} required />
+                                                        </div>
+                                                        <div className="form-group mt-4 mb-5">
+                                                            <label htmlFor="marketLocation">Market Zip</label>
+                                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketZip' value={this.state.marketZip} onChange={this.onChange} required />
+                                                        </div>
+                                                        <div className="form-group mt-4 mb-5">
+                                                            <label htmlFor="marketTime">Market Schedule</label>
+                                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketTime' value={this.state.marketTime} onChange={this.onChange} required />
+                                                        </div>
+                                                        <button className="btn" type="submit">Submit</button>
+                                                    </form>
+                                                    <button className="btn" onClick={this.closeModalUpdateMarket}>Cancel</button>
+                                                </Modal>
+                                                </div>
                                                 )}
 
 
