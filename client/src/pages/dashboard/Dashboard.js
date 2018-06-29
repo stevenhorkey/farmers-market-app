@@ -10,7 +10,8 @@ import AddCard from '../../components/products/addcard/AddCard';
 import Categories from '../../components/products/categories/Categories';
 import Carousel from '../../components/carousel/Carousel';
 
-
+//this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
+//be broken up into multiple files down the line
 class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -32,27 +33,44 @@ class Dashboard extends Component {
             modalIsOpenCreateMarket: false,
         };
     };
-
+    //this function runs when the page successfully loads on the client side
     componentDidMount() {
         console.log(this.state)
         console.log(localStorage.getItem('jwtToken'));
+        //the first thing we do is put a jwtToken inside the axios request header
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        //then make a post request to the auth routes to check whether the user is authenticated as the dashboard requires a user to be logged in
+        //notice, this post doesnt actually send any data, its just to verify log in
         axios.post("/api/auth/jwt").then((res) => {
             console.log(res.data.success)
+            //if the response from the server includes success:true (aka is logged in)
             if (res.data.success) {
+                //if the user is a vendor
+                //Vendor and Organizer dashboards are both loaded very similarly
                 if (res.data.user.userType == "Vendor") {
+                    //assign the users data to a variable
                     let userInfo = res.data.user;
                     console.log(userInfo);
+                    //send a get request to the server in api-routes using the users id number as a request parameter
                     axios.get("/api/populateDashboardVendor/" + userInfo.id).then((response) => {
                         console.log(response.data)
-
+                        //set new values in the state
+                        //response.data is an array of products tied to the user
+                        //users info is set into state
                         this.setState({ loading: false, products: response.data, user: userInfo });
                         console.log(this.state)
                     });
                 }
+                //if the user is a market organizer
+                //Vendor and Organizer dashboards are both loaded very similarly
                 else {
+                    //assign users data to a variable
                     let userInfo = res.data.user;
+                    //send a get request to the server in api-routes using the users id number as a request parameter
                     axios.get("/api/populateDashboardMarket/" + userInfo.id).then((response) => {
+                        //set new values in the state
+                        //response.data is an object with a single markets info
+                        //users info is set into state
                         this.setState({ loading: false, markets: response.data, user: userInfo });
                     });
                 }
@@ -60,17 +78,22 @@ class Dashboard extends Component {
                 // this.setState({ loading: false, userType: res.data.userType })
 
             }
-
+        //if there is an error or ser is not logged in redirect user to the login page
         }).catch((error) => {
             console.log(error)
             this.props.history.push("/login");
         })
     }
 
+    //this is a function that opens the update modal for products, it is sent as a prop with the products to get the childData of the product
+    //this is so we only update the product we select to edit
     openModalUpdate = (childData, event) => {
+        //assign the products different values to variables
         const prodItem = childData.item;
         const prodImg = childData.image;
         const prodId = childData.id;
+        //set the product states to the current product, we use this to fill the modal with the current products information 
+        //that way the user can see the current products information while they edit it
         this.setState({ modalIsOpenUpdate: true, item: prodItem, image: prodImg, id: prodId });
     }
 
@@ -78,23 +101,33 @@ class Dashboard extends Component {
         // references are now sync'd and can be accessed.
         // this.subtitle.style.color = '#f00';
     }
-
+    //this is a function that closes the update modal for products, it simply resets the product infos states and changes the state 
+    //controlling the modal
     closeModalUpdate = () => {
         this.setState({ modalIsOpenUpdate: false, item: '', image: '' });
     }
 
+    //this function submits the update product modal
     onSubmitUpdate = (e) => {
+        //prevent from reloading instantly
         e.preventDefault();
         console.log(this.state.user)
+        //assign the newly changed states as variables
         const item = this.state.item;
         const image = this.state.image;
         const id = this.state.id;
+        //put the users jwt token into the axios request's header
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        //send a put (update) request to the api routes, setting the id as a request parameter and sending the item name and image in the data
         axios.put('/api/updateProduct/' + id, { item, image })
+            //if the product successfully updates
             .then((res) => {
+                //set a jwt token in the header of a new axios request
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                //send a get request to get the new array of products tied to the user
                 axios.get('/api/populateProducts/' + this.state.user.id)
                     .then((res) => {
+                        //reset the product state to have the 
                         this.setState({ products: res.data, modalIsOpenUpdate: false, item: '', image: '', id: '' });
                         console.log(this.state)
                     })
@@ -103,8 +136,9 @@ class Dashboard extends Component {
                 console.log(err);
             })
     }
-
+    //this opens the modal to create a new product
     openModalCreate = () => {
+        //whether or not the modals are open is determined in the state
         this.setState({ modalIsOpenCreate: true });
     }
 
@@ -112,21 +146,33 @@ class Dashboard extends Component {
 
     }
 
+    //this closes the modal to create a new product
     closeModalCreate = () => {
+        //use state to close modal, reset the other states to clear them of any user input
         this.setState({ modalIsOpenCreate: false, item: '', image: '' });
     }
-
+    
+    //this function submits the new product to the server
     onSubmitCreate = (e) => {
+        //prevents the page from reloading automatically
         e.preventDefault();
         console.log(this.state.user)
+        //get the state of the the item and the item image
         const item = this.state.item;
         const image = this.state.image
+        //add a header to the sxios request
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        //send a post request to api-routes, sending the item name and image as data
         axios.post('/api/newProduct', { item, image })
+        //after product is created
             .then((res) => {
+                //add a header to an axios request
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                //send a get request to the api-routes with the users id as a request parameter
                 axios.get('/api/populateProducts/' + this.state.user.id)
+                //after getting the responde
                     .then((res) => {
+                        //set a new products array with the new product in the state, close the modal, reset the item info
                         this.setState({ products: res.data, modalIsOpenCreate: false, item: '', image: '' });
                         console.log(this.state)
                     })
@@ -135,18 +181,27 @@ class Dashboard extends Component {
                 console.log(err);
             })
     }
-
+    //this function deletes the selected product, this is passed as a prop to the product card
+    //that way the delete button only deletes the targetted card
     onDeleteProducts = (childData) => {
         console.log('clicked');
+        //get the id number of the product
         const id = childData.id;
+        //add users jwt token to the axios request
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        //send a delete request to the api-routes with the product id as a request parameter
         axios.delete('/api/deleteProduct/' + id)
+        //after deletion
             .then((res) => {
+                //set up a new request header with jwt token
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                //send a get request to api-routes with the users id as a request parameter
                 axios.get('/api/populateProducts/' + this.state.user.id)
                     .then((res) => {
+                        //reset the products array with a new array sans the deleted product
                         this.setState({ products: res.data })
                     })
+            //handle errors        
             }).catch((err) => {
                 console.log(err);
             })
@@ -154,11 +209,16 @@ class Dashboard extends Component {
 
     }
 
+    //this function is for filling out add or edit forms, state is changed as forms are filled out/altered
+    //all submit functions grab info from the state to send to the server
     onChange = (e) => {
         const state = this.state;
         state[e.target.name] = e.target.value;
         this.setState(state);
     }
+    
+    //the below 3 functions work very similarily to the above routes
+    //they are here to control the modals opening and closing
 
     openModalCreateMarket = () => {
         this.setState({ modalIsOpenCreateMarket: true });
@@ -172,15 +232,24 @@ class Dashboard extends Component {
         this.setState({ modalIsOpenCreateMarket: false, market: '', marketImage: '' });
     }
 
+    //this function handles the client side form submit for a new market
+    //again, very similar to the above onSubmitCreate
     onSubmitCreateMarket = (e) => {
+        //prevent page from reloading on submit
         e.preventDefault();
+        //get the new markets information from the state
         const market = this.state.market;
         const image = this.state.marketImage;
         const marketTime = this.state.marketTime;
+        //add a request header to the axios request
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        //send the post request to the server, with the markets information as data
         axios.post('/api/newMarket', { market, image, marketTime })
+        //after new market is created
             .then((res) => {
-                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                //send a new get request with a jwt token in the header
+                //you are now trying to populate the market on the page
+                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');  
                 axios.get('/api/populateDashboardMarket/' + this.state.user.id)
                     .then((res) => {
                         this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: '' });
