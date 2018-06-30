@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
         Market.hasMany(models.Request);
         Market.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
     };

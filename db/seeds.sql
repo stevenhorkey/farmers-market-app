@@ -10,7 +10,14 @@ VALUES
 
 
 INSERT INTO Markets
-    (marketName, marketLocation, marketTime, marketImage)
+    (marketName, marketAddress, marketZip, marketTime, marketImage)
 VALUES
     ("St. Philips Plaza", "Campbell and River", "Saturdays from 8:00AM-2:00PM", null),
     ("Thyme Market", "University Blvd", "Sundays from 8:00AM-1:00PM", null);
+
+
+INSERT INTO Products
+    (item, price, image)
+VALUES
+    ("Bananas by the eaches", "$.59", "banana.jpg"),
+    ("carrot", "1 shilling", "carrot.jpg");
