@@ -20,7 +20,7 @@ class FarmerCard extends Component {
 
                     <div>
                         <h4>You can find this vendor next at the:</h4>
-                        <h4 className="market-container"><i>{this.props.marketName} Thyme Farmer's Market</i></h4>
+                        <h4 className="market-container"><i>{this.props.marketName}</i></h4>
                         <ul>
                             <li>
                                 {this.props.marketLocation}

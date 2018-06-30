@@ -2,15 +2,15 @@
 
 module.exports = function (sequelize, DataTypes) {
     var Request = sequelize.define("Request", {
-        farmerId : {
+        UserId: {
             type: DataTypes.INTEGER,
-            allownull:false
+            allownull: false
         },
-        hasAccepted : {
+        hasAccepted: {
             type: DataTypes.BOOLEAN,
-            defaultValue : false
+            defaultValue: false
         },
- 
+
     });
 
     Request.associate = function (models) {

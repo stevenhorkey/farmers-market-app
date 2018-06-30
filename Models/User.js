@@ -1,5 +1,10 @@
 var bcrypt = require('bcrypt-nodejs');
 
+var generateHash = function (password) {
+    //This handles the encryption of the users password
+    return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null)
+};
+
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         firstName: {
