@@ -21,39 +21,54 @@ getToken = function (headers) {
 //dashboard pages routes
 // Auth route - populate vendor dashboard based on their user id.
 router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+  //change the request parameter from a string to a number
+  //gets the request token
   var userId = parseInt(req.params.id);
   var token = getToken(req.headers);
   if (token) {
+    //find all of the products
     db.Product.findAll({
+      //where the products foreign key is equal to the id passed as a parameter in the request
       where: { UserId: userId }
+      //after info is grabbed from the database
     }).then(function (products, err) {
       console.log(products);
       console.log('success');
       console.log(err);
+      //if there is an error, return the error
       if (err) {
         return (err);
       }
+      //if there is no error, send the products back as json
       else {
         res.json(products);
       }
     });
+    //if user is unauthorized return info back to the user
   } else {
     return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
 
 });
 
-
+//this route grabs the market associated with the market organizer
+//this is a very similar route to populateDashboardVendor
+//route is first ran through passport for authentication
 router.get('/populateDashboardMarket/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   console.log('in');
+  //request parameter needs to be parsed to a number before searching the database
   var userId = parseInt(req.params.id)
   var token = getToken(req.headers);
   if (token) {
+    //find one market
     db.Market.findOne({
+      //where the markets foreign key matches the id passed as a request parameter
       where: { UserId: userId }
     }).then(function (market, err) {
+      //if there is an error, return it
       if (err) {
         return err;
+      //of there is no error, return the market's data as json
       } else {
         res.json(market);
       }
@@ -64,7 +79,6 @@ router.get('/populateDashboardMarket/:id', passport.authenticate('jwt', { sessio
 });
 
 //Dashboard create product route
-
 router.post('/newProduct', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
 
@@ -74,6 +88,8 @@ router.post('/newProduct', passport.authenticate('jwt', { session: false }), fun
 
   if (token) {
     console.log(req.user.dataValues.id);
+    //create an object that contains all of the information we need from the request body
+    //req.user.dataValues.id is attached to the request
     var newProduct = {
       item: req.body.item,
       image: req.body.image,

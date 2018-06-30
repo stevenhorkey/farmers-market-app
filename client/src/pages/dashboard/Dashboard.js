@@ -383,7 +383,6 @@ class Dashboard extends Component {
                                                 deleteProduct={() => { this.onDeleteProducts(product) }}>
                                             </Product>
                                         ))}
-
                                             <CreateProduct openModalCreate={this.openModalCreate} />
                                     </div>
                                         

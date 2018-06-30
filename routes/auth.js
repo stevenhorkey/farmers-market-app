@@ -67,6 +67,7 @@ router.post('/signup', function (req, res) {
             password: generateHash(req.body.password),
             email: req.body.email,
             userType: req.body.userType,
+            zipcode: req.body.zipcode,
             profileImage: req.body.profileImage
         };
         // save the user
