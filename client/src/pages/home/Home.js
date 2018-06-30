@@ -13,7 +13,7 @@ class Home extends Component {
             <div>
                 <Hero siteName={this.props.siteName} />
                 <UpcomingMarkets />
-                <About />
+                <About siteName={this.props.siteName} />
             </div>
         )
     }

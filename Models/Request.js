@@ -1,5 +1,3 @@
-
-
 module.exports = function (sequelize, DataTypes) {
     var Request = sequelize.define("Request", {
         farmerId : {
