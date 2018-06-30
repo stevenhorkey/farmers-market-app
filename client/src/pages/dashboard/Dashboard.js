@@ -9,6 +9,7 @@ import Product from '../../components/products/product/Product';
 import AddCard from '../../components/products/addcard/AddCard';
 import Categories from '../../components/products/categories/Categories';
 import Carousel from '../../components/carousel/Carousel';
+import MarketCardDashboard from '../../components/marketCardDashboard';
 
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
@@ -30,7 +31,9 @@ class Dashboard extends Component {
             market: '',
             marketImage: '',
             marketTime: '',
+            marketAddress: '',
             modalIsOpenCreateMarket: false,
+            modalIsOpenUpdateMarket: false,
         };
     };
     //this function runs when the page successfully loads on the client side
@@ -238,13 +241,14 @@ class Dashboard extends Component {
         //prevent page from reloading on submit
         e.preventDefault();
         //get the new markets information from the state
-        const market = this.state.market;
-        const image = this.state.marketImage;
+        const marketName = this.state.market;
+        const marketAddress = this.state.marketAddress;
         const marketTime = this.state.marketTime;
+        const marketImage = this.state.marketImage;
         //add a request header to the axios request
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         //send the post request to the server, with the markets information as data
-        axios.post('/api/newMarket', { market, image, marketTime })
+        axios.post('/api/newMarket', { marketName, marketAddress, marketTime, marketImage })
         //after new market is created
             .then((res) => {
                 //send a new get request with a jwt token in the header
@@ -252,7 +256,7 @@ class Dashboard extends Component {
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');  
                 axios.get('/api/populateDashboardMarket/' + this.state.user.id)
                     .then((res) => {
-                        this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+                        this.setState({ markets: res.data, modalIsOpenCreateMarket: false, market: '', marketImage: '', marketTime: '', marketAddress: '' });
                         console.log(this.state)
                     })
                 // this.props.history.push("/login");
@@ -262,6 +266,58 @@ class Dashboard extends Component {
 
     }
 
+
+
+    openModalUpdateMarket = (childData, event) => {
+        //assign the products different values to variables
+        const marketName = childData.marketName;
+        const marketAddress = childData.marketAddress;
+        const marketTime = childData.marketTime;
+        const marketImage = childData.marketImage;
+        //set the product states to the current product, we use this to fill the modal with the current products information 
+        //that way the user can see the current products information while they edit it
+        this.setState({ modalIsOpenUpdateMarket: true, marketName: marketName, marketAddress: marketAddress, marketTime: marketTime, marketImage: marketImage });
+    }
+
+    closeModalUpdateMarket = () => {
+        this.setState({ modalIsOpenUpdateMarket: false, market: '', marketImage: '', marketTime: '', marketAddress: '' });
+    }
+
+    //this function submits the update of the market modal
+    onSubmitUpdateMarket = (e) => {
+        //prevent from reloading instantly
+        e.preventDefault();
+        console.log(this.state.user)
+        //assign the newly changed states as variables
+        const marketName = this.state.marketName;
+        const marketAddress = this.state.marketAddress;
+        const marketTime = this.state.marketTime;
+        const marketImage = this.state.marketImage;
+        const id = this.state.user.id;
+        //put the users jwt token into the axios request's header
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        //send a put (update) request to the api routes, setting the id as a request parameter and sending the item name and image in the data
+        axios.put('/api/updateMarket/' + id, { marketName, marketAddress, marketTime, marketImage })
+            //if the product successfully updates
+            .then((res) => {
+                //set a jwt token in the header of a new axios request
+                axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+                //send a get request to get the new array of products tied to the user
+                axios.get('/api/populateDashboardMarket/' + this.state.user.id)
+                    .then((res) => {
+                        //reset the product state to have the 
+                        this.setState({ markets: res.data, modalIsOpenUpdateMarket: false, market: '', marketImage: '', marketTime: '', marketAddress: '' });
+                        console.log(this.state)
+                    })
+                // this.props.history.push("/login");
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
+    onDeleteMarkets = () => {
+
+    }
 
 
     render() {
@@ -373,18 +429,60 @@ class Dashboard extends Component {
                                         </div>
                                         <div className="form-group mt-4 mb-5">
                                             <label htmlFor="marketLocation">Market Location</label>
-                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketLocation' value={this.state.marketLocation} onChange={this.onChange} required/>
+                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Address" name='marketAddress' value={this.state.marketAddress} onChange={this.onChange} required/>
                                         </div>
                                         <div className="form-group mt-4 mb-5">
                                             <label htmlFor="marketTime">Market Schedule</label>
-                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketTime' value={this.state.marketTime} onChange={this.onChange} required/>
+                                            <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Time" name='marketTime' value={this.state.marketTime} onChange={this.onChange} required/>
                                         </div>
                                         <button className="btn" type="submit">Submit</button>
                                     </form>
                                     <button className="btn" onClick={this.closeModalCreateMarket}>Cancel</button>
                                 </Modal>
                                 </div>)
-                                :(<div>null</div>)}
+                                :(<div>
+                                    <MarketCardDashboard
+                                        name={this.state.markets.marketName}
+                                        marketLocation={this.state.markets.marketAddress}
+                                        marketTime={this.state.markets.marketTime}
+                                        modalOpen={(e) => { this.openModalUpdateMarket(this.state.markets, e) }}
+                                        deleteMarket={() => { this.onDeleteMarkets(this.state.markets) }}>
+                                    </MarketCardDashboard>
+                                    <Modal 
+                                        isOpen={this.state.modalIsOpenUpdateMarket}
+                                        onAfterOpen={this.afterOpenModalUpdateMarket}
+                                        onRequestClose={this.closeModalUpdateMarket}
+                                        // style={customStyles}
+                                        contentLabel="Example Modal">
+                                        <h2 ref={subtitle => this.subtitle = subtitle}>Edit Your Market</h2>
+
+                                        <div>Market Information</div>
+                                        <form onSubmit={this.onSubmitUpdateMarket}>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="market">Market Name</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="item" placeholder="Market Name" name='marketName' value={this.state.marketName} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="marketImage">Image URL</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.state.marketImage} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="marketLocation">Market Address</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Address" name='marketAddress' value={this.state.marketAddress} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="marketLocation">Market Zip</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Zipcode" name='marketZip' value={this.state.marketZip} onChange={this.onChange} required />
+                                            </div>
+                                            <div className="form-group mt-4 mb-5">
+                                                <label htmlFor="marketTime">Market Schedule</label>
+                                                <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Schedule" name='marketTime' value={this.state.marketTime} onChange={this.onChange} required />
+                                            </div>
+                                            <button className="btn" type="submit">Submit</button>
+                                        </form>
+                                        <button className="btn" onClick={this.closeModalUpdateMarket}>Cancel</button>
+                                    </Modal>
+                                </div>)}
                                 <Modal isOpen={this.state.modalIsOpenCreate}
                                         onAfterOpen={this.afterOpenModalCreate}
                                         onRequestClose={this.closeModalCreate}

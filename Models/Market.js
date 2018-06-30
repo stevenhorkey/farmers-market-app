@@ -6,7 +6,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        marketLocation: {
+        marketAddress: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        marketZip: {
             type: DataTypes.STRING,
             allowNull: true
         },

@@ -111,6 +111,7 @@ router.post('/newMarket', passport.authenticate('jwt', { session: false }), func
     console.log(req.user.dataValues.id);
     var newProduct = {
       marketName: req.body.marketName,
+      marketAddress: req.body.marketAddress,
       marketImage: req.body.marketImage,
       marketTime: req.body.marketTime,
       UserId: req.user.dataValues.id
@@ -160,6 +161,34 @@ router.put('/updateProduct/:id', passport.authenticate('jwt', { session: false }
     return res.status(403).send({ success: false, msg: 'Unauthorized.' });
   }
 })
+
+//Dashboard update a market route
+
+router.put('/updateMarket/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+  let id = parseInt(req.params.id);
+  if (token) {
+    db.Market.update(
+      {
+        marketName: req.body.marketName,
+        marketAddress: req.body.marketAddress,
+        marketTime: req.body.marketTime,
+        marketImage: req.body.marketImage
+      },
+      { where: { UserId: id } })
+      .then(function (market, err) {
+        if (err) {
+          return (err);
+        }
+        else {
+          res.json(market)
+        }
+      });
+  } else {
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+})
+
 
 router.delete('/deleteProduct/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   let token = getToken(req.headers);
