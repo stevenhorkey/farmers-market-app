@@ -114,6 +114,7 @@ router.post('/newMarket', passport.authenticate('jwt', { session: false }), func
       marketAddress: req.body.marketAddress,
       marketImage: req.body.marketImage,
       marketTime: req.body.marketTime,
+      marketZip: req.body.marketZip,
       UserId: req.user.dataValues.id
     }
 
@@ -173,7 +174,8 @@ router.put('/updateMarket/:id', passport.authenticate('jwt', { session: false })
         marketName: req.body.marketName,
         marketAddress: req.body.marketAddress,
         marketTime: req.body.marketTime,
-        marketImage: req.body.marketImage
+        marketImage: req.body.marketImage,
+        marketZip: req.body.marketZip
       },
       { where: { UserId: id } })
       .then(function (market, err) {
