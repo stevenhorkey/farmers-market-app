@@ -76,7 +76,7 @@ class Site extends Component {
                             <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/markets" component={Markets} />
-                            <Route render={() => <Home siteName={siteName} />} />
+                            <Route siteName={siteName} render={() => <Home siteName={siteName} />} />
 
                         </Switch>
                     </div>
