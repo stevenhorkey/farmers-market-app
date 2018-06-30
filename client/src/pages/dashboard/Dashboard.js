@@ -274,8 +274,8 @@ class Dashboard extends Component {
         const marketAddress = childData.marketAddress;
         const marketTime = childData.marketTime;
         const marketImage = childData.marketImage;
-        //set the product states to the current product, we use this to fill the modal with the current products information 
-        //that way the user can see the current products information while they edit it
+        //set the product states to the current market's info, we use this to fill the modal with the current market's information 
+        //that way the user can see the current market's information while they edit it
         this.setState({ modalIsOpenUpdateMarket: true, marketName: marketName, marketAddress: marketAddress, marketTime: marketTime, marketImage: marketImage });
     }
 
@@ -374,7 +374,7 @@ class Dashboard extends Component {
                                             <div onClick={this.openModalCreate} id="createProduct" className="col-lg-4 col-md-6 mb-4">
                                                 <div className="card row h-100 d-flex">
                                                     <div className='justify-content-center align-self-center'>
-                                                        <i class="fas fa-plus plus-sign"></i>
+                                                        <i className="fas fa-plus plus-sign"></i>
                                                     </div>
                                                 </div>
                                             </div>
