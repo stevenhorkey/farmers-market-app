@@ -294,7 +294,7 @@ class Dashboard extends Component {
                                 (<div className="w-100">
                                     <div>
                                         <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                                        <h6>You don't have any products...Would you like to create one?</h6> 
+                                        <h6>You don{"'"}t have any products...Would you like to create one?</h6> 
                                     </div>
                                     
                                 </div>)
@@ -352,7 +352,7 @@ class Dashboard extends Component {
                             (<div>
                                 <div>
                                     <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
-                                    <h1>You don't have a market.....Would you like to create one?</h1> 
+                                    <h1>You don{"'"}t have a market.....Would you like to create one?</h1> 
                                 </div>
                                 <Modal  isOpen={this.state.modalIsOpenCreateMarket}
                                         onAfterOpen={this.afterOpenModalCreateMarket}
