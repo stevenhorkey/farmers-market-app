@@ -41,6 +41,8 @@ class Dashboard extends Component {
             marketZip: '',
             modalIsOpenCreateMarket: false,
             modalIsOpenUpdateMarket: false,
+            manageVendor: "products",
+            manageMarket: "market"
         };
     };
 
@@ -333,20 +335,78 @@ class Dashboard extends Component {
             })
     }
 
+    manageProfile = () => {
+        console.log("manageProfileFunction")
+        if(this.state.user.userType === "Vendor"){
+            this.setState({manageVendor: "profile"})
+        }
+        else {
+            this.setState({manageMarket: "profile"})
+        }
+    }
+
+    manageProducts = () => {
+        this.setState({manageVendor: "products"})
+    }
+
+    manageJoinMarket = () => {
+        this.setState({manageVendor: "joinMarket"})
+    }
+
+    manageMarket = () => {
+        this.setState({manageMarket: "market"})
+    }
+
+    manageJoinRequests = () => {
+        this.setState({manageMarket: "joinRequests"})
+    }
+
     render() {
+        const vendorLinks = [
+                                {   
+                                    name: "Manage Profile", 
+                                    onClick: this.manageProfile
+                                }, 
+                                {   
+                                    name: "Manage Products", 
+                                    onClick: this.manageProducts
+                                },
+                                {
+                                    name: "Join a Market", 
+                                    onClick: this.manageJoinMarket
+                                }
+                            ];
+        const marketLinks = [
+                                {
+                                    name: "Manage Profile",
+                                    onClick: this.manageProfile
+                                },
+                                {
+                                    name: "Manage Market",
+                                    onClick: this.manageMarket
+                                },
+                                {
+                                    name: "Manage Join Requests",
+                                    onClick: this.manageJoinRequests
+                                } 
+                            ];
+        
         return (
             <div className='dashboard'>
                 <div className='container'>
                 <div className="container pb-5">
 
                 <div className="row">
-
                     <div className="col-lg-3">
-
-                        <h1 className="my-4 text-center">Shop Name</h1>
-
-                        <Categories />
-
+                        {this.state.user.userType === "Vendor" ? 
+                            (<div>
+                                <h1 className="my-4 text-center">{this.state.user.businessName || "Your Business Name"}</h1>
+                                <Sidebar links = {vendorLinks}/>
+                            </div>)
+                            :(<div>
+                                <h1 className="my-4 text-center">{this.state.markets !== null ? (<h1>{this.state.markets.marketName}</h1>) : (<h1>Your Market Name</h1>)}</h1>
+                                <Sidebar links = {marketLinks}/>
+                            </div>)}
                     </div>
 
                     <div className="col-lg-9">
@@ -358,38 +418,46 @@ class Dashboard extends Component {
                         {this.state.loading ?
                         (null)
                         : this.state.user.userType === "Vendor" ?
-                            (this.state.products[0] === undefined ?
+                            (<div>{(() => {
+                                switch (this.state.manageVendor) {
+                                    case "profile": return (<div>Profile Form</div>);
+                                    case "products": return (this.state.products[0] === undefined ?
 
-                                (<div className="w-100">
-                                    <div>
-                                        <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                                        <h6>You don{"'"}t have any products...Would you like to create one?</h6> 
-                                    </div>
-                                    
-                                </div>)
-                                : (<div className="">
-                                    <div className="row">
-                                        <div className='col'>
-                                            <h1>Products</h1>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        {this.state.products.map(product => (
-                                            <Product isDashboard={true}
-                                                item={product.item}
-                                                img={product.image}
-                                                id={product.id}
-                                                modalOpen={(e) => { this.openModalUpdate(product, e) }}
-                                                deleteProduct={() => { this.onDeleteProducts(product) }}>
-                                            </Product>
-                                        ))}
-                                            <CreateProduct openModalCreate={this.openModalCreate} />
-                                    </div>
-                                        
-                                    {/* <button className="btn" >Add a Product</button> */}
-
-                                </div>)
-                            ) : this.state.markets === null ?
+                                        (<div className="w-100">
+                                            <div>
+                                                <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
+                                                <h6>You don{"'"}t have any products...Would you like to create one?</h6> 
+                                            </div>
+                                            
+                                        </div>)
+                                        : (<div className="">
+                                            <div className="row">
+                                                <div className='col'>
+                                                    <h1>Products</h1>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                {this.state.products.map(product => (
+                                                    <Product isDashboard={true}
+                                                        item={product.item}
+                                                        img={product.image}
+                                                        id={product.id}
+                                                        modalOpen={(e) => { this.openModalUpdate(product, e) }}
+                                                        deleteProduct={() => { this.onDeleteProducts(product) }}>
+                                                    </Product>
+                                                ))}
+                                                    <CreateProduct openModalCreate={this.openModalCreate} />
+                                            </div>
+                                                
+                                            {/* <button className="btn" >Add a Product</button> */}
+        
+                                        </div>)
+                                    );
+                                    case "joinMarket": return (<div>Request Market Form</div>)
+                                }
+                            })()}
+                            </div>)
+                             : this.state.markets === null ?
                             (<div>
                                 <div>
                                     <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
