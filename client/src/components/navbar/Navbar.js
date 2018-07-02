@@ -36,7 +36,7 @@ class Navbar extends Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="#about">About</a>
                             </li>
-                            {localStorage.getItem('jwtToken') !== null ? (
+                            {localStorage.getItem('jwtToken') !== null && localStorage.getItem('jwtToken') !== "undefined" ? (
                                 <Fragment>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/" onClick={this.logout}>Log Out</a>
