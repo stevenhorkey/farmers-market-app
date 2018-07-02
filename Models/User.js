@@ -30,6 +30,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        businessName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         profileImage: {
             type: DataTypes.STRING,
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
