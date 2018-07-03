@@ -335,7 +335,8 @@ class Dashboard extends Component {
             })
     }
 
-    manageProfile = () => {
+    manageProfile = (e) => {
+        e.preventDefault();
         console.log("manageProfileFunction")
         if(this.state.user.userType === "Vendor"){
             this.setState({manageVendor: "profile"})
@@ -345,11 +346,13 @@ class Dashboard extends Component {
         }
     }
 
-    manageProducts = () => {
+    manageProducts = (e) => {
+        e.preventDefault();
         this.setState({manageVendor: "products"})
     }
 
-    manageJoinMarket = () => {
+    manageJoinMarket = (e) => {
+        e.preventDefault();
         this.setState({manageVendor: "joinMarket"})
     }
 
@@ -404,7 +407,7 @@ class Dashboard extends Component {
                                 <Sidebar links = {vendorLinks}/>
                             </div>)
                             :(<div>
-                                <h1 className="my-4 text-center">{this.state.markets !== null ? (<h1>{this.state.markets.marketName}</h1>) : (<h1>Your Market Name</h1>)}</h1>
+                                <div>{this.state.markets !== null ? (<h1 className="my-4 text-center">{this.state.markets.marketName}</h1>) : (<h1 className="my-4 text-center">Your Market Name</h1>)}</div>
                                 <Sidebar links = {marketLinks}/>
                             </div>)}
                     </div>
@@ -448,33 +451,40 @@ class Dashboard extends Component {
                                                 ))}
                                                     <CreateProduct openModalCreate={this.openModalCreate} />
                                             </div>
-                                                
-                                            {/* <button className="btn" >Add a Product</button> */}
-        
                                         </div>)
-                                    );
+                                        );
+
                                     case "joinMarket": return (<div>Request Market Form</div>)
-                                }
-                            })()}
+                                    }
+                                })()}
                             </div>)
-                             : this.state.markets === null ?
-                            (<div>
-                                <div>
-                                    <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
-                                    <h6>You don{"'"}t have a market.....Would you like to create one?</h6> 
-                                </div>
-                                
+                             : (<div>{(()=>{
+                                    switch (this.state.manageMarket){
+                                        case "profile": return (<div>Profile Form</div>);
+                                        case "market": 
+                                            return (
+                                                this.state.markets === null ?
+                                                    (<div>
+                                                        <div>
+                                                            <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
+                                                            <h6>You don{"'"}t have a market.....Would you like to create one?</h6> 
+                                                        </div>
+                                                    </div>)
+                                                    :(<div>
+                                                        <MarketCardDashboard
+                                                            name={this.state.markets.marketName}
+                                                            marketLocation={this.state.markets.marketAddress}
+                                                            marketTime={this.state.markets.marketTime}
+                                                            modalOpen={(e) => { this.openModalUpdateMarket(this.state.markets, e) }}
+                                                            deleteMarket={() => { this.onDeleteMarkets(this.state.markets) }}>
+                                                        </MarketCardDashboard>
+                                                    </div>)
+                                            );
+                                        case "joinRequests": return (<div>Requests Management Form</div>)
+                                        }
+                                    })()}     
                                 </div>)
-                                :(<div>
-                                    <MarketCardDashboard
-                                        name={this.state.markets.marketName}
-                                        marketLocation={this.state.markets.marketAddress}
-                                        marketTime={this.state.markets.marketTime}
-                                        modalOpen={(e) => { this.openModalUpdateMarket(this.state.markets, e) }}
-                                        deleteMarket={() => { this.onDeleteMarkets(this.state.markets) }}>
-                                    </MarketCardDashboard>
-                                    
-                                </div>)}
+                        }
                             </div>
                         </div>
                         {/* <!-- /.row --> */}
