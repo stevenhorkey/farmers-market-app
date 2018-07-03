@@ -356,11 +356,13 @@ class Dashboard extends Component {
         this.setState({manageVendor: "joinMarket"})
     }
 
-    manageMarket = () => {
+    manageMarket = (e) => {
+        e.preventDefault();
         this.setState({manageMarket: "market"})
     }
 
-    manageJoinRequests = () => {
+    manageJoinRequests = (e) => {
+        e.preventDefault();
         this.setState({manageMarket: "joinRequests"})
     }
 
