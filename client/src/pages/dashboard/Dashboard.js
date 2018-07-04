@@ -467,7 +467,9 @@ class Dashboard extends Component {
                             </div>)
                              : (<div>{(()=>{
                                     switch (this.state.manageMarket){
-                                        case "profile": return (<div>Profile Form</div>);
+                                        case "profile": return (<ProfileForm
+                                            user={this.state.user}
+                                            />);
                                         case "market": 
                                             return (
                                                 this.state.markets === null ?

@@ -40,6 +40,7 @@ class ProfileForm extends React.Component{
         axios.put('/api/updateUser/'+this.props.user.id, {businessName, bio, email, userType, profileImage, zipcode })
             .then((res) => {
                 console.log(res.data.message);
+                window.location.reload();
             }).catch((err) => {
                 console.log(err);
             })
@@ -78,6 +79,8 @@ class ProfileForm extends React.Component{
         })
             .then((res) => {
                 console.log(res.data.message);
+                window.location.reload();
+                
             }).catch((err) => {
                 console.log(err);
             })
