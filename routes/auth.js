@@ -44,8 +44,12 @@ router.post('/jwt', passport.authenticate('jwt', { session: false }), function (
                 id: req.user.dataValues.id,
                 firstName: req.user.dataValues.firstName,
                 lastName: req.user.dataValues.lastName,
+                email: req.user.dataValues.email,
                 userType: req.user.dataValues.userType,
-                profileImage: req.user.dataValues.profileImage
+                zipcode: req.user.dataValues.zipcod,
+                profileImage: req.user.dataValues.profileImage,
+                businessName: req.user.dataValues.businessName,
+                bio: req.user.dataValues.bio
             }
         })
     }
