@@ -17,6 +17,7 @@ import AddProduct from '../../components/modals/AddProduct';
 import EditMarket from '../../components/modals/EditMarket';
 import EditProduct from '../../components/modals/EditProduct';
 import CreateProduct from '../../components/buttons/CreateProduct'
+import JoinMarketRequest from '../../components/forms/JoinMarketRequest';
 
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
@@ -43,7 +44,8 @@ class Dashboard extends Component {
             modalIsOpenCreateMarket: false,
             modalIsOpenUpdateMarket: false,
             manageVendor: "products",
-            manageMarket: "market"
+            manageMarket: "market",
+            nearbyMarkets: []
         };
     };
 
@@ -461,7 +463,7 @@ class Dashboard extends Component {
                                         </div>)
                                         );
 
-                                    case "joinMarket": return (<div>Request Market Form</div>)
+                                    case "joinMarket": return (<JoinMarketRequest />)
                                     }
                                 })()}
                             </div>)

@@ -45,6 +45,7 @@ router.post('/jwt', passport.authenticate('jwt', { session: false }), function (
                 id: req.user.dataValues.id,
                 firstName: req.user.dataValues.firstName,
                 lastName: req.user.dataValues.lastName,
+                email: req.user.dataValues.email,
                 userType: req.user.dataValues.userType,
                 profileImage: req.user.dataValues.profileImage,
                 email: req.user.dataValues.email,
