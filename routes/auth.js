@@ -11,6 +11,7 @@ var bcrypt = require('bcrypt-nodejs');
 var generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 }
+
 // Validate password
 var comparePassword = function (candidatePassword, password) {
     return bcrypt.compareSync(candidatePassword, password)
@@ -46,9 +47,10 @@ router.post('/jwt', passport.authenticate('jwt', { session: false }), function (
                 lastName: req.user.dataValues.lastName,
                 email: req.user.dataValues.email,
                 userType: req.user.dataValues.userType,
-                zipcode: req.user.dataValues.zipcod,
                 profileImage: req.user.dataValues.profileImage,
+                email: req.user.dataValues.email,
                 businessName: req.user.dataValues.businessName,
+                zipcode: req.user.dataValues.zipcode,
                 bio: req.user.dataValues.bio
             }
         })

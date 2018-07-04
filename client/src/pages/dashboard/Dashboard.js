@@ -10,6 +10,7 @@ import AddCard from '../../components/products/addcard/AddCard';
 import Categories from '../../components/products/categories/Categories';
 import Carousel from '../../components/carousel/Carousel';
 import MarketCardDashboard from '../../components/marketCardDashboard';
+import ProfileForm from './views/ProfileForm';
 
 import AddMarket from '../../components/modals/AddMarket';
 import AddProduct from '../../components/modals/AddProduct';
@@ -427,7 +428,11 @@ class Dashboard extends Component {
                         : this.state.user.userType === "Vendor" ?
                             (<div>{(() => {
                                 switch (this.state.manageVendor) {
-                                    case "profile": return (<div>Profile Form</div>);
+                                    case "profile": return (
+                                    <ProfileForm
+                                    user={this.state.user}
+                                    />
+                                );
                                     case "products": return (this.state.products[0] === undefined ?
 
                                         (<div className="w-100">
@@ -464,7 +469,9 @@ class Dashboard extends Component {
                             </div>)
                              : (<div>{(()=>{
                                     switch (this.state.manageMarket){
-                                        case "profile": return (<div>Profile Form</div>);
+                                        case "profile": return (<ProfileForm
+                                            user={this.state.user}
+                                            />);
                                         case "market": 
                                             return (
                                                 this.state.markets === null ?

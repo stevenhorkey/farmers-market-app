@@ -3,6 +3,9 @@ var router = express.Router();
 var db = require('../Models');
 var passport = require('passport');
 require('../config/passport')(passport);
+var bcrypt = require('bcrypt-nodejs');
+
+
 
 // Auth Token
 getToken = function (headers) {
@@ -17,6 +20,11 @@ getToken = function (headers) {
     return null;
   }
 };
+
+// Encrypt Password
+var generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
+}
 
 //dashboard pages routes
 // Auth route - populate vendor dashboard based on their user id.
@@ -207,6 +215,57 @@ router.put('/updateMarket/:id', passport.authenticate('jwt', { session: false })
   }
 })
 
+router.put('/updateUser/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+  let id = parseInt(req.params.id);
+  if (token) {
+    db.User.update(
+      {
+        profileImage: req.body.profileImage,
+        email: req.body.email,
+        businessName: req.body.businessName,
+        zipcode: req.body.zipcode,
+        bio: req.body.bio
+      },
+      { where: { id: id } })
+      .then(function (user, err) {
+        if (err) {
+          return (err);
+        }
+        else {
+          res.json(user)
+        }
+      });
+  } else {
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+})
+// Api route to update password from profile form
+router.put('/updatePassword/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+  var token = getToken(req.headers);
+  let id = parseInt(req.params.id);
+  console.log(token,id, req.body.password);
+  if (token) {
+    db.User.update(
+      {
+        password: generateHash(req.body.password),
+      },
+      { where: { id: id } })
+      .then(function (user, err) {
+        if (err) {
+          return (err);
+          console.log('failed')
+        }
+        else {
+          res.json(user)
+          console.log('success')
+        }
+      });
+  } else {
+    console.log('errrrr')
+    return res.status(403).send({ success: false, msg: 'Unauthorized.' });
+  }
+})
 
 router.delete('/deleteProduct/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   let token = getToken(req.headers);

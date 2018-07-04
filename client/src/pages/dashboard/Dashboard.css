@@ -1,7 +1,9 @@
 .ReactModal__Content{
     top: 100px !important;
 }
-
+.dashboard{
+    min-height: 100vh;
+}
 .plus-sign {
     font-size: 150px;
     color: #CCCCCC;

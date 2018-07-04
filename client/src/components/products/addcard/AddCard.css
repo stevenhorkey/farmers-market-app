@@ -1,4 +1,6 @@
 .plus-sign {
     font-size: 150px;
     color: #CCCCCC;
+    position: relative;
+    top: 13px;
 }
