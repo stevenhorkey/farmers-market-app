@@ -350,4 +350,21 @@ router.get('/populateProducts/:id', function (req, res) {
     });
 });
 
+router.get('/nearbyMarkets', function (req, res) {
+  db.Market.findAll({})
+  .then(function (markets, err) {
+    if(err) return (err);
+    else {
+      res.json(markets);
+    }
+  })
+});
+
+router.get('/sendRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
+  var newRequest = {
+    UserId: req.user.dataValues.id,
+    hasAccepted: false,
+    MarketId: req.body.id  };
+})
+
 module.exports = router;

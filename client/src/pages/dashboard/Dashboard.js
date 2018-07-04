@@ -70,11 +70,15 @@ class Dashboard extends Component {
                     //send a get request to the server in api-routes using the users id number as a request parameter
                     axios.get("/api/populateDashboardVendor/" + userInfo.id).then((response) => {
                         console.log(response.data)
+                        var newProducts = response.data;
                         //set new values in the state
                         //response.data is an array of products tied to the user
                         //users info is set into state
-                        this.setState({ loading: false, products: response.data, user: userInfo });
-                        console.log(this.state)
+                            axios.get("/api/nearbyMarkets").then((marketResponse)=>{
+                                console.log(marketResponse.data)
+                                this.setState({ loading: false, nearbyMarkets: marketResponse.data, products: newProducts, user: userInfo })
+                                console.log(this.state)
+                            })
                     });
                 }
                 //if the user is a market organizer
@@ -463,7 +467,7 @@ class Dashboard extends Component {
                                         </div>)
                                         );
 
-                                    case "joinMarket": return (<JoinMarketRequest />)
+                                    case "joinMarket": return (<JoinMarketRequest nearbyMarkets={this.state.nearbyMarkets}/>)
                                     }
                                 })()}
                             </div>)
