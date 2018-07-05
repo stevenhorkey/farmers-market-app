@@ -4,6 +4,7 @@ var db = require('../Models');
 var passport = require('passport');
 require('../config/passport')(passport);
 var bcrypt = require('bcrypt-nodejs');
+const Op = require('sequelize').Op;
 
 
 
@@ -348,21 +349,61 @@ router.get('/populateProducts/:id', function (req, res) {
     });
 });
 
-router.get('/nearbyMarkets', function (req, res) {
-  db.Market.findAll({})
-  .then(function (markets, err) {
-    if(err) return (err);
-    else {
-      res.json(markets);
-    }
-  })
+router.get('/nearbyMarkets/:id', function (req, res) {
+  let id = parseInt(req.params.id)
+  db.Request.findAll(
+    {where: {UserId: id}}
+    ).then(function(requests, error) {
+      if(error) return (error);
+      else {
+        // console.log('test');
+        // console.log(requests);
+        let marketIds = [];
+        requests.map(request => {
+          console.log(request);          
+          marketIds.push(request.dataValues.MarketId)
+        })
+        console.log("these are the market ids:" + marketIds);
+          db.Market.findAll({
+            where: {
+              id : {
+                [Op.notIn] : marketIds
+              }
+            }
+          })
+            .then(function (markets, err) {
+              if(err) return (err);
+              else {
+                res.json(markets);
+              }
+            })
+      }
+    })
 });
 
-router.get('/sendRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
-  var newRequest = {
-    UserId: req.user.dataValues.id,
-    hasAccepted: false,
-    MarketId: req.body.id  };
+router.post('/sendRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
+  console.log("inside send request")
+  var marketIds = req.body.marketIds;
+  console.log(req.body.marketIds)
+  
+  var requests = marketIds.map((id) => {
+   request = {
+     UserId: req.user.dataValues.id,
+     hadAccepted: false,
+     MarketId: id
+   } 
+   return request;
+  })
+  // console.log(requests)
+  db.Request.bulkCreate(requests)
+  .then(function(requests, error){
+    if(error){
+      throw error
+    }
+    else {
+      res.send('success')
+    }
+  });
 })
 
 module.exports = router;
