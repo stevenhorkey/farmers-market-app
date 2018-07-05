@@ -13,7 +13,7 @@ class FarmerCard extends Component {
             <div className="card">
                 <div className="card">
                     <div className="img-container">
-                        <img alt={this.props.name} src={this.props.image} />
+                        <img src={this.props.profileImage} />
                     </div>
                 </div>
                 <div className="bio-container">
