@@ -20,7 +20,8 @@ class FarmersPage extends Component {
     componentDidMount() {
         console.log(this.state)
         console.log(this.props.farmerID)
-        axios.get('/api/populateFarmerPage/' + this.props.farmerID)
+        axios.get('/api/populateFarmerPage/' + )
+            //need to finish this ^^^^^
             .then((res) => {
                 // console.log(res)
                 this.setState({
@@ -44,9 +45,6 @@ class FarmersPage extends Component {
 
     render() {
 
-        // let farmersName = this.state.farmer.firstName;
-
-        // let productName = this.state.products[0].item;
 
 
         return (
@@ -82,7 +80,7 @@ class FarmersPage extends Component {
 
                                     {this.state.products.map(product => (
                                         <Product
-                                            img={product.image}
+                                            img={this.state.products.img}
                                         />
                                     ))}
 

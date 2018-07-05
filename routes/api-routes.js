@@ -68,7 +68,7 @@ router.get('/populateDashboardMarket/:id', passport.authenticate('jwt', { sessio
       //if there is an error, return it
       if (err) {
         return err;
-      //of there is no error, return the market's data as json
+        //of there is no error, return the market's data as json
       } else {
         res.json(market);
       }
@@ -252,10 +252,8 @@ router.get('/populateMarketCard', function (req, res) {
     });
 });
 
-router.get('/populateMarketPage/:id', function (req, res) {
-  let id = parseInt(req.params.id);
-  db.Market.findOne(
-    { where: { MarketID: id } })
+router.get('/populateMarketPage', function (req, res) {
+  db.Market.findAll({})
     .then(function (market, err) {
       if (err) return (err);
       else {
@@ -267,11 +265,11 @@ router.get('/populateMarketPage/:id', function (req, res) {
 router.get('/populateFarmers/:id', function (req, res) {
   let id = parseInt(req.params.id);
   db.User.findAll(
-    { where: { MarketID: id } })
-    .then(function (market, err) {
+    { where: { MarketId: id } })
+    .then(function (farmers, err) {
       if (err) return (err);
       else {
-        res.json(market);
+        res(farmers);
       }
     });
 });
