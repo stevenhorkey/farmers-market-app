@@ -74,7 +74,7 @@ class Dashboard extends Component {
                         //set new values in the state
                         //response.data is an array of products tied to the user
                         //users info is set into state
-                            axios.get("/api/nearbyMarkets").then((marketResponse)=>{
+                            axios.get("/api/nearbyMarkets/" + userInfo.id).then((marketResponse)=>{
                                 console.log(marketResponse.data)
                                 this.setState({ loading: false, nearbyMarkets: marketResponse.data, products: newProducts, user: userInfo })
                                 console.log(this.state)
@@ -373,6 +373,24 @@ class Dashboard extends Component {
         this.setState({manageMarket: "joinRequests"})
     }
 
+    onSubmitCreateRequest = (e) => {
+        e.preventDefault();
+        let checkedBoxes = document.querySelectorAll('input[name=joinRequest]:checked');
+        let marketIds = [];
+
+        checkedBoxes.forEach(function(input) {
+            marketIds.push(input.value)
+        })
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+
+        axios.post('/api/sendRequest', {marketIds})
+        .then((res) => {
+            console.log(res);
+        })
+        
+        
+    }
+
     render() {
         const vendorLinks = [
                                 {   
@@ -467,7 +485,10 @@ class Dashboard extends Component {
                                         </div>)
                                         );
 
-                                    case "joinMarket": return (<JoinMarketRequest nearbyMarkets={this.state.nearbyMarkets}/>)
+                                    case "joinMarket": return (<JoinMarketRequest 
+                                                                    nearbyMarkets={this.state.nearbyMarkets}
+                                                                    onSubmitCreateRequest ={(e) => { this.onSubmitCreateRequest(e)} }>
+                                                                </JoinMarketRequest>)
                                     }
                                 })()}
                             </div>)

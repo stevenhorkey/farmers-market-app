@@ -17,30 +17,30 @@ class FarmersPage extends Component {
 
     }
 
-    // componentDidMount() {
-    //     console.log(this.state)
-    //     console.log(this.props.farmerID)
-    //     axios.get('/api/populateFarmerPage/' + )
-    //         //need to finish this ^^^^^
-    //         .then((res) => {
-    //             // console.log(res)
-    //             this.setState({
-    //                 farmer: res.data
-    //             });
+    componentDidMount() {
+        console.log(this.state)
+        console.log(this.props.farmerID)
+        axios.get('/api/populateFarmerPage/' + 1)
+            //need to finish this ^^^^^
+            .then((res) => {
+                // console.log(res)
+                this.setState({
+                    farmer: res.data
+                });
 
-    //             axios.get('/api/populateProducts/' + this.state.farmer.id)
-    //                 .then((result) => {
-    //                     // console.log(result)
-    //                     this.setState({
-    //                         products: result.data,
-    //                         loading: false
-    //                     })
-    //                     console.log(this.state)
-    //                 })
+                axios.get('/api/populateProducts/' + this.state.farmer.id)
+                    .then((result) => {
+                        // console.log(result)
+                        this.setState({
+                            products: result.data,
+                            loading: false
+                        })
+                        console.log(this.state)
+                    })
 
 
-    //         })
-    // }
+            })
+    }
 
 
     render() {
