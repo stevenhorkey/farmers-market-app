@@ -18,6 +18,7 @@ import EditMarket from '../../components/modals/EditMarket';
 import EditProduct from '../../components/modals/EditProduct';
 import CreateProduct from '../../components/buttons/CreateProduct'
 import JoinMarketRequest from '../../components/forms/JoinMarketRequest';
+import ManageMarketRequests from '../../components/forms/ManageMarketRequests';
 
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
@@ -45,7 +46,9 @@ class Dashboard extends Component {
             modalIsOpenUpdateMarket: false,
             manageVendor: "products",
             manageMarket: "market",
-            nearbyMarkets: []
+            nearbyMarkets: [],
+            requestSubmitted: false,
+            requestAccepted: false
         };
     };
 
@@ -102,8 +105,11 @@ class Dashboard extends Component {
                     axios.get("/api/populateDashboardMarket/" + userInfo.id).then((response) => {
                         //set new values in the state
                         //response.data is an object with a single markets info
+                        let market = response.data;
                         //users info is set into state
-                        this.setState({ loading: false, markets: response.data, user: userInfo });
+                        axios.get("/api/retrieveRequests/" + userInfo.id).then((requestResponse) => {
+                            this.setState({ loading: false, markets: market, user: userInfo, requests: requestResponse.data });                        })
+                            console.log(this.state)
                     });
                 }
 
@@ -398,9 +404,30 @@ class Dashboard extends Component {
         axios.post('/api/sendRequest', {marketIds})
         .then((res) => {
             console.log(res);
+            axios.get('/api/nearbyMarkets/' + this.state.user.id)
+            .then((marketResponse) => {
+                this.setState({nearbyMarkets: marketResponse.data})           
+             })
         })
-        
-        
+    }
+
+    onSubmitAcceptRequest = (e) => {
+        e.preventDefault();
+        let checkedBoxes = document.querySelectorAll('input[name=acceptRequest]:checked');
+        let requestIds = [];
+
+        checkedBoxes.forEach(function(input) {
+            requestIds.push(input.value)
+        });
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.put('/api/acceptRequest', {requestIds})
+        .then((res) => {
+            console.log(res)
+            axios.get('/api/retrieveRequests/' + this.state.user.id)
+            .then((requestResponse) => {
+                this.setState({requests: requestResponse.data})
+            })
+        })
     }
 
     render() {
@@ -503,7 +530,8 @@ class Dashboard extends Component {
 
                                     case "joinMarket": return (<JoinMarketRequest 
                                                                     nearbyMarkets={this.state.nearbyMarkets}
-                                                                    onSubmitCreateRequest ={(e) => { this.onSubmitCreateRequest(e)} }>
+                                                                    onSubmitCreateRequest ={(e) => { this.onSubmitCreateRequest(e)} }
+                                                                    requestSubmitted={this.state.requestSubmitted}>
                                                                 </JoinMarketRequest>)
                                     }
                                 })()}
@@ -532,7 +560,11 @@ class Dashboard extends Component {
                                                         </MarketCardDashboard>
                                                     </div>)
                                             );
-                                        case "joinRequests": return (<div>Requests Management Form</div>)
+                                        case "joinRequests": return (<ManageMarketRequests
+                                                                        requests = {this.state.requests}
+                                                                        onSubmitAcceptRequest = {(e) => { this.onSubmitAcceptRequest(e)} }
+                                                                        requestAccepted={this.state.requestAccepted}>
+                                                                    </ManageMarketRequests>)
                                         }
                                     })()}     
                                 </div>)
