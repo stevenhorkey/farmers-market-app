@@ -378,7 +378,11 @@ class Dashboard extends Component {
 
     manageJoinMarket = (e) => {
         e.preventDefault();
-        this.setState({manageVendor: "joinMarket"})
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.get('/api/nearbyMarkets/' + this.state.user.id)
+            .then((marketResponse) => {
+                this.setState({manageVendor: "joinMarket", nearbyMarkets: marketResponse.data})           
+             })
     }
 
     manageMarket = (e) => {
@@ -388,7 +392,11 @@ class Dashboard extends Component {
 
     manageJoinRequests = (e) => {
         e.preventDefault();
-        this.setState({manageMarket: "joinRequests"})
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        axios.get('/api/retrieveRequests/' + this.state.user.id)
+            .then((requestResponse) => {
+                this.setState({manageMarket: "joinRequests", requests: requestResponse.data})
+            })
     }
 
     onSubmitCreateRequest = (e) => {
