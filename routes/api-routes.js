@@ -5,6 +5,7 @@ var passport = require('passport');
 require('../config/passport')(passport);
 var bcrypt = require('bcrypt-nodejs');
 const Op = require('sequelize').Op;
+var Sequelize = require('sequelize');
 
 
 
@@ -388,6 +389,8 @@ router.post('/sendRequest', passport.authenticate('jwt', { session: false }), fu
   
   var requests = marketIds.map((id) => {
    request = {
+     farmerName: req.user.dataValues.firstName + ' ' + req.user.dataValues.lastName,
+     businessName: req.user.dataValues.businessName,
      UserId: req.user.dataValues.id,
      hadAccepted: false,
      MarketId: id
@@ -406,4 +409,46 @@ router.post('/sendRequest', passport.authenticate('jwt', { session: false }), fu
   });
 })
 
-module.exports = router;
+router.get('/retrieveRequests/:id', function (req, res) {
+  let id = req.params.id;
+  db.Market.findOne({
+    where: {UserId: id}
+  }).then(function(market, error){
+    if(error) throw error;
+    else {
+      if (market === null){
+        res.send([]);
+      } else {
+           db.Request.findAll({
+        where: {MarketId: market.dataValues.id, 
+          hasAccepted: false}
+        }).then(function(request, error){
+          if(error) throw error;
+          else {
+            console.log(request);
+            res.json(request);
+          }
+        })
+      }
+        }
+      })
+    });
+  
+router.put('/acceptRequest', passport.authenticate('jwt', { session: false }), function(req, res){
+  let requestIds = req.body.requestIds;
+  db.Request.update({
+    hasAccepted: true
+  },
+  {
+    where: {id: {[Op.in]: requestIds}}
+  }).then(function(request, error){
+    if(error) throw error;
+    else{
+      res.json(request)
+    }
+  })
+})
+
+
+
+  module.exports = router;
