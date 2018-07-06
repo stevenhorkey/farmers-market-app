@@ -4,6 +4,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allownull: false
         },
+        farmerName: {
+            type: DataTypes.STRING,
+            allownull: false
+        },
+        businessName: {
+            type: DataTypes.STRING,
+            allownull: true
+        },
         hasAccepted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -16,7 +24,8 @@ module.exports = function (sequelize, DataTypes) {
             foreignKey: {
                 allowNull: true
             }
-        });
+        })
+       
     }
 
     return Request;
