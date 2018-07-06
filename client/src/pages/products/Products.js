@@ -5,6 +5,7 @@ import Product from '../../components/products/product'
 import Categories from '../../components/products/categories'
 import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
+import Sidebar from '../../components/sidebar/Sidebar'
 
 class Products extends Component {
 
@@ -13,6 +14,7 @@ class Products extends Component {
         market: '',
         products: [],
         searchInput: '',
+        nearbyMarkets: [],
         loading: true
     }
 
@@ -47,19 +49,42 @@ class Products extends Component {
         axios.get('/api/populateProducts',{
             // Ready to edit and use ^^^
             }).then(res => {
-                console.log(res);
-                this.setState({
-                    loading: false,
-                    products: res.data
+                let productsArray = res.data;
+                axios.get('/api/getSidebarMarkets')
+                .then(res => {
+                    console.log(res.data);
+                    this.setState({
+                        loading: false,
+                        products: productsArray,
+                        nearbyMarkets: res.data
+                    })
                 })
+               
             }).catch(err => {
                 console.log(err);
             })
 
     }
 
-    render() {
+    sortByMarket = (e, marketId) => {
+        e.preventDefault();
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+        console.log(marketId)
+        axios.get('/api/filterProductsByMarket/' + marketId)
+        .then((res) => {
+            this.setState({products: res.data})
+        })
+    }
 
+    render() {
+        const productLinks = [];
+
+        this.state.nearbyMarkets.map((market) => {
+            let linkObj = { name: market.marketName,
+                            onClick: this.sortByMarket, 
+                            marketId: market.id};
+            productLinks.push(linkObj);
+        })
                 
 
         if (this.state.loading){
@@ -75,7 +100,7 @@ class Products extends Component {
     
                             <h1 className="my-4">Shop Name</h1>
     
-                            <Categories />
+                            <Sidebar links = {productLinks}/>
     
                         </div>
     

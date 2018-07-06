@@ -8,7 +8,15 @@ class Sidebar extends Component{
                 {this.props.links.map(link => {
                     // console.log(link.onClick)
                     let parentFunction = link.onClick;
-                    return(<a href="#" className="list-group-item" onClick = {(e) => {parentFunction(e)}}>{link.name}</a>)
+                    let args;
+                    if(link.marketId){
+                        args = [link.marketId]
+                    }
+                    else{
+                        args = []
+                    }
+                    
+                    return(<a href="#" className="list-group-item" onClick = {(e) => {parentFunction(e, ...args)}}>{link.name}</a>)
                     })
                 }
             </div>
