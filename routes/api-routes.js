@@ -27,6 +27,23 @@ var generateHash = function (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 }
 
+
+
+router.get('/populateProducts', function(req, res){
+  db.Product.findAll({
+    where:{
+
+    }
+  }).then(function(products, err){
+    if(err){
+      console.log(err);
+      return (err);
+    }
+    console.log(products);
+    res.json(products);
+  })
+})
+
 //dashboard pages routes
 // Auth route - populate vendor dashboard based on their user id.
 router.get('/populateDashboardVendor/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
@@ -225,7 +242,6 @@ router.put('/updateUser/:id', passport.authenticate('jwt', { session: false }), 
         profileImage: req.body.profileImage,
         email: req.body.email,
         businessName: req.body.businessName,
-        zipcode: req.body.zipcode,
         bio: req.body.bio
       },
       { where: { id: id } })

@@ -50,7 +50,6 @@ router.post('/jwt', passport.authenticate('jwt', { session: false }), function (
                 profileImage: req.user.dataValues.profileImage,
                 email: req.user.dataValues.email,
                 businessName: req.user.dataValues.businessName,
-                zipcode: req.user.dataValues.zipcode,
                 bio: req.user.dataValues.bio
             }
         })
@@ -73,7 +72,6 @@ router.post('/signup', function (req, res) {
             password: generateHash(req.body.password),
             email: req.body.email,
             userType: req.body.userType,
-            zipcode: req.body.zipcode,
             profileImage: req.body.profileImage
         };
         // save the user

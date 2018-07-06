@@ -92,7 +92,9 @@ a{
 .bhs {
   font-family: 'Black Han Sans', sans-serif;
 }
-
+.shrikhand{
+  font-family: 'Shrikhand', cursive !important;
+}
 .open-sans{
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;  
 }

@@ -10,7 +10,7 @@ class About extends Component {
                     <div className="row">
                         <div className="col-lg-8 col-md-10 mx-auto">
                             <div className="about-heading text-center">
-                                <h1>About</h1>
+                                <h1 className='shrikhand'>About</h1>
                                 <span className="subheading text-justify">
                                     Fresh food and fellowship have always been at the <strong><i>root</i></strong> of a thriving community.
                             <br />

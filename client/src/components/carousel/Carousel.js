@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+import fm1 from '../../assets/images/fm1.jpg';
+import fm2 from '../../assets/images/fm2.jpg';
+import fm3 from '../../assets/images/fm3.jpg';
+
+const style = {
+    carousel: {
+        width: '950px',
+        height: '400px'
+    }
+}
+
 class Carousel extends Component{
     render(){
         return(
@@ -11,13 +22,13 @@ class Carousel extends Component{
                 </ol>
                 <div className="carousel-inner" role="listbox">
                 <div className="carousel-item active">
-                    <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide"/>
+                    <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"/>
                 </div>
                 <div className="carousel-item">
-                    <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide"/>
+                    <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="Second slide"/>
                 </div>
                 <div className="carousel-item">
-                    <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide"/>
+                    <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="Third slide"/>
                 </div>
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

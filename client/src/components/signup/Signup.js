@@ -19,7 +19,6 @@ class Signup extends Component {
             success: false,
             message: '',
             pwdMsg: '',
-            zipcode: ''
         };
     }
 
@@ -48,13 +47,13 @@ class Signup extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { firstName, lastName, password, email, userType, profileImage, zipcode } = this.state;
+        const { firstName, lastName, password, email, userType, profileImage } = this.state;
 
         if (this.checkPwd(password)){
             this.setState({
                 pwdMsg: ''
             })
-            axios.post('/api/auth/signup', { firstName, lastName, password, email, userType, profileImage, zipcode })
+            axios.post('/api/auth/signup', { firstName, lastName, password, email, userType, profileImage })
             .then((res) => {
                 console.log(res.data.message);
                 this.setState({
@@ -75,7 +74,7 @@ class Signup extends Component {
     }
 
     render() {
-        const { success, firstName, lastName, password, email, userType, profileImage, zipcode, message } = this.state;
+        const { success, firstName, lastName, password, email, userType, profileImage, message } = this.state;
         if (this.state.success) {
             return (<Redirect to='/login'/>);
         } else {
@@ -119,11 +118,6 @@ class Signup extends Component {
                                         <p className='text-center text-primary'>{this.state.pwdMsg}</p>
 
 
-                                    </div>
-                                    <div className="form-group mt-4 mb-5">
-                                        <label htmlFor="zipcode">Your <strong>ZIP Code</strong>.</label>
-                                        <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="zipcode" placeholder="zipcode" name='zipcode' value={zipcode} onChange={this.onChange} required
-                                        />
                                     </div>
                                     <div className="form-group my-4 mb-5">
                                         <label htmlFor="profileImage">Your <strong>profile picture url.</strong></label>

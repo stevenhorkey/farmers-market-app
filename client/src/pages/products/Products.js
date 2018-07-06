@@ -12,7 +12,8 @@ class Products extends Component {
         category: '',
         market: '',
         products: [],
-        searchInput: ''
+        searchInput: '',
+        loading: true
     }
 
     handleChange = event => {
@@ -28,7 +29,7 @@ class Products extends Component {
         var market = this.state.market;
         var searchInput = this.state.searchInput;
 
-        axios.get('...',{
+        axios.get('/api/products',{
         // Ready to edit and use ^^^
         }).then(res => {
             console.log(res);
@@ -42,78 +43,112 @@ class Products extends Component {
         if(this.state.searchInput !== ''){
             this.submitSearch();
         }
+
+        axios.get('/api/populateProducts',{
+            // Ready to edit and use ^^^
+            }).then(res => {
+                console.log(res);
+                this.setState({
+                    loading: false,
+                    products: res.data
+                })
+            }).catch(err => {
+                console.log(err);
+            })
+
     }
 
     render() {
 
-        return (
-            <div className="container pb-5">
+                
 
-                <div className="row">
-
-                    <div className="col-lg-3">
-
-                        <h1 className="my-4">Shop Name</h1>
-
-                        <Categories />
-
-                    </div>
-
-                    <div className="col-lg-9">
-
-                        <div className='mt-4'>
-                            <SearchBar
-                            handleChange={this.handleChange}
-                            searchInput={this.state.searchInput}
-                            />
+        if (this.state.loading){
+            return (null)
+        } else {
+            let products = this.state.products;
+            return (
+                <div className="container pb-5">
+    
+                    <div className="row">
+    
+                        <div className="col-lg-3">
+    
+                            <h1 className="my-4">Shop Name</h1>
+    
+                            <Categories />
+    
                         </div>
-
-                        <Carousel />
-
-                        <div className="row">
-
-                            <Product 
-                            title='Item 1' 
-                            price='24.99' 
-                            description='This is a description' 
-                            img='http://placehold.it/700x400' 
-                            />
-                            <Product 
-                            title='Item 1' 
-                            price='24.99' 
-                            description='This is a description' 
-                            img='http://placehold.it/700x400' 
-                            />
-                            <Product 
-                            title='Item 1' 
-                            price='24.99' 
-                            description='This is a description' 
-                            img='http://placehold.it/700x400' 
-                            />
-                            <Product 
-                            title='Item 1' 
-                            price='24.99' 
-                            description='This is a description' 
-                            img='http://placehold.it/700x400' 
-                            />
-                            <Product 
-                            title='Item 1' 
-                            price='24.99' 
-                            description='This is a description' 
-                            img='http://placehold.it/700x400' 
-                            />
-
+    
+                        <div className="col-lg-9">
+    
+                            <div className='mt-4'>
+                                <SearchBar
+                                handleChange={this.handleChange}
+                                searchInput={this.state.searchInput}
+                                />
+                            </div>
+    
+                            <Carousel />
+    
+                            <div className="row">
+    
+    
+                                {/* This map function is ready to be adjusted as needed */}
+                                {products.map((element,key) => {
+                                    return(
+                                        <Product 
+                                        item={element.item} 
+                                        // price={element.price} 
+                                        // description={element.description} 
+                                        img={element.image}
+                                        id={key} 
+                                        />
+                                    )
+                                })}
+    
+                                {/* <Product 
+                                title='Item 1' 
+                                price='24.99' 
+                                description='This is a description' 
+                                img='http://placehold.it/700x400' 
+                                />
+                                <Product 
+                                title='Item 1' 
+                                price='24.99' 
+                                description='This is a description' 
+                                img='http://placehold.it/700x400' 
+                                />
+                                <Product 
+                                title='Item 1' 
+                                price='24.99' 
+                                description='This is a description' 
+                                img='http://placehold.it/700x400' 
+                                />
+                                <Product 
+                                title='Item 1' 
+                                price='24.99' 
+                                description='This is a description' 
+                                img='http://placehold.it/700x400' 
+                                />
+                                <Product 
+                                title='Item 1' 
+                                price='24.99' 
+                                description='This is a description' 
+                                img='http://placehold.it/700x400' 
+                                /> */}
+    
+                            </div>
+                            {/* <!-- /.row --> */}
+    
                         </div>
-                        {/* <!-- /.row --> */}
-
+                        {/* <!-- /.col-lg-9 --> */}
+    
                     </div>
-                    {/* <!-- /.col-lg-9 --> */}
-
+                    {/* <!-- /.row --> */}
+    
                 </div>
-                {/* <!-- /.row --> */}
-
-            </div>
-        )
+            )
+        }
     }
 }
 

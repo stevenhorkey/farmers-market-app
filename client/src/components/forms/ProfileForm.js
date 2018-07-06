@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import EditPassword from '../../../components/modals/EditPassword';
+import EditPassword from '../modals/EditPassword';
 
 class ProfileForm extends React.Component{
 
@@ -9,7 +9,6 @@ class ProfileForm extends React.Component{
         profileImage: this.props.user.profileImage,
         email: this.props.user.email,
         businessName: this.props.user.businessName,
-        zipcode: this.props.user.zipcode,
         bio: this.props.user.bio,
         password: '',
         pwdMessage: ''
@@ -33,11 +32,11 @@ class ProfileForm extends React.Component{
     updateUser = (event) => {
         event.preventDefault();
 
-        const { businessName, bio, email, userType, profileImage, zipcode } = this.state;
+        const { businessName, bio, email, userType, profileImage } = this.state;
 
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
 
-        axios.put('/api/updateUser/'+this.props.user.id, {businessName, bio, email, userType, profileImage, zipcode })
+        axios.put('/api/updateUser/'+this.props.user.id, {businessName, bio, email, userType, profileImage })
             .then((res) => {
                 console.log(res.data.message);
                 window.location.reload();
@@ -100,15 +99,10 @@ class ProfileForm extends React.Component{
                             <label htmlFor="inputEmail4">Email</label>
                             <input type="email" className="form-control" name="email" onChange={this.handleChange} value={this.state.email}/>
                             </div>
-                            <div className="form-group col-md-2">
-                                <label htmlFor="inputZip">Zip Code</label>
-                                <input type="text" className="form-control" name="zipcode" onChange={this.handleChange} value={this.state.zipcode}/>
-                            </div>
-                            <div className="form-group col-md-4">
-                            
-                            <label htmlFor="inputPassword" className='d-block'>Password</label>
-                            <button onClick={this.prevent} className='btn btn-primary w-100' data-toggle="modal" data-target="#editPasswordModal">Update My Password</button>
-                            {/* <input type="password" className="form-control" name="inputPassword" placeholder="Password" value={this.props.user.password}/> */}
+                            <div className="form-group col-md-6">
+                                <label htmlFor="inputPassword" className='d-block'>Password</label>
+                                <button onClick={this.prevent} className='btn btn-primary w-100' data-toggle="modal" data-target="#editPasswordModal">Update My Password</button>
+                                {/* <input type="password" className="form-control" name="inputPassword" placeholder="Password" value={this.props.user.password}/> */}
                             </div>
                         </div>
                         <div className='form-row'>

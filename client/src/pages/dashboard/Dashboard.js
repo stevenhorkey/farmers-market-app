@@ -10,7 +10,7 @@ import AddCard from '../../components/products/addcard/AddCard';
 import Categories from '../../components/products/categories/Categories';
 import Carousel from '../../components/carousel/Carousel';
 import MarketCardDashboard from '../../components/marketCardDashboard';
-import ProfileForm from './views/ProfileForm';
+import ProfileForm from '../../components/forms/ProfileForm';
 
 import AddMarket from '../../components/modals/AddMarket';
 import AddProduct from '../../components/modals/AddProduct';
@@ -48,6 +48,18 @@ class Dashboard extends Component {
             nearbyMarkets: []
         };
     };
+
+    style = {
+        'profile-img' : {
+            backgroundImage: 'url("http://i.cricketcb.com/stats/img/faceImages/8733.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '200px',
+            borderRadius: '50%',
+            paddingTop: '100%'
+        }
+    }
 
     //this function runs when the page successfully loads on the client side
     componentDidMount() {
@@ -423,14 +435,18 @@ class Dashboard extends Component {
         
         return (
             <div className='dashboard'>
-                <div className='container'>
-                <div className="container pb-5">
+                <div className='container py-4'>
+                <div className="">
 
                 <div className="row">
                     <div className="col-lg-3">
                         {this.state.user.userType === "Vendor" ? 
                             (<div>
-                                <h1 className="my-4 text-center">{this.state.user.businessName || "Your Business Name"}</h1>
+                                <h1 className="mt-4 text-center shrikhand">{this.state.user.businessName || "Your Business Name"}</h1>
+
+                                <div className='my-3' style={this.style["profile-img"]}>
+                                </div>
+
                                 <Sidebar links = {vendorLinks}/>
                             </div>)
                             :(<div>
@@ -467,7 +483,7 @@ class Dashboard extends Component {
                                         : (<div className="">
                                             <div className="row">
                                                 <div className='col'>
-                                                    <h1>Products</h1>
+                                                    <h1 className='shrikhand'>Products</h1>
                                                 </div>
                                             </div>
                                             <div className="row">
