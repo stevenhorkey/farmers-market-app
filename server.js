@@ -11,7 +11,8 @@ var auth = require('./routes/auth');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
-if (process.env.PORT) {
+if (process.env.NODE_ENV === 'production') {
+  console.log('in the static express build');
   app.use(express.static(path.join(__dirname, '/client/build')));
 }
 
