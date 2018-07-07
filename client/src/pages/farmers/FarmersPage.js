@@ -13,7 +13,8 @@ class FarmersPage extends Component {
     state = {
         loading: true,
         farmer: [],
-        products: []
+        products: [],
+        markets: []
 
     }
 
@@ -38,19 +39,25 @@ class FarmersPage extends Component {
         axios.get('/api/populateFarmerPage/' + queryNumber)
             //need to finish this ^^^^^
             .then((res) => {
-                // console.log(res)
-                this.setState({
-                    farmer: res.data
-                });
-
-                axios.get('/api/populateProducts/' + this.state.farmer.id)
+                // console.log(res)    
+                let farmerData = res.data
+            
+                axios.get('/api/populateProducts/' + farmerData.id)
                     .then((result) => {
-                        // console.log(result)
-                        this.setState({
-                            products: result.data,
-                            loading: false
+                        let productData = result.data
+                        axios.get('/api/getAssociatedMarkets/' + farmerData.id)
+                        .then((marketResults) => {
+                            console.log(result.data)
+                            this.setState({
+                            products: productData,
+                            loading: false,
+                            farmer: farmerData,
+                            markets: marketResults.data
                         })
                         console.log(this.state)
+                        })
+                      
+                        
                     })
 
 
@@ -81,7 +88,9 @@ class FarmersPage extends Component {
 
                                 <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
 
-                                <FarmerCard />
+                                <FarmerCard profileImage = {this.state.farmer.profileImage}
+                                            bio = {this.state.farmer.bio}
+                                            markets = {this.state.markets}/>
 
 
                             </div>
@@ -95,7 +104,8 @@ class FarmersPage extends Component {
 
                                     {this.state.products.map(product => (
                                         <Product
-                                            img={this.state.products.img}
+                                            img={product.img}
+                                            item={product.item}
                                         />
                                     ))}
 

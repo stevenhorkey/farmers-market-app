@@ -504,4 +504,30 @@ router.get('/filterProductsByMarket/:id', function(req, res){
   })
 })
 
+router.get('/getAssociatedMarkets/:id', function(req, res){
+  let farmerId = parseInt(req.params.id);
+  db.Request.findAll({
+    where: {UserId: farmerId,
+            hasAccepted: true}
+  }).then(function(requests, error){
+    if(error) throw error;
+    else{
+      let marketIds = [];
+      requests.map((request) => {
+        marketIds.push(request.dataValues.MarketId);
+      });
+      db.Market.findAll({
+        where: {id: {
+          [Op.in]: marketIds
+        }}
+      }).then(function(markets, error) {
+        if(error) throw error;
+        else{
+          res.json(markets)
+        }
+      })
+    }
+  })
+})
+
   module.exports = router;
