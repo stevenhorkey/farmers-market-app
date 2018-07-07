@@ -67,7 +67,16 @@ class FarmersPage extends Component {
 
     render() {
 
-
+        const profileImg = this.state.farmer.profileImage;
+        const style = {
+            backgroundImage: 'url(' + profileImg + ')',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%',
+            borderRadius: '50%',
+            paddingTop: '100%',
+            marginBottom: '1rem'
+        }
 
         return (
 
@@ -87,8 +96,8 @@ class FarmersPage extends Component {
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
 
                                 <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
-
-                                <FarmerCard profileImage = {this.state.farmer.profileImage}
+                                <img className="profileImg"  style = {style}/>
+                                <FarmerCard 
                                             bio = {this.state.farmer.bio}
                                             markets = {this.state.markets}/>
 
