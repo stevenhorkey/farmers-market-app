@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-
-//hello bitches
+import AOS from 'aos';
 
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
+import 'aos/dist/aos.css';
 import './index.css';
 
 // import App from './App';
@@ -56,11 +56,16 @@ class Site extends Component {
         loggedIn: false
     }
 
+    componentDidMount(){
+        AOS.init({
+            delay: 100,
+            duration: 500
+        });
+    }
+
     render() {
 
         let siteName = this.state.siteName;
-
-
 
         return (
             <Router>

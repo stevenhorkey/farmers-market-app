@@ -5,12 +5,12 @@ import './About.css';
 class About extends Component {
     render() {
         return (
-            <section className="about py-5" id='about'>
-                <div className="container">
+            <section className="about py-5 d-flex" id='about'>
+                <div className="container align-self-center">
                     <div className="row">
                         <div className="col-lg-8 col-md-10 mx-auto">
                             <div className="about-heading text-center">
-                                <h1 className='shrikhand'>About</h1>
+                                <h1 className='bhs'>About</h1>
                                 <span className="subheading text-justify">
                                     Fresh food and fellowship have always been at the <strong><i>root</i></strong> of a thriving community.
                             <br />

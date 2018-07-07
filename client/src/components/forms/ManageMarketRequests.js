@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class JoinMarketRequest extends Component {
     render(){
         return(
-            <div className="card p-5">
+            <div className="card p-2">
                 <div className="card-body">
                     <h5 className="card-title">Requests to Join Your Market</h5>
                         <form onSubmit={this.props.onSubmitAcceptRequest}>
@@ -16,7 +16,7 @@ class JoinMarketRequest extends Component {
                                         </div>)
                                 })
                             }
-                         <button className = "btn btn-primary" type="submit">Submit</button>
+                         <button className = "btn btn-primary w-100" type="submit">Submit</button>
                         </form>
                 </div>
             </div>

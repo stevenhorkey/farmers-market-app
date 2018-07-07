@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
@@ -58,9 +58,9 @@ class Dashboard extends Component {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width: '100%',
-            height: '200px',
             borderRadius: '50%',
-            paddingTop: '100%'
+            paddingTop: '100%',
+            border: 'solid 2px #1d586b'
         }
     }
 
@@ -477,7 +477,7 @@ class Dashboard extends Component {
                     <div className="col-lg-3">
                         {this.state.user.userType === "Vendor" ? 
                             (<div>
-                                <h1 className="mt-4 text-center shrikhand">{this.state.user.businessName || "Your Business Name"}</h1>
+                                <h1 className="mt-4 text-center bhs">{this.state.user.businessName || "Your Business Name"}</h1>
 
                                 <div className='my-3' style={this.style["profile-img"]}>
                                 </div>
@@ -502,23 +502,35 @@ class Dashboard extends Component {
                             (<div>{(() => {
                                 switch (this.state.manageVendor) {
                                     case "profile": return (
+                                    <Fragment>
+                                    <div className="row">
+                                        <div className='col'>
+                                            <h1 className='bhs'>Manage Profile</h1>
+                                        </div>
+                                    </div>
                                     <ProfileForm
                                     user={this.state.user}
                                     />
+                                    </Fragment>
                                 );
                                     case "products": return (this.state.products[0] === undefined ?
 
                                         (<div className="w-100">
+                                            <div className="row">
+                                                <div className='col'>
+                                                    <h1 className='bhs'>Products</h1>
+                                                </div>
+                                            </div>
                                             <div>
                                                 <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                                                <h6>You don{"'"}t have any products...Would you like to create one?</h6> 
+                                                {/* <h6>You don{"'"}t have any products...Would you like to create one?</h6>  */}
                                             </div>
                                             
                                         </div>)
                                         : (<div className="">
                                             <div className="row">
                                                 <div className='col'>
-                                                    <h1 className='shrikhand'>Products</h1>
+                                                    <h1 className='bhs'>Products</h1>
                                                 </div>
                                             </div>
                                             <div className="row">
@@ -536,17 +548,27 @@ class Dashboard extends Component {
                                         </div>)
                                         );
 
-                                    case "joinMarket": return (<JoinMarketRequest 
-                                                                    nearbyMarkets={this.state.nearbyMarkets}
-                                                                    onSubmitCreateRequest ={(e) => { this.onSubmitCreateRequest(e)} }
-                                                                    requestSubmitted={this.state.requestSubmitted}>
-                                                                </JoinMarketRequest>)
+                                    case "joinMarket": return (
+                                        <Fragment>
+                                            <div className="row">
+                                            <div className='col'>
+                                                <h1 className='bhs'>Join Market</h1>
+                                            </div>
+                                            </div>
+                                            <JoinMarketRequest 
+                                                nearbyMarkets={this.state.nearbyMarkets}
+                                                onSubmitCreateRequest ={(e) => { this.onSubmitCreateRequest(e)} }
+                                                requestSubmitted={this.state.requestSubmitted}>
+                                            </JoinMarketRequest>
+                                        </Fragment>
+                                        )
                                     }
                                 })()}
                             </div>)
                              : (<div>{(()=>{
                                     switch (this.state.manageMarket){
-                                        case "profile": return (<ProfileForm
+                                        case "profile": return (
+                                        <ProfileForm
                                             user={this.state.user}
                                             />);
                                         case "market": 
@@ -555,7 +577,7 @@ class Dashboard extends Component {
                                                     (<div>
                                                         <div>
                                                             <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
-                                                            <h6>You don{"'"}t have a market.....Would you like to create one?</h6> 
+                                                            {/* <h6>You don{"'"}t have a market.....Would you like to create one?</h6>  */}
                                                         </div>
                                                     </div>)
                                                     :(<div>

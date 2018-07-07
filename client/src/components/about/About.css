@@ -1,0 +1,8 @@
+#about{
+    background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5)), url('https://images.unsplash.com/photo-1472211093208-3b31a17f3b12?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c4cb1f240bcb8e959f932795eebbe94a&auto=format&fit=crop&w=1947&q=80');
+    background-position: center;
+    background-size: cover;
+    color: white;
+    min-height: 50vh;
+    
+}

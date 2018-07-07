@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import './Product.css';
 
+
+
 class Product extends Component {
     render() {
+
+        const style = {
+            productImg: {
+                backgroundImage: 'url('+this.props.img+')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                width: '100%',
+                paddingTop: '100%'
+            }
+        }
+
         return (
             <div className="col-lg-4 col-md-6 mb-4" key={this.props.id}>
                 {this.props.isDashboard ? (<div className="card h-100">
-                                            <img className="card-img-top" src={this.props.img} alt={this.props.item} />
+                                            <div className="card-img-top" style={style.productImg}></div>
                                             <div className="card-body">
-                                            <h4 className="card-title">
+                                            <h4 className="card-title text-center">
                                                 {this.props.item}
                                             </h4>
                                             <h5>{this.props.price}</h5>

@@ -40,7 +40,7 @@ class UpcomingMarkets extends Component {
                     <div className="row">
                         <div className="col-lg-8 col-md-10 mx-auto">
                             <div className="upcoming-markets-heading text-center">
-                                <h1 className='shrikhand'>Upcoming Markets</h1>
+                                <h1 className='bhs text-white'>Upcoming Markets</h1>
                                 <span className="subheading"></span>
                             </div>
                             <div>

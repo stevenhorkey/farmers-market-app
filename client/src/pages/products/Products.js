@@ -6,6 +6,7 @@ import Categories from '../../components/products/categories'
 import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
 import Sidebar from '../../components/sidebar/Sidebar'
+import { WSAVERNOTSUPPORTED } from 'constants';
 
 class Products extends Component {
 

@@ -14,7 +14,7 @@ body i {
   font-family:'FontAwesome'!important;
 }
 a{
-  color: #79A174;
+  color: #1d586b;
 }
 
 .btn, .form-control {
@@ -24,15 +24,15 @@ a{
 }
 
 .btn-primary {
-  background-color: #79A174;
-  border-color: #79A174;
+  background-color: #1d586b;
+  border-color: #1d586b;
   /* padding: 5px; */
   border-radius: 2px;
 }
 
 .btn-primary:hover {
-  background-color: rgb(94, 145, 88);
-  border-color: rgb(94, 145, 88);
+  background-color: #2087a9;
+  border-color: #2087a9;
 }
 
 .btn-secondary {
@@ -92,15 +92,15 @@ a{
 .bhs {
   font-family: 'Black Han Sans', sans-serif;
 }
-.shrikhand{
-  font-family: 'Shrikhand', cursive !important;
-}
+/* .shrikhand{
+  font-family: 'bhs', cursive !important;
+} */
 .open-sans{
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;  
 }
 
 .hover-darkred:hover{
-  background-color: rgb(94, 145, 88);
+  background-color: #2087a9;
 }
 #content{
   position: relative;
