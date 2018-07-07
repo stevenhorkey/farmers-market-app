@@ -37,7 +37,7 @@ class Product extends Component {
                                         </div>)
                                         :(<a href={"/farmerspage/?" + this.props.userId}>
                                             <div className="card h-100">
-                                                <img className="card-img-top" src={this.props.img} alt={this.props.item} />
+                                                <img className="card-img-top" style={style.productImg}/>
                                                 <div className="card-body">
                                                 <h4 className="card-title">
                                                     {this.props.item}
