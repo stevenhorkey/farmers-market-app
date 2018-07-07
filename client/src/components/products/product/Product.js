@@ -5,6 +5,7 @@ class Product extends Component {
     render() {
         return (
             <div className="col-lg-4 col-md-6 mb-4" key={this.props.id}>
+                <a href={"/farmerspage/?" + this.props.userId} >
                 <div className="card h-100">
                     <a href="#"><img className="card-img-top" src={this.props.img} alt="" /></a>
                     <div className="card-body">
@@ -22,6 +23,7 @@ class Product extends Component {
                                                 : (null)}
                     </div>
                 </div>
+                </a>
             </div>
         )
     }

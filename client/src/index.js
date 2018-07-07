@@ -72,7 +72,7 @@ class Site extends Component {
                             <Route exact path="/signup" render={() => <Signup />} />
                             <Route exact path="/login" render={() => <Login />} />
                             <Route exact path="/protected" component={Test} />
-                            <Route exact path="/farmerspage" render={() => <FarmersPage farmerID={1} />} />
+                            <Route path="/farmerspage" component={FarmersPage} />
                             <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/markets" component={Markets} />

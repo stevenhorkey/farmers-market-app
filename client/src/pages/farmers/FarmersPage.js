@@ -17,10 +17,25 @@ class FarmersPage extends Component {
 
     }
 
+    getUrlVars()
+  {
+      var vars = {}, hash;
+      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1);
+      for(var i = 0; i < hashes.length; i++)
+      {
+          hash = hashes[i].split('=');
+          vars[hash[0]] = hash[1];
+      }
+      return hashes;
+  }
+
     componentDidMount() {
         console.log(this.state)
         console.log(this.props.farmerID)
-        axios.get('/api/populateFarmerPage/' + 1)
+        console.log(this.getUrlVars());
+        var queryNumber = this.getUrlVars();
+
+        axios.get('/api/populateFarmerPage/' + queryNumber)
             //need to finish this ^^^^^
             .then((res) => {
                 // console.log(res)

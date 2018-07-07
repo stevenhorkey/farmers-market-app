@@ -307,7 +307,7 @@ router.delete('/deleteProduct/:id', passport.authenticate('jwt', { session: fals
 //farmer page routes
 router.get('/populateFarmerPage/:id', function (req, res) {
   db.User.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id, userType: 'Vendor' }
   })
     .then(function (farmer, err) {
       if (err) return (err);

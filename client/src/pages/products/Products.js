@@ -76,6 +76,10 @@ class Products extends Component {
         })
     }
 
+    goToFarmer = (e, farmerId) => {
+                        
+    }
+
     render() {
         const productLinks = [];
 
@@ -126,6 +130,7 @@ class Products extends Component {
                                         // price={element.price} 
                                         // description={element.description} 
                                         img={element.image}
+                                        userId={element.UserId}
                                         id={key} 
                                         />
                                     )
