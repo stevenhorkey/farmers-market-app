@@ -307,7 +307,7 @@ router.delete('/deleteProduct/:id', passport.authenticate('jwt', { session: fals
 //farmer page routes
 router.get('/populateFarmerPage/:id', function (req, res) {
   db.User.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id, userType: 'Vendor' }
   })
     .then(function (farmer, err) {
       if (err) return (err);
@@ -465,6 +465,43 @@ router.put('/acceptRequest', passport.authenticate('jwt', { session: false }), f
   })
 })
 
+router.get('/getSidebarMarkets/', function(req, res){
+  db.Market.findAll({
+    limit: 5
+  }).then(function(markets, error){
+    if(error) throw error;
+    else{
+      res.json(markets);
+    }
+  })
+})
 
+router.get('/filterProductsByMarket/:id', function(req, res){
+  let marketId = parseInt(req.params.id);
+  db.Request.findAll({
+    where: {MarketId: marketId,
+            hasAccepted: true}
+  }).then(function(requests, error){
+    if(error) throw error;
+    else{
+      let farmerIds = [];
+      console.log(requests);
+      requests.map((request) => {
+        farmerIds.push(request.dataValues.UserId);
+      });
+      db.Product.findAll({
+        where: {UserId:{
+         [Op.in]:farmerIds         
+        }
+      }
+    }).then(function(products, error){
+      if(error) throw error;
+      else{
+        res.json(products);
+      }
+    })
+    }
+  })
+})
 
   module.exports = router;
