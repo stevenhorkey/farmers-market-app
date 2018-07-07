@@ -52,7 +52,7 @@ import Axios from 'axios';
 class Site extends Component {
 
     state = {
-        siteName: "ThymeMarket",
+        siteName: "TapRoot",
         loggedIn: false
     }
 
