@@ -4,12 +4,12 @@ import axios from 'axios';
 
 import './Hero.css';
 
-import SearchBar from '../products/searchbar/SearchBar';
+import ZipInput from '../zipcode/ZipInput';
 
 class Hero extends Component {
 
     state = {
-        searchInput: '',
+        zipInput: '',
         redirect: false
     }
 
@@ -19,7 +19,7 @@ class Hero extends Component {
         this.setState({[name]:value});
     };
 
-    submitSearch = (event) => {
+    submitZip = (event) => {
         event.preventDefault();
         this.setState({
             redirect: true
@@ -32,7 +32,7 @@ class Hero extends Component {
                 <Redirect to={{
                     pathname: '/products',
                     state: {
-                        searchInput: this.state.searchInput
+                        zipcode: this.state.zipInput
                     }
                 }} />
             )
@@ -47,11 +47,11 @@ class Hero extends Component {
                                 <h1 className="bhs"><i className="fab fa-pagelines"></i>{this.props.siteName}</h1>
                                 <span className="subheading">Connecting people to their communities and their food.</span>
                             </div>
-                            <div className='m-1'>
-                                <SearchBar
+                            <div className='m-1 col'>
+                                <ZipInput
                                 handleChange={this.handleChange}
-                                searchInput={this.state.searchInput}
-                                submitSearch={this.submitSearch}
+                                submitZip={this.submitZip}
+                                zipInput={this.state.zipInput}
                                 />
                             </div>
                         </div>

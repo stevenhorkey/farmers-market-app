@@ -13,7 +13,8 @@ class Products extends Component {
         market: '',
         products: [],
         searchInput: '',
-        loading: true
+        loading: true,
+        zipcode: ''
     }
 
     handleChange = event => {
@@ -43,6 +44,8 @@ class Products extends Component {
         if(this.state.searchInput !== ''){
             this.submitSearch();
         }
+
+        console.log(this.state.zipcode);
 
         axios.get('/api/populateProducts',{
             // Ready to edit and use ^^^
