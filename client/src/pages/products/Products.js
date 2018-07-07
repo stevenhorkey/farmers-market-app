@@ -49,7 +49,6 @@ class Products extends Component {
         console.log(this.state.zipcode);
 
         axios.get('/api/populateProducts',{
-            // Ready to edit and use ^^^
             }).then(res => {
                 let productsArray = res.data;
                 axios.get('/api/getSidebarMarkets')
@@ -60,6 +59,7 @@ class Products extends Component {
                         products: productsArray,
                         nearbyMarkets: res.data
                     })
+                    console.log(this.state.nearbyMarkets);
                 })
                
             }).catch(err => {
@@ -85,12 +85,12 @@ class Products extends Component {
     render() {
         const productLinks = [];
 
-        this.state.nearbyMarkets.map((market) => {
-            let linkObj = { name: market.marketName,
-                            onClick: this.sortByMarket, 
-                            marketId: market.id};
-            productLinks.push(linkObj);
-        })
+        // this.state.nearbyMarkets.map((market) => {
+        //     let linkObj = { name: market.marketName,
+        //                     onClick: this.sortByMarket, 
+        //                     marketId: market.id};
+        //     productLinks.push(linkObj);
+        // })
                 
 
         if (this.state.loading){
