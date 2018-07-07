@@ -15,7 +15,8 @@ class Products extends Component {
         products: [],
         searchInput: '',
         loading: true,
-        zipcode: ''
+        zipcode: '',
+        nearbyMarkets: []
     }
 
     handleChange = event => {
@@ -85,12 +86,12 @@ class Products extends Component {
     render() {
         const productLinks = [];
 
-        // this.state.nearbyMarkets.map((market) => {
-        //     let linkObj = { name: market.marketName,
-        //                     onClick: this.sortByMarket, 
-        //                     marketId: market.id};
-        //     productLinks.push(linkObj);
-        // })
+        this.state.nearbyMarkets.map((market) => {
+            let linkObj = { name: market.marketName,
+                            onClick: this.sortByMarket, 
+                            marketId: market.id};
+            productLinks.push(linkObj);
+        })
                 
 
         if (this.state.loading){
