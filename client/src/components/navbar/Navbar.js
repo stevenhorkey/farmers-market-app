@@ -34,7 +34,10 @@ class Navbar extends Component {
                                 <a className="nav-link" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#about">About</a>
+                                <a className="nav-link" href="/products">Markets</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/#about">About</a>
                             </li>
                             {localStorage.getItem('jwtToken') !== null && localStorage.getItem('jwtToken') !== "undefined" ? (
                                 <Fragment>
