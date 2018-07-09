@@ -37,9 +37,9 @@ class EditMarket extends Component{
                     <label htmlFor="marketTime">Market Schedule</label>
                     <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Schedule" name='marketTime' value={this.props.marketTime} onChange={this.props.onChange} required />
                 </div>
-                <button className="btn" type="submit">Submit</button>
+                <button className="btn btn-primary px-3" type="submit">Submit</button>
+                <button className="btn btn-danger mx-2 px-3" onClick={this.props.closeModalUpdateMarket}>Cancel</button>
             </form>
-            <button className="btn" onClick={this.props.closeModalUpdateMarket}>Cancel</button>
         </Modal>
         )
     }

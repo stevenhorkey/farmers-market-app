@@ -493,7 +493,7 @@ class Dashboard extends Component {
                             </div>)}
                     </div>
 
-                    <div className="col-lg-9">
+                    <div className="col-lg-8">
 
                         <Carousel />
 
@@ -522,15 +522,16 @@ class Dashboard extends Component {
                                             </div>
                                             <div>
                                                 <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
-                                                {/* <h6>You don{"'"}t have any products...Would you like to create one?</h6>  */}
                                             </div>
-                                            
                                         </div>)
                                         : (<div className="">
                                             <div className="row">
                                                 <div className='col'>
                                                     <h1 className='bhs'>Products</h1>
                                                 </div>
+                                            </div>
+                                            <div>
+                                                <button className="btn btn-primary w-100 mb-3" onClick={this.openModalCreate} id="createProduct">Add a Product</button>
                                             </div>
                                             <div className="row">
                                                 {this.state.products.map(product => (

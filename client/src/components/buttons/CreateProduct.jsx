@@ -5,7 +5,7 @@ class CreateProduct extends Component{
         return(
             <div onClick={this.props.openModalCreate} id="createProduct" className="col-lg-4 col-md-6 mb-4">
                 <div className="card row h-100 d-flex">
-                    <div className='justify-content-center align-self-center'>
+                    <div className='justify-content-center align-self-center my-auto'>
                         <i className="fas fa-plus plus-sign"></i>
                     </div>
                 </div>

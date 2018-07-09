@@ -2,5 +2,12 @@
     font-size: 150px;
     color: #CCCCCC;
     position: relative;
-    top: 13px;
+    transition: ease-in-out 100ms;
+}
+.plus-sign:hover{
+    color: #1d586b;
+}
+#addCard {
+    background: transparent !important;
+    border: none !important;
 }
