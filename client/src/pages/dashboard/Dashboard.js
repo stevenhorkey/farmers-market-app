@@ -553,7 +553,7 @@ class Dashboard extends Component {
                                         <Fragment>
                                             <div className="row">
                                             <div className='col'>
-                                                <h1 className='bhs'>Join Market</h1>
+                                                <h1 className='bhs'>Join A Market</h1>
                                             </div>
                                             </div>
                                             <JoinMarketRequest 
