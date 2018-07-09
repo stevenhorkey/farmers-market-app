@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import './JoinMarketRequest.css';
+
 class JoinMarketRequest extends Component {
     render(){
         return(
             <div className="card p-2">
                 <div className="card-body">
-                    <h5 className="card-title"><strong>Available Markets to Join</strong></h5>
                     <form onSubmit={this.props.onSubmitCreateRequest}>
-                        {this.props.nearbyMarkets.map(market => {
-                            return(
-                                <div className="form-check my-4">
-                                    <input className="form-check-input" name="joinRequest" type="checkbox" value={market.id}></input>
-                                    <label className="form-check-label" htmlFor="defaultCheck1">
-                                        <h5>{market.marketName}</h5>
-                                    </label>
-                                </div>
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                            <th scope="col-1">Market:</th>
+                            <th scope="col-4">Name</th>
+                            <th scope="col-4">Address</th>
+                            <th scope="col-3">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.nearbyMarkets.map(market => {
+                                return(
+                                    // <div className="form-check">
+                                    <tr>
+                                        <td scope="row">
+                                            <label class="switch">
+                                                <input name="joinRequest" type="checkbox" value={market.id}/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td>{market.marketName}</td>
+                                        <td>{market.marketAddress}</td>
+                                        <td>{market.marketTime}</td>
+                                    </tr>
                                 )
-                            })
-                        }
-                        <button className = "btn btn-primary submit w-100" type="submit">Submit Request</button>
+                                    
+                                })
+                            }
+                        </tbody>
+                    </table>
+                        <button className = "btn btn-primary submit w-100" type="submit">{
+                            this.props.nearbyMarkets ? 'Submit Request(s)' : 'No Available Markets'
+                        }</button>
                     </form>
                 </div>
             </div>

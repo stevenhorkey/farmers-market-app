@@ -100,13 +100,13 @@ class Products extends Component {
         } else {
             let products = this.state.products;
             return (
-                <div className="container pb-5">
+                <div className="container pb-5 pt-3">
     
                     <div className="row">
     
                         <div className="col-lg-3">
     
-                            <h1 className="my-4">Shop Name</h1>
+                            <h1 className="my-4 bhs text-center">Markets</h1>
     
                             <Sidebar links = {productLinks}/>
     

@@ -43,7 +43,7 @@ class Navbar extends Component {
                                 <Fragment>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/" onClick={this.logout}>Log Out</a>
-                                    </li><p></p>
+                                    </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/dashboard">My Dashboard</a>
                                     </li>

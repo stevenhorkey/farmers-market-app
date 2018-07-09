@@ -87,3 +87,7 @@
       transform: translate3d(0, 100%, 0);
     }
   }
+
+.navbar-light .navbar-nav .nav-link{
+  color: white;
+}

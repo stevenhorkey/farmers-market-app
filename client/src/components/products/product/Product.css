@@ -1,10 +1,6 @@
-.delete-button{
-    position: absolute;
-    bottom: 9px;
-    right: 22px;
-    font-size: 20px;
-    color: white;
+.edit-button{
+    border-radius: 2px 0 0 2px;
 }
-.delete-button:hover{
-    color: red;
+.delete-button{
+    border-radius: 0 2px 2px 0;
 }

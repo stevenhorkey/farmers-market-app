@@ -29,8 +29,9 @@ class Product extends Component {
                                             </div>
                                             <div className="card-footer">
                                                 {this.props.isDashboard ? <div>
-                                                                            <div className = "btn btn-primary edit-button w-100" onClick={this.props.modalOpen} data-id={this.props.id}> Edit </div>
-                                                                            <div className = "btn delete-button" onClick={this.props.deleteProduct} data-id={this.props.id}><i className="far fa-times-circle"></i></div>
+                                                                            <div className = "btn btn-primary edit-button w-100 col-10" onClick={this.props.modalOpen} data-id={this.props.id}> Edit </div>
+                                                                            <div className = "btn btn-danger delete-button w-100 col-2" onClick={this.props.deleteProduct} data-id={this.props.id}><i className="far fa-times-circle"></i></div>
+                                                                            
                                                                         </div>
                                                                         : (null)}
                                             </div>
@@ -44,13 +45,6 @@ class Product extends Component {
                                                 </h4>
                                                 <h5>{this.props.price}</h5>
                                                 <p className="card-text">{this.props.description}</p>
-                                                </div>
-                                                <div className="card-footer">
-                                                    {this.props.isDashboard ? <div>
-                                                                                <div className = "btn btn-primary edit-button w-100" onClick={this.props.modalOpen} data-id={this.props.id}> Edit </div>
-                                                                                <div className = "btn delete-button" onClick={this.props.deleteProduct} data-id={this.props.id}><i className="far fa-times-circle"></i></div>
-                                                                              </div>
-                                                                            : (null)}
                                                 </div>
                                             </div>
                                             </a>)}
