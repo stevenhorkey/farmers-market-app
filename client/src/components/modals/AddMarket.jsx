@@ -28,6 +28,10 @@ class AddMarket extends Component{
                     <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Address" name='marketAddress' value={this.props.marketAddress} onChange={this.props.onChange} required/>
                 </div>
                 <div className="form-group mt-4 mb-5">
+                    <label htmlFor="marketLocation">Market Zip</label>
+                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Zipcode" name='marketZip' value={this.props.marketZip} onChange={this.props.onChange} required />
+                </div>
+                <div className="form-group mt-4 mb-5">
                     <label htmlFor="marketTime">Market Schedule</label>
                     <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Market Time" name='marketTime' value={this.props.marketTime} onChange={this.props.onChange} required/>
                 </div>
