@@ -7,10 +7,6 @@ module.exports = function (sequelize, DataTypes) {
         image: {
             type: DataTypes.STRING,
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
-        },
-        marketName: {
-            type: DataTypes.STRING,
-            allowNull: true,
         }
     });
 
