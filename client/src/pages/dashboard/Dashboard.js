@@ -52,18 +52,6 @@ class Dashboard extends Component {
         };
     };
 
-    style = {
-        'profile-img' : {
-            backgroundImage: 'url("http://i.cricketcb.com/stats/img/faceImages/8733.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '100%',
-            borderRadius: '50%',
-            paddingTop: '100%',
-            border: 'solid 2px #1d586b'
-        }
-    }
-
     //this function runs when the page successfully loads on the client side
     componentDidMount() {
         console.log(this.state)
@@ -74,6 +62,18 @@ class Dashboard extends Component {
         //notice, this post doesnt actually send any data, its just to verify log in
         axios.post("/api/auth/jwt").then((res) => {
             console.log(res.data.success)
+            // This sets the profile image. Has nothing to do with the rest of the function
+            this.style = {
+                'profile-img' : {
+                    backgroundImage: 'url('+res.data.user.profileImage+')',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    width: '100%',
+                    borderRadius: '50%',
+                    paddingTop: '100%',
+                    border: 'solid 2px #1d586b'
+                }
+            }
             //if the response from the server includes success:true (aka is logged in)
             if (res.data.success) {
                 //if the user is a vendor
@@ -89,11 +89,11 @@ class Dashboard extends Component {
                         //set new values in the state
                         //response.data is an array of products tied to the user
                         //users info is set into state
-                            axios.get("/api/nearbyMarkets/" + userInfo.id).then((marketResponse)=>{
-                                console.log(marketResponse.data)
-                                this.setState({ loading: false, nearbyMarkets: marketResponse.data, products: newProducts, user: userInfo })
-                                console.log(this.state)
-                            })
+                        axios.get("/api/nearbyMarkets/" + userInfo.id).then((marketResponse) => {
+                            console.log(marketResponse.data)
+                            this.setState({ loading: false, nearbyMarkets: marketResponse.data, products: newProducts, user: userInfo })
+                            console.log(this.state)
+                        })
                     });
                 }
                 //if the user is a market organizer
@@ -108,21 +108,24 @@ class Dashboard extends Component {
                         let market = response.data;
                         //users info is set into state
                         axios.get("/api/retrieveRequests/" + userInfo.id).then((requestResponse) => {
-                            this.setState({ loading: false, markets: market, user: userInfo, requests: requestResponse.data });                        })
-                            console.log(this.state)
+                            this.setState({ loading: false, markets: market, user: userInfo, requests: requestResponse.data });
+                        })
+                        console.log(this.state)
                     });
                 }
 
                 // this.setState({ loading: false, userType: res.data.userType })
 
             }
-        //if there is an error or ser is not logged in redirect user to the login page
+            //if there is an error or ser is not logged in redirect user to the login page
         }).catch((error) => {
             console.log(error)
             this.props.history.push("/login");
         })
     }
- 
+    // This is populated with user data. Dont delete
+    style = {}
+
     //this function deletes the selected product, this is passed as a prop to the product card
     //that way the delete button only deletes the targetted card
     onDeleteProducts = (childData) => {
