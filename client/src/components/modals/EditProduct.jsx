@@ -23,9 +23,9 @@ class EditProduct extends Component{
                         <label htmlFor="image">Image URL</label>
                         <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='image' value={this.props.image} onChange={this.props.onChange} required />
                     </div>
-                    <button className="btn" type="submit">Submit</button>
+                    <button className="btn btn-primary px-3" type="submit">Submit</button>
+                    <button className="btn btn-danger mx-2 px-3" onClick={this.props.closeModalCreate}>Cancel</button>
                 </form>
-                <button className="btn" onClick={this.props.closeModalUpdate}>Cancel</button>
             </Modal>
         )
     }
