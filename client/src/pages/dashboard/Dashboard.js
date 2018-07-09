@@ -108,6 +108,7 @@ class Dashboard extends Component {
                         let market = response.data;
                         //users info is set into state
                         axios.get("/api/retrieveRequests/" + userInfo.id).then((requestResponse) => {
+                            console.log(requestResponse.data);
                             this.setState({ loading: false, markets: market, user: userInfo, requests: requestResponse.data });
                         })
                         console.log(this.state)

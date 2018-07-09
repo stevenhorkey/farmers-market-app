@@ -427,12 +427,14 @@ router.post('/sendRequest', passport.authenticate('jwt', { session: false }), fu
 
 router.get('/retrieveRequests/:id', function (req, res) {
   let id = req.params.id;
+  
   db.Market.findOne({
     where: {UserId: id}
   }).then(function(market, error){
     if(error) throw error;
     else {
       if (market === null){
+        console.log('oops')
         res.send([]);
       } else {
            db.Request.findAll({

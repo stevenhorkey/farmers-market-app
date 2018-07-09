@@ -2,6 +2,12 @@ import React, { Component, Fragment } from 'react';
 
 class JoinMarketRequest extends Component {
     render(){
+        let requestsExist = Array.isArray(this.props.requests);
+        console.log(requestsExist)
+        let farmersBusinessName = ""
+        if(!this.props.requests.businessName === null){
+            farmersBusinessName = " of " + this.props.requests.businessName
+        }
         return(
             <Fragment>
                 <div className="row">
@@ -11,7 +17,7 @@ class JoinMarketRequest extends Component {
                 </div>
                 <div className="card p-2">
                     <div className="card-body">
-                        {!this.props.requests ? (
+                        {requestsExist ? (
                             <div>
                                 <h5 className="card-title">Requests to Join Your Market</h5>
                                 <form onSubmit={this.props.onSubmitAcceptRequest}>
@@ -19,7 +25,7 @@ class JoinMarketRequest extends Component {
                                         return(<div className="form-check">
                                                     <input className="form-check-input" name="acceptRequest" type="checkbox" value={request.id}></input>
                                                     <label className="form-check-label" htmlFor="defaultCheck1">
-                                                        {request.farmerName + " of " + request.businessName}
+                                                        {request.farmerName + farmersBusinessName}
                                                     </label>
                                                 </div>)
                                         })
