@@ -231,6 +231,11 @@ class Dashboard extends Component {
         //use state to close modal, reset the other states to clear them of any user input
         this.setState({ modalIsOpenCreate: false, item: '', image: '' });
     }
+
+    closeModalUpdate = () => {
+        //use state to close modal, reset the other states to clear them of any user input
+        this.setState({ modalIsOpenUpdate: false, item: '', image: '' });
+    }
     
     //this function submits the new product to the server
     onSubmitCreate = (e) => {
