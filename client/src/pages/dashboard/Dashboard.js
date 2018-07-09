@@ -180,7 +180,7 @@ class Dashboard extends Component {
     }
 
     closeModalCreateMarket = () => {
-        this.setState({ modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+        this.setState({ modalIsOpenCreateMarket: false, market: '', marketImage: '', marketName: '', marketTime: '', marketAddress: '', marketZip: '' });
     }
 
     //this function handles the client side form submit for a new market
@@ -618,6 +618,7 @@ class Dashboard extends Component {
             user={this.state.user}
             marketName={this.state.marketName}
             marketAddress={this.state.marketAddress}
+            marketZip={this.state.marketZip}
             marketTime={this.state.marketTime}
             marketImage={this.state.marketImage}
             modalIsOpenCreateMarket={this.state.modalIsOpenCreateMarket}
