@@ -180,7 +180,7 @@ class Dashboard extends Component {
     }
 
     closeModalCreateMarket = () => {
-        this.setState({ modalIsOpenCreateMarket: false, market: '', marketImage: '' });
+        this.setState({ modalIsOpenCreateMarket: false, market: '', marketImage: '', marketName: '', marketTime: '', marketAddress: '', marketZip: '' });
     }
 
     //this function handles the client side form submit for a new market
@@ -230,6 +230,11 @@ class Dashboard extends Component {
     closeModalCreate = () => {
         //use state to close modal, reset the other states to clear them of any user input
         this.setState({ modalIsOpenCreate: false, item: '', image: '' });
+    }
+
+    closeModalUpdate = () => {
+        //use state to close modal, reset the other states to clear them of any user input
+        this.setState({ modalIsOpenUpdate: false, item: '', image: '' });
     }
     
     //this function submits the new product to the server
@@ -613,6 +618,7 @@ class Dashboard extends Component {
             user={this.state.user}
             marketName={this.state.marketName}
             marketAddress={this.state.marketAddress}
+            marketZip={this.state.marketZip}
             marketTime={this.state.marketTime}
             marketImage={this.state.marketImage}
             modalIsOpenCreateMarket={this.state.modalIsOpenCreateMarket}
