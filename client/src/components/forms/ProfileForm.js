@@ -92,6 +92,11 @@ class ProfileForm extends React.Component{
         return(
 
             <React.Fragment>
+                <div className="row">
+                    <div className='col'>
+                        <h1 className='bhs'>Manage Profile</h1>
+                    </div>
+                </div>
                 <div className='card p-3'>
                     <form className=''>
                         <div className="form-row">

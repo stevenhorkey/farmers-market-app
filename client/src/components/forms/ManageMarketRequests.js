@@ -1,25 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class JoinMarketRequest extends Component {
     render(){
         return(
-            <div className="card p-2">
-                <div className="card-body">
-                    <h5 className="card-title">Requests to Join Your Market</h5>
-                        <form onSubmit={this.props.onSubmitAcceptRequest}>
-                            {this.props.requests.map(request => {
-                                return(<div className="form-check">
-                                            <input className="form-check-input" name="acceptRequest" type="checkbox" value={request.id}></input>
-                                            <label className="form-check-label" htmlFor="defaultCheck1">
-                                                {request.farmerName + " of " + request.businessName}
-                                            </label>
-                                        </div>)
-                                })
-                            }
-                         <button className = "btn btn-primary w-100" type="submit">Submit</button>
-                        </form>
+            <Fragment>
+                <div className="row">
+                    <div className='col'>
+                        <h1 className='bhs'>Market Requests</h1>
+                    </div>
                 </div>
-            </div>
+                <div className="card p-2">
+                    <div className="card-body">
+                        {!this.props.requests ? (
+                            <div>
+                                <h5 className="card-title">Requests to Join Your Market</h5>
+                                <form onSubmit={this.props.onSubmitAcceptRequest}>
+                                    {this.props.requests.map(request => {
+                                        return(<div className="form-check">
+                                                    <input className="form-check-input" name="acceptRequest" type="checkbox" value={request.id}></input>
+                                                    <label className="form-check-label" htmlFor="defaultCheck1">
+                                                        {request.farmerName + " of " + request.businessName}
+                                                    </label>
+                                                </div>)
+                                        })
+                                    }
+        
+                                 <button className = "btn btn-primary w-100" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        ) : (
+                            <h5 className="card-title mb-0">You Have No Pending Requests</h5>
+                        )}
+                            
+                    </div>
+                </div>
+            </Fragment>
         )
     }
 }

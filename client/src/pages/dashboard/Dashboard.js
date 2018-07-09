@@ -503,11 +503,7 @@ class Dashboard extends Component {
                                 switch (this.state.manageVendor) {
                                     case "profile": return (
                                     <Fragment>
-                                    <div className="row">
-                                        <div className='col'>
-                                            <h1 className='bhs'>Manage Profile</h1>
-                                        </div>
-                                    </div>
+                                    
                                     <ProfileForm
                                     user={this.state.user}
                                     />
