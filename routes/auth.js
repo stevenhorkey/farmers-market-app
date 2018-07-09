@@ -65,15 +65,27 @@ router.post('/signup', function (req, res) {
     if (!req.body.email || !req.body.password) {
         res.json({ success: false, msg: 'Please pass email, password, and your full name name.' });
     } else {
- 
-        var newUser = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            password: generateHash(req.body.password),
-            email: req.body.email,
-            userType: req.body.userType,
-            profileImage: req.body.profileImage
-        };
+        var newUser = {}
+        console.log('this is the profile url ' + req.body.profileImage)
+        if(req.body.profileImage === '') {
+            newUser = {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                password: generateHash(req.body.password),
+                email: req.body.email,
+                userType: req.body.userType,
+            };
+        } else {
+            newUser = {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                password: generateHash(req.body.password),
+                email: req.body.email,
+                userType: req.body.userType,
+                profileImage: req.body.profileImage
+            };
+        }
+          
         // save the user
         db.User.findOne({
             where:{
