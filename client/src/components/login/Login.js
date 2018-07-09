@@ -22,6 +22,11 @@ class Login extends Component {
         state[e.target.name] = e.target.value;
         this.setState(state);
     }
+
+    componentDidMount = () => {
+        window.scrollTo(0, 0);
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
 

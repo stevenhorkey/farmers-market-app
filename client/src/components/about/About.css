@@ -4,5 +4,7 @@
     background-size: cover;
     color: white;
     min-height: 50vh;
+    border-top: 6px white solid;
+    border-bottom: 6px white solid;
     
 }
