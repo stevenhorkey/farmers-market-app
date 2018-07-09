@@ -113,7 +113,7 @@ class FarmersPage extends Component {
 
                                     {this.state.products.map(product => (
                                         <Product
-                                            img={product.img}
+                                            img={product.image}
                                             item={product.item}
                                         />
                                     ))}
