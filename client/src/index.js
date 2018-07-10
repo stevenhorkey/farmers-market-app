@@ -23,6 +23,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import FarmersPage from './pages/farmers/FarmersPage';
 import Products from './pages/products/Products';
 import Markets from './pages/markets/Markets';
+import NearbyMarkets from './pages/nearbyMarkets/NearbyMarkets';
 // import NoMatch from './pages/NoMatch/NoMatch';
 import Test from './components/test/Test';
 import Axios from 'axios';
@@ -56,7 +57,7 @@ class Site extends Component {
         loggedIn: false
     }
 
-    componentDidMount(){
+    componentDidMount() {
         AOS.init({
             delay: 100,
             duration: 500
@@ -81,6 +82,7 @@ class Site extends Component {
                             <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/products" component={Products} />
                             <Route exact path="/markets" component={Markets} />
+                            <Route exact path="/nearbyMarkets" component={NearbyMarkets} />
                             <Route siteName={siteName} render={() => <Home siteName={siteName} />} />
 
                         </Switch>

@@ -30,13 +30,13 @@ var generateHash = function (password) {
 
 
 
-router.get('/populateProducts', function(req, res){
+router.get('/populateProducts', function (req, res) {
   db.Product.findAll({
-    where:{
+    where: {
 
     }
-  }).then(function(products, err){
-    if(err){
+  }).then(function (products, err) {
+    if (err) {
       console.log(err);
       return (err);
     }
@@ -262,7 +262,7 @@ router.put('/updateUser/:id', passport.authenticate('jwt', { session: false }), 
 router.put('/updatePassword/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   var token = getToken(req.headers);
   let id = parseInt(req.params.id);
-  console.log(token,id, req.body.password);
+  console.log(token, id, req.body.password);
   if (token) {
     db.User.update(
       {
@@ -369,162 +369,171 @@ router.get('/populateProducts/:id', function (req, res) {
 router.get('/nearbyMarkets/:id', function (req, res) {
   let id = parseInt(req.params.id)
   db.Request.findAll(
-    {where: {UserId: id}}
-    ).then(function(requests, error) {
-      if(error) return (error);
-      else {
-        // console.log('test');
-        // console.log(requests);
-        let marketIds = [];
-        requests.map(request => {
-          console.log(request);          
-          marketIds.push(request.dataValues.MarketId)
+    { where: { UserId: id } }
+  ).then(function (requests, error) {
+    if (error) return (error);
+    else {
+      // console.log('test');
+      // console.log(requests);
+      let marketIds = [];
+      requests.map(request => {
+        console.log(request);
+        marketIds.push(request.dataValues.MarketId)
+      })
+      console.log("these are the market ids:" + marketIds);
+      db.Market.findAll({
+        where: {
+          id: {
+            [Op.notIn]: marketIds
+          }
+        }
+      })
+        .then(function (markets, err) {
+          if (err) return (err);
+          else {
+            res.json(markets);
+          }
         })
-        console.log("these are the market ids:" + marketIds);
-          db.Market.findAll({
-            where: {
-              id : {
-                [Op.notIn] : marketIds
-              }
-            }
-          })
-            .then(function (markets, err) {
-              if(err) return (err);
-              else {
-                res.json(markets);
-              }
-            })
-      }
-    })
+    }
+  })
 });
 
 router.post('/sendRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
   console.log("inside send request")
   var marketIds = req.body.marketIds;
   console.log(req.body.marketIds)
-  
+
   var requests = marketIds.map((id) => {
-   request = {
-     farmerName: req.user.dataValues.firstName + ' ' + req.user.dataValues.lastName,
-     businessName: req.user.dataValues.businessName,
-     UserId: req.user.dataValues.id,
-     hadAccepted: false,
-     MarketId: id
-   } 
-   return request;
+    request = {
+      farmerName: req.user.dataValues.firstName + ' ' + req.user.dataValues.lastName,
+      businessName: req.user.dataValues.businessName,
+      UserId: req.user.dataValues.id,
+      hadAccepted: false,
+      MarketId: id
+    }
+    return request;
   })
   // console.log(requests)
   db.Request.bulkCreate(requests)
-  .then(function(requests, error){
-    if(error){
-      throw error
-    }
-    else {
-      res.send('success')
-    }
-  });
+    .then(function (requests, error) {
+      if (error) {
+        throw error
+      }
+      else {
+        res.send('success')
+      }
+    });
 })
 
 router.get('/retrieveRequests/:id', function (req, res) {
   let id = req.params.id;
-  
+
   db.Market.findOne({
-    where: {UserId: id}
-  }).then(function(market, error){
-    if(error) throw error;
+    where: { UserId: id }
+  }).then(function (market, error) {
+    if (error) throw error;
     else {
-      if (market === null){
+      if (market === null) {
         console.log('oops')
         res.send([]);
       } else {
-           db.Request.findAll({
-        where: {MarketId: market.dataValues.id, 
-          hasAccepted: false}
-        }).then(function(request, error){
-          if(error) throw error;
+        db.Request.findAll({
+          where: {
+            MarketId: market.dataValues.id,
+            hasAccepted: false
+          }
+        }).then(function (request, error) {
+          if (error) throw error;
           else {
             console.log(request);
             res.json(request);
           }
         })
       }
-        }
-      })
-    });
-  
-router.put('/acceptRequest', passport.authenticate('jwt', { session: false }), function(req, res){
+    }
+  })
+});
+
+router.put('/acceptRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
   let requestIds = req.body.requestIds;
   db.Request.update({
     hasAccepted: true
   },
-  {
-    where: {id: {[Op.in]: requestIds}}
-  }).then(function(request, error){
-    if(error) throw error;
-    else{
-      res.json(request)
-    }
-  })
+    {
+      where: { id: { [Op.in]: requestIds } }
+    }).then(function (request, error) {
+      if (error) throw error;
+      else {
+        res.json(request)
+      }
+    })
 })
 
-router.get('/getSidebarMarkets/', function(req, res){
+router.get('/getSidebarMarkets/', function (req, res) {
   db.Market.findAll({
     limit: 5
-  }).then(function(markets, error){
-    if(error) throw error;
-    else{
+  }).then(function (markets, error) {
+    if (error) throw error;
+    else {
       res.json(markets);
     }
   })
 })
 
-router.get('/filterProductsByMarket/:id', function(req, res){
+router.get('/filterProductsByMarket/:id', function (req, res) {
   let marketId = parseInt(req.params.id);
   db.Request.findAll({
-    where: {MarketId: marketId,
-            hasAccepted: true}
-  }).then(function(requests, error){
-    if(error) throw error;
-    else{
+    where: {
+      MarketId: marketId,
+      hasAccepted: true
+    }
+  }).then(function (requests, error) {
+    if (error) throw error;
+    else {
       let farmerIds = [];
       console.log(requests);
       requests.map((request) => {
         farmerIds.push(request.dataValues.UserId);
       });
       db.Product.findAll({
-        where: {UserId:{
-         [Op.in]:farmerIds         
+        where: {
+          UserId: {
+            [Op.in]: farmerIds
+          }
         }
-      }
-    }).then(function(products, error){
-      if(error) throw error;
-      else{
-        res.json(products);
-      }
-    })
+      }).then(function (products, error) {
+        if (error) throw error;
+        else {
+          res.json(products);
+        }
+      })
     }
   })
 })
 
-router.get('/getAssociatedMarkets/:id', function(req, res){
+router.get('/getAssociatedMarkets/:id', function (req, res) {
   let farmerId = parseInt(req.params.id);
   db.Request.findAll({
-    where: {UserId: farmerId,
-            hasAccepted: true}
-  }).then(function(requests, error){
-    if(error) throw error;
-    else{
+    where: {
+      UserId: farmerId,
+      hasAccepted: true
+    }
+  }).then(function (requests, error) {
+    if (error) throw error;
+    else {
       let marketIds = [];
       requests.map((request) => {
         marketIds.push(request.dataValues.MarketId);
       });
       db.Market.findAll({
-        where: {id: {
-          [Op.in]: marketIds
-        }}
-      }).then(function(markets, error) {
-        if(error) throw error;
-        else{
+        where: {
+          id: {
+            [Op.in]: marketIds
+          }
+        }
+      }).then(function (markets, error) {
+        if (error) throw error;
+        else {
           res.json(markets)
         }
       })
@@ -532,4 +541,20 @@ router.get('/getAssociatedMarkets/:id', function(req, res){
   })
 })
 
-  module.exports = router;
+router.get('/findMarketByZip/:id', function (req, res) {
+  console.log("inside find markets by zip")
+  let zipcode = parseInt(req.params.id);
+  db.Market.findAll({
+    where: {
+      marketZip: zipcode
+    }
+  }).then(function (markets, error) {
+    if (error) throw error;
+    else {
+      res.json(markets)
+    }
+  })
+})
+
+
+module.exports = router;
