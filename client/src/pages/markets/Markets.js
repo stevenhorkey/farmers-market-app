@@ -65,7 +65,7 @@ class Markets extends Component {
                 (<div className="container pb-5">
                         <div className="row">
                             <div className="col-lg-3">
-                                <h2><strong>About This Market</strong></h2>
+                            <h1 className="my-4 bhs text-center">About This Market</h1>
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
 
                                 <h2 className="my-4 text-center">{this.state.market.marketName}</h2>
