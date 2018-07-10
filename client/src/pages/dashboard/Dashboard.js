@@ -106,9 +106,20 @@ class Dashboard extends Component {
                         //set new values in the state
                         //response.data is an object with a single markets info
                         let market = response.data;
+                        console.log(market === null)
                         //users info is set into state
                         axios.get("/api/retrieveRequests/" + userInfo.id).then((requestResponse) => {
                             console.log(requestResponse.data);
+                            if(market !== null){
+                                this.marketStyle = {
+                                    'marketImg' : {
+                                        backgroundImage: 'url(' + market.marketImage + ')',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        width: '100%'
+                                    }
+                                }
+                            }
                             this.setState({ loading: false, markets: market, user: userInfo, requests: requestResponse.data });
                         })
                         console.log(this.state)
@@ -126,6 +137,7 @@ class Dashboard extends Component {
     }
     // This is populated with user data. Dont delete
     style = {}
+    marketStyle = {}
 
     //this function deletes the selected product, this is passed as a prop to the product card
     //that way the delete button only deletes the targetted card
@@ -205,6 +217,14 @@ class Dashboard extends Component {
                 axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');  
                 axios.get('/api/populateDashboardMarket/' + this.state.user.id)
                     .then((res) => {
+                        this.marketStyle = {
+                            'marketImg' : {
+                                backgroundImage: 'url(' + res.data.marketImage + ')',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                width: '100%'
+                            }
+                        }
                         this.setState({ markets: res.data, modalIsOpenCreateMarket: false, marketName: '', marketZip: '', marketImage: '', marketTime: '', marketAddress: '' });
                         console.log(this.state)
                     })
@@ -306,6 +326,14 @@ class Dashboard extends Component {
                 //send a get request to get the new array of products tied to the user
                 axios.get('/api/populateDashboardMarket/' + this.state.user.id)
                     .then((res) => {
+                        this.marketStyle = {
+                            'marketImg' : {
+                                backgroundImage: 'url(' + res.data.marketImage + ')',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                width: '100%'
+                            }
+                        }
                         //reset the product state to have the 
                         this.setState({ markets: res.data, modalIsOpenUpdateMarket: false, marketName: '', marketImage: '', marketTime: '',marketZip: '', marketAddress: '' });
                         console.log(this.state)
@@ -588,6 +616,7 @@ class Dashboard extends Component {
                                                     </div>)
                                                     :(<div>
                                                         <MarketCardDashboard
+                                                            style={this.marketStyle.marketImg}
                                                             name={this.state.markets.marketName}
                                                             marketLocation={this.state.markets.marketAddress}
                                                             marketTime={this.state.markets.marketTime}
