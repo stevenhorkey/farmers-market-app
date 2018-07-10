@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
+import FarmerCardMarketPage from '../../components/farmers/farmerCardMarketPage/';
 
 
 class Markets extends Component {
@@ -72,8 +73,9 @@ class Markets extends Component {
                                 <div className="card">
                                     <div className = "card-img-top" style = {style.marketImg}></div>
                                     <div className="card-body">
-                                        <p className="card-title" id=""></p>
+                                        <h4>Market Location</h4>
                                         <p>{this.state.market.marketAddress}</p>
+                                        <h4>Market Schedule</h4>
                                         <p>{this.state.market.marketTime}</p>
                                     </div>
                                 </div>
@@ -84,7 +86,16 @@ class Markets extends Component {
                                 <Carousel />
 
                                 <div className="row">
-                                    
+                                    {  
+                                        this.state.farmers.map((farmer, key)=>{
+                                        return(
+                                            <FarmerCardMarketPage
+                                                img={farmer.profileImage}
+                                                farmerId={farmer.id}
+                                                farmerName={farmer.firstName + ' ' + farmer.lastName}
+                                            />
+                                        )
+                                    })}
 
 
                                 </div>

@@ -351,8 +351,9 @@ router.get('/populateFarmers/:id', function (req, res) {
   .then(function(requests, error){
     if(error) throw error;
     else {
-     let farmers = requests.map((request)=>{
-        request = request.UserId
+     let farmers = [];
+      requests.map((request)=>{
+        farmers.push(request.UserId)
         })
         db.User.findAll({
           where: {
