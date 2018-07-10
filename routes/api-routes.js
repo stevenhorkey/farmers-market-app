@@ -329,8 +329,11 @@ router.get('/populateMarketCard', function (req, res) {
     });
 });
 
-router.get('/populateMarketPage', function (req, res) {
-  db.Market.findAll({})
+router.get('/populateMarketPage/:id', function (req, res) {
+  let id = parseInt(req.params.id);
+  db.Market.findOne({
+    where: { }
+  })
     .then(function (market, err) {
       if (err) return (err);
       else {
