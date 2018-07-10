@@ -48,16 +48,19 @@ class UpcomingMarkets extends Component {
                                     marketName='Sata Rita Market'
                                     marketLocation='1111 W Rd'
                                     marketTime='11:00AM'
+                                    isUpcomingMarkets={true}
                                 />
                                 <MarketCard
                                     marketName='Pueblo Market'
                                     marketLocation='2222 W Rd'
                                     marketTime='9:00AM'
+                                    isUpcomingMarkets={true}
                                 />
                                 <MarketCard
                                     marketName='Rice Market'
                                     marketLocation='3333 W Rd'
                                     marketTime='10:00AM'
+                                    isUpcomingMarkets={true}
                                 />
                             </div>
                         </div>
