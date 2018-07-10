@@ -116,7 +116,8 @@ class Dashboard extends Component {
                                         backgroundImage: 'url(' + market.marketImage + ')',
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
-                                        width: '100%'
+                                        width: '100%',
+                                        height: '200px'
                                     }
                                 }
                             }
@@ -222,7 +223,8 @@ class Dashboard extends Component {
                                 backgroundImage: 'url(' + res.data.marketImage + ')',
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                width: '100%'
+                                width: '100%',
+                                height: '200px'
                             }
                         }
                         this.setState({ markets: res.data, modalIsOpenCreateMarket: false, marketName: '', marketZip: '', marketImage: '', marketTime: '', marketAddress: '' });
@@ -331,7 +333,8 @@ class Dashboard extends Component {
                                 backgroundImage: 'url(' + res.data.marketImage + ')',
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                width: '100%'
+                                width: '100%',
+                                height: '200px'
                             }
                         }
                         //reset the product state to have the 

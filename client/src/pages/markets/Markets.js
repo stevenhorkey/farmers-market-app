@@ -28,7 +28,7 @@ class Markets extends Component {
     componentDidMount() {
         console.log(this.state)
         let queryNumber = this.getUrlVars();
-        axios.get('/api/populateMarketPage/')
+        axios.get('/api/populateMarketPage/' + queryNumber)
             .then((res) => {
                 // console.log(res)
                 this.setState({
