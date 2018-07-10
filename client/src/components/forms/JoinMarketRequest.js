@@ -9,8 +9,8 @@ class JoinMarketRequest extends Component {
             <div className="card p-2">
                 <div className="card-body">
                     <form onSubmit={this.props.onSubmitCreateRequest}>
-                    <table class="table">
-                        <thead class="thead-light">
+                    <table className="table">
+                        <thead className="thead-light">
                             <tr>
                             <th scope="col-1">Market:</th>
                             <th scope="col-4">Name</th>
@@ -26,7 +26,7 @@ class JoinMarketRequest extends Component {
                                         <td scope="row">
                                             <label class="switch form-check">
                                                 <input name="joinRequest" type="checkbox" value={market.id}/>
-                                                <span class="slider round"></span>
+                                                <span className="slider round"></span>
                                             </label>
                                         </td>
                                         <td>{market.marketName}</td>

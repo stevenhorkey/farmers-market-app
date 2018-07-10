@@ -20,7 +20,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         marketImage: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+            defaultValue: 'https://cfmatl.org/wp-content/uploads/2016/01/Grant-Park-Farmers-Market.jpg'
         }
     });
 

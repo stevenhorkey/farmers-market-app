@@ -87,7 +87,7 @@ class Signup extends Component {
 
                                 <h1><i className="ion-clock"> </i>&nbsp;<strong>Sign Up</strong></h1>
 
-                                <p>To get started with farmers-market-app</p>
+                                <p>To get started with TapRoot</p>
 
                             </header>
                             <section>
