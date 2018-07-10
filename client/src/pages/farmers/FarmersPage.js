@@ -92,10 +92,10 @@ class FarmersPage extends Component {
                         <div className="row">
 
                             <div className="col-lg-3">
-                            <h1 className="my-4 bhs text-center">About This Vendor</h1>
+                            <h1 className="my-5 bhs text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h1>
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
 
-                                <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
+                                
                                 <img className="profileImg"  style = {style}/>
                                 <FarmerCard 
                                             bio = {this.state.farmer.bio}
