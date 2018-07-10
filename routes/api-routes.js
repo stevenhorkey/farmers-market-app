@@ -152,16 +152,21 @@ router.post('/newMarket', passport.authenticate('jwt', { session: false }), func
 
   if (token) {
     console.log(req.user.dataValues.id);
+
+    if(req.body.marketImage === ''){
+      var image = 'https://cfmatl.org/wp-content/uploads/2016/01/Grant-Park-Farmers-Market.jpg'
+    } else {
+      var image = req.body.marketImage
+    }
+
     var newProduct = {
       marketName: req.body.marketName,
       marketAddress: req.body.marketAddress,
-      marketImage: req.body.marketImage,
+      marketImage: image,
       marketTime: req.body.marketTime,
       marketZip: req.body.marketZip,
       UserId: req.user.dataValues.id
     }
-
-    console.log("in if statement")
 
     db.Market.create(newProduct)
       .then(function (products, err) {
@@ -437,7 +442,6 @@ router.get('/retrieveRequests/:id', function (req, res) {
     if (error) throw error;
     else {
       if (market === null) {
-        console.log('oops')
         res.send([]);
       } else {
         db.Request.findAll({

@@ -75,7 +75,8 @@ class FarmersPage extends Component {
             width: '100%',
             borderRadius: '50%',
             paddingTop: '100%',
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            border: 'solid 2px #1d586b'
         }
 
         return (
@@ -87,15 +88,15 @@ class FarmersPage extends Component {
 
                 : (
 
-                    <div className="container pb-5">
+                    <div className="container py-4">
 
                         <div className="row">
 
                             <div className="col-lg-3">
-                                <h2><strong>About This Vendor</strong></h2>
+                                {/* <h2><strong>About This Vendor</strong></h2> */}
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
 
-                                <h2 className="my-4 text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
+                                <h2 className="my-4 text-center bhs text-capitalize">{this.state.farmer.firstName} {this.state.farmer.lastName}</h2>
                                 <img className="profileImg"  style = {style}/>
                                 <FarmerCard 
                                             bio = {this.state.farmer.bio}

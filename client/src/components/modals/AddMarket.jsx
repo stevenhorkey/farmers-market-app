@@ -21,7 +21,7 @@ class AddMarket extends Component{
                 </div>
                 <div className="form-group mt-4 mb-5">
                     <label htmlFor="marketImage">Image URL</label>
-                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.props.marketImage} onChange={this.props.onChange} required/>
+                    <input type="text" className="form-control border-top-0 border-left-0 border-right-0" aria-describedby="imageURL" placeholder="Image URL" name='marketImage' value={this.props.marketImage} onChange={this.props.onChange}/>
                 </div>
                 <div className="form-group mt-4 mb-5">
                     <label htmlFor="marketLocation">Market Location</label>

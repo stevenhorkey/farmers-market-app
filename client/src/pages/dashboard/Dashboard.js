@@ -517,7 +517,7 @@ class Dashboard extends Component {
                     <div className="col-lg-3">
                         {this.state.user.userType === "Vendor" ? 
                             (<div>
-                                <h1 className="mt-4 text-center bhs">{this.state.user.businessName || "Your Business Name"}</h1>
+                                <h1 className="mt-4 text-center bhs text-capitalize">{this.state.user.businessName || this.state.user.firstName + ' ' + this.state.user.lastName}</h1>
 
                                 <div className='my-3' style={this.style["profile-img"]}>
                                 </div>
@@ -525,7 +525,7 @@ class Dashboard extends Component {
                                 <Sidebar links = {vendorLinks}/>
                             </div>)
                             :(<div>
-                                <div>{this.state.markets !== null ? (<h1 className="my-4 text-center">{this.state.markets.marketName}</h1>) : (<h1 className="my-4 text-center">Your Market Name</h1>)}</div>
+                                <div>{this.state.markets !== null ? (<h1 className="my-4 text-center bhs">{this.state.markets.marketName}</h1>) : (<h1 className="my-4 text-center bhs">My Market</h1>)}</div>
                                 <Sidebar links = {marketLinks}/>
                             </div>)}
                     </div>
@@ -628,11 +628,12 @@ class Dashboard extends Component {
                                                         </MarketCardDashboard>
                                                     </div>)
                                             );
-                                        case "joinRequests": return (<ManageMarketRequests
-                                                                        requests = {this.state.requests}
-                                                                        onSubmitAcceptRequest = {(e) => { this.onSubmitAcceptRequest(e)} }
-                                                                        requestAccepted={this.state.requestAccepted}>
-                                                                    </ManageMarketRequests>)
+                                        case "joinRequests": return (
+                                        <ManageMarketRequests
+                                            requests = {this.state.requests}
+                                            onSubmitAcceptRequest = {(e) => { this.onSubmitAcceptRequest(e)} }
+                                            requestAccepted={this.state.requestAccepted}>
+                                        </ManageMarketRequests>)
                                         }
                                     })()}     
                                 </div>)

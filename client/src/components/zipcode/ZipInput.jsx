@@ -11,7 +11,7 @@ class ZipInput extends Component{
                 name='zipInput'
                 onChange={this.props.handleChange}
                 value={this.props.zipInput}
-                className="form-control text-center" placeholder="Zip Code"
+                className="form-control text-center" placeholder="Zip Code or Search..."
                 />
                 <div className="input-group-append">
                     <button onClick={this.props.submitZip} className="search-btn btn  btn-primary px-3" type="button"><i className="fas fa-search"></i></button>

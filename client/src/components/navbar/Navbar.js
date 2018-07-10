@@ -26,7 +26,7 @@ class Navbar extends Component {
                     <a className="navbar-brand bhs" href="/"><i className="fab fa-pagelines"></i>{this.props.siteName}</a>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
-          <i className="fa fa-bars"></i>
+            <i className="fa fa-bars"></i>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto text-center">
