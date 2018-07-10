@@ -24,7 +24,7 @@ class JoinMarketRequest extends Component {
                                     // <div className="form-check">
                                     <tr>
                                         <td scope="row">
-                                            <label className="switch ">
+                                            <label class="switch form-check">
                                                 <input name="joinRequest" type="checkbox" value={market.id}/>
                                                 <span className="slider round"></span>
                                             </label>

@@ -454,6 +454,10 @@ class Dashboard extends Component {
             console.log(res);
             axios.get('/api/nearbyMarkets/' + this.state.user.id)
             .then((marketResponse) => {
+                let switches = document.querySelectorAll('input[name=joinRequest]');
+                for(let i=0; i < switches.length; i++){
+                    switches[i].checked = false
+                }
                 this.setState({nearbyMarkets: marketResponse.data})           
              })
         })
