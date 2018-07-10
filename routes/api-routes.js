@@ -332,7 +332,7 @@ router.get('/populateMarketCard', function (req, res) {
 router.get('/populateMarketPage/:id', function (req, res) {
   let id = parseInt(req.params.id);
   db.Market.findOne({
-    where: { }
+    where: { id: id }
   })
     .then(function (market, err) {
       if (err) return (err);
@@ -344,15 +344,30 @@ router.get('/populateMarketPage/:id', function (req, res) {
 
 router.get('/populateFarmers/:id', function (req, res) {
   let id = parseInt(req.params.id);
-  db.User.findAll(
-    { where: { MarketId: id } })
-    .then(function (farmers, err) {
-      if (err) return (err);
-      else {
-        res(farmers);
+  
+  db.Request.findAll({
+    where: {MarketId: id, hasAccepted: true}
+  })
+  .then(function(requests, error){
+    if(error) throw error;
+    else {
+     let farmers = [];
+      requests.map((request)=>{
+        farmers.push(request.UserId)
+        })
+        db.User.findAll({
+          where: {
+            id: {[Op.in] : farmers}
+        }})
+        .then(function(farmers, error){
+          if(error) throw error;
+          else{
+            res.json(farmers)
+          }
+        })
       }
     });
-});
+  })
 
 
 //products routes- associated with farmers 

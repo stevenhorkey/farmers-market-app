@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Hero from '../../components/hero';
-import MarketCard from '../../components/marketCard';
+import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
+import FarmerCardMarketPage from '../../components/farmers/farmerCardMarketPage/';
 
 
 class Markets extends Component {
@@ -31,16 +31,15 @@ class Markets extends Component {
         axios.get('/api/populateMarketPage/' + queryNumber)
             .then((res) => {
                 // console.log(res)
-                this.setState({
-                    market: res.data
-                });
+                const marketData = res.data;
 
-                axios.get('/api/populateFarmers/' + this.state.marketID.farmers)
+                axios.get('/api/populateFarmers/' + marketData.id)
                     .then((result) => {
                         // console.log(result)
                         this.setState({
                             farmers: result.data,
-                            loading: false
+                            loading: false,
+                            market: marketData
                         })
                         console.log(this.state)
                     })
@@ -48,41 +47,68 @@ class Markets extends Component {
     }
 
     render() {
+        const style ={
+            'marketImg': {
+                backgroundImage: 'url(' + this.state.market.marketImage + ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                width: '100%',
+                height: '150px'
+            }
+        }
         return (
 
             this.state.loading ?
                 (null)
                 :
 
-                <div className="row">
-
-                    <div className="col-lg-3">
-
-                        <Hero />
-
-                    </div>
-
-                    <div className="col-lg-9">
-
-                        <div className='mt-4'>
-                            <SearchBar />
-                        </div>
-
-
-
+                (<div className="container pb-5">
                         <div className="row">
+                            <div className="col-lg-3">
+                                <h2><strong>About This Market</strong></h2>
+                                {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
 
-                            {this.state.market.map(market => (
-                                <MarketCard
-                                    marketName={this.state.market.marketName}
-                                    marketLocation={this.state.market.marketLocation}
-                                    marketTime={this.state.market.marketTime}
-                                />
-                            ))}
+                                <h2 className="my-4 text-center">{this.state.market.marketName}</h2>
+                                {/* <img className="profileImg"  style = {style}/> */}
+                                <div className="card">
+                                    <div className = "card-img-top" style = {style.marketImg}></div>
+                                    <div className="card-body">
+                                        <h4>Market Location</h4>
+                                        <p>{this.state.market.marketAddress}</p>
+                                        <h4>Market Schedule</h4>
+                                        <p>{this.state.market.marketTime}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-lg-9">
+
+                                <Carousel />
+
+                                <div className="row">
+                                    {  
+                                        this.state.farmers.map((farmer, key)=>{
+                                        return(
+                                            <FarmerCardMarketPage
+                                                img={farmer.profileImage}
+                                                farmerId={farmer.id}
+                                                farmerName={farmer.firstName + ' ' + farmer.lastName}
+                                            />
+                                        )
+                                    })}
+
+
+                                </div>
+                                {/* <!-- /.row --> */}
+
+                            </div>
+                            {/* <!-- /.col-lg-9 --> */}
 
                         </div>
+                        {/* <!-- /.row --> */}
+
                     </div>
-                </div>
+                )
         )
     }
 }
