@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import './MarketCardDashboard.css';
 
 class MarketCardDashboard extends Component {
     render() {
@@ -11,7 +12,7 @@ class MarketCardDashboard extends Component {
                 </div>
                 <div className="mb-4">
                     <div className="card h-100">
-                        <div className="card-body">
+                        <div className="card-body gradient" style={this.props.style}>
                             <h3 className="card-title text-center">{this.props.name}</h3>
                             <p className="card-text text-center">{this.props.marketLocation}</p>
                             <p className="card-text text-center">{this.props.marketTime}</p>
