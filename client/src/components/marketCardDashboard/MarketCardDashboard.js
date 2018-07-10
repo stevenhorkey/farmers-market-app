@@ -12,7 +12,8 @@ class MarketCardDashboard extends Component {
                 </div>
                 <div className="mb-4">
                     <div className="card h-100">
-                        <div className="card-body gradient" style={this.props.style}>
+                        <img className="card-img-top" style={this.props.style}></img>
+                        <div className="card-body">
                             <h3 className="card-title text-center">{this.props.name}</h3>
                             <p className="card-text text-center">{this.props.marketLocation}</p>
                             <p className="card-text text-center">{this.props.marketTime}</p>
