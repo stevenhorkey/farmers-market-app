@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import MarketCard from '../../components/marketCard';
 import Carousel from '../../components/carousel';
+import SearchBar from '../../components/products/searchbar';
+import Sidebar from '../../components/sidebar/Sidebar'
 
 
 class NearbyMarkets extends Component {
@@ -25,28 +27,65 @@ class NearbyMarkets extends Component {
 
 
     render() {
+        const mileageLinks = [
+            {   name: "5 miles",
+                onClick: this.sortByMileage, 
+                mileage: 5},
+
+            {   name: "10 miles",
+                onClick: this.sortByMileage, 
+                mileage: 10},
+
+            {   name: "20 miles",
+                onClick: this.sortByMileage, 
+                mileage: 20},
+
+            {   name: "50 miles",
+                onClick: this.sortByMileage, 
+                mileage: 50},
+        ];
+
         if (this.state.loading) {
             return (null)
         } else {
             return (
-                <div>
-                    {this.state.markets.map((market, key) => {
-                        return (
-                            <MarketCard
-                                marketName={market.marketName}
-                                marketAddress={market.marketAddress}
-                                marketZip={market.marketZip}
-                                marketTime={market.marketTime}
-                                marketImage={market.marketImage}
-                            />
-                        )
-                    })}
+                <div className="container pb-5 pt-3">
+
+                    <div className="row">
+
+                        <div className="col-lg-3">
+                            <h1 className="my-4 bhs text-center">Broaden Search</h1>
+                            <Sidebar links = {mileageLinks}/>
+                        </div>
+
+                        <div className="col-lg-9">
+                            <div className='mt-4'>
+                                <SearchBar
+                                    handleChange={this.handleChange}
+                                    searchInput={this.state.searchInput}
+                                />
+                            </div>
+                            <Carousel />
+                            <div className="row">
+                                {this.state.markets.map((market, key) => {
+                                    return (
+                                        <MarketCard
+                                            marketName={market.marketName}
+                                            marketAddress={market.marketAddress}
+                                            marketZip={market.marketZip}
+                                            marketTime={market.marketTime}
+                                            marketImage={market.marketImage}
+                                            marketId={market.id}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         };
     }
-
-
 }
 
 
