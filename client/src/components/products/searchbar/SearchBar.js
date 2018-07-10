@@ -11,7 +11,7 @@ class SearchBar extends Component{
                 name='searchInput'
                 onChange={this.props.handleChange}
                 value={this.props.searchInput}
-                className="form-control" placeholder="Search thousands of local items in your area..." aria-label="Search..." aria-describedby="basic-addon2"/>
+                className="form-control" placeholder="Search thousands of items in your local area..." aria-label="Search..." aria-describedby="basic-addon2"/>
                 <div className="input-group-append">
                     <button onClick={this.props.submitSearch} className="search-btn btn  btn-primary px-3" type="button">Search</button>
                 </div>

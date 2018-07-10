@@ -40,7 +40,7 @@ class JoinMarketRequest extends Component {
                         </tbody>
                     </table>
                         <button className = "btn btn-primary submit w-100" type="submit">{
-                            this.props.nearbyMarkets ? 'Submit Request(s)' : 'No Available Markets'
+                            this.props.nearbyMarkets ? 'Submit Request' : 'No Available Markets'
                         }</button>
                     </form>
                 </div>

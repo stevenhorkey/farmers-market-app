@@ -499,7 +499,7 @@ class Dashboard extends Component {
                             </div>)}
                     </div>
 
-                    <div className="col-lg-8">
+                    <div className="col-lg-9">
 
                         <Carousel />
 

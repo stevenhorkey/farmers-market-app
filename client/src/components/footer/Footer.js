@@ -30,12 +30,13 @@ class Footer extends Component {
                         <a href="#">
                         <span className="fa-stack fa-lg">
                             <i className="fa fa-circle fa-stack-2x"></i>
-                            <i className="fa fa-github fa-stack-1x fa-inverse"></i>
+                            <i className="fa fa-instagram fa-stack-1x fa-inverse"></i>
                         </span>
                         </a>
                     </li>
                     </ul>
-                    <p className="copyright text-white mt-3">Copyright &copy; {this.props.siteName} 2018</p>
+                    <p className="copyright text-white mt-3 bhs">Copyright &copy; {this.props.siteName} 2018</p>
+                    <p className="copyright text-white mt-3 subheading">Designed and built by Steven Horkey, Colin Nelson, Matt Killian, Patricia Martinez, & RJ Vasquez</p>
                 </div>
                 </div>
             </div>
