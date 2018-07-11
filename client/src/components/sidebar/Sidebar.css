@@ -1,0 +1,49 @@
+
+.sidebarHeader{
+    background-color:#1d586b;
+    color: white;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.cardBorder {
+    border: 1px solid #1d586b;
+    border-radius: 4px;
+}
+
+
+@media only screen and (max-width: 992px){
+    .stickySidebar {
+        position: static;
+        width: 100%;
+    }
+
+    a {
+        text-align: center;
+    }
+}
+
+
+
+@media only screen and (min-width: 993px){
+    .stickySidebar {
+        position: fixed;
+        width: 22%;
+    }
+}
+
+@media only screen and (min-width: 1040px){
+    .stickySidebar {
+        position: fixed;
+        width: 18%;
+    }
+}
+
+@media only screen and (min-width: 1450px){
+    .stickySidebar {
+        position: fixed;
+        width: 16%;
+    }
+}
