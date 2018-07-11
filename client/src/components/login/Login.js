@@ -32,9 +32,6 @@ class Login extends Component {
 
         const { email, password } = this.state;
 
-        console.log(email)
-        console.log(password)
-
         axios.post('/api/auth/login', { email, password })
             .then((res) => {
                 console.log(res);

@@ -16,7 +16,7 @@ class Sidebar extends Component{
                         args = []
                     }
                     
-                    return(<a href="#" className="list-group-item" onClick = {(e) => {parentFunction(e, ...args)}}>{link.name}</a>)
+                    return(<a href="/#" className="list-group-item" onClick = {(e) => {parentFunction(e, ...args)}}>{link.name}</a>)
                     })
                 }
             </div>

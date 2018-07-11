@@ -18,7 +18,7 @@ class FarmerCardMarketPage extends Component {
                     <div className="card h-100">
                         <img className="card-img-top" style={style.farmerImg}/>
                         <div className="card-body">
-                            <h4 className="card-title">
+                            <h4 className="card-title text-center">
                                 {this.props.farmerName}
                             </h4>
                             <h5>{this.props.price}</h5>

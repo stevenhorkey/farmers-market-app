@@ -10,7 +10,7 @@ import { WSAVERNOTSUPPORTED } from 'constants';
 
 import img1 from '../../assets/images/img6.jpg';
 import img2 from '../../assets/images/img10.jpg';
-import img3 from '../../assets/images/img3.jpg';
+import img3 from '../../assets/images/img5.jpg';
 
 class Products extends Component {
 

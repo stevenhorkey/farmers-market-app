@@ -28,6 +28,9 @@ class NearbyMarkets extends Component {
         // this.setState({ loading: false })
     }
 
+    sortByMileage(event) {
+        event.preventDefault();
+    }
 
     render() {
         const mileageLinks = [

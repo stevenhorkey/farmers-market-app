@@ -8,8 +8,8 @@ import Carousel from '../../components/carousel/Carousel';
 import FarmerCard from '../../components/farmers/farmerCard/FarmerCard';
 // import '../assets/images/wood.jpg';
 
-import img1 from '../../assets/images/img3.jpg';
-import img2 from '../../assets/images/img8.jpg';
+import img1 from '../../assets/images/img8.jpg';
+import img2 from '../../assets/images/img2.jpg';
 import img3 from '../../assets/images/img9.jpg';
 
 class FarmersPage extends Component {
@@ -97,7 +97,7 @@ class FarmersPage extends Component {
                         <div className="row">
 
                             <div className="col-lg-3">
-                            <h1 className="my-5 bhs text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h1>
+                            <h1 className="my-3 bhs text-center">{this.state.farmer.firstName} {this.state.farmer.lastName}</h1>
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
                                 <img className="profileImg"  style = {style}/>
                                 <FarmerCard 
