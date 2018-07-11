@@ -3,11 +3,11 @@
 module.exports = function (sequelize, DataTypes) {
     var Market = sequelize.define("Market", {
         marketName: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         marketAddress: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true
         },
         marketZip: {
@@ -19,7 +19,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
         },
         marketImage: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true,
             defaultValue: 'https://cfmatl.org/wp-content/uploads/2016/01/Grant-Park-Farmers-Market.jpg'
         }

@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
         },
         image: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
         }
     });

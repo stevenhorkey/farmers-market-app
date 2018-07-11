@@ -35,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true
         },
         profileImage: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
         },
         bio: {
