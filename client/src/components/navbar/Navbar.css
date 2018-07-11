@@ -4,6 +4,11 @@
     background-color: #1d586b;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+
+  .insignia{
+    width:50px;
+    padding-right: 10px;
+  }
   
   #mainNav .navbar-brand {
     font-weight: 300;

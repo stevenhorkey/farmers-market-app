@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import taprootInsignia from "../../assets/images/insignia.png"
 
 import './Navbar.css';
 
@@ -23,7 +24,7 @@ class Navbar extends Component {
             // Navigation
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
                 <div className="container">
-                    <a className="navbar-brand bhs" href="/"><i className="fab fa-pagelines"></i>{this.props.siteName}</a>
+                    <a className="navbar-brand bhs" href="/"><i className=""></i><img className="insignia" src={taprootInsignia} />{this.props.siteName}</a>
                     <button className="navbar-toggler  navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
             <i className="fa fa-bars"></i>
@@ -48,17 +49,17 @@ class Navbar extends Component {
                                         <a className="nav-link" href="/dashboard">My Dashboard</a>
                                     </li>
                                 </Fragment>
-                                
+
                             ) : (
-                                <Fragment>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/login">Login</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/signup">Sign Up</a>
-                                    </li>
-                                </Fragment>
-                            )}
+                                    <Fragment>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/login">Login</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/signup">Sign Up</a>
+                                        </li>
+                                    </Fragment>
+                                )}
                         </ul>
                     </div>
                 </div>
