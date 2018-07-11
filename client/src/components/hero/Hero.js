@@ -65,10 +65,10 @@ class Hero extends Component {
                         <div className="row">
                             <div className="col-lg-8 col-md-10 mx-auto">
                                 <div className="site-heading">
-
-                                    <img src={TapRootLogo} className="taprootLogo" />
                                     <h1 className="bhs sitename">{this.props.siteName}</h1>
                                     <span className="subheading">Connecting people to their communities and their food.</span>
+                                    <img src={TapRootLogo} className="taprootLogo" />
+
                                 </div>
                                 <p className='text-center text-white'>Enter your zip code or search to find products and markets in your local area.</p>
                                 <div className='m-1 col-md-6 col-sm-8 col-xs-12 mx-auto'>
