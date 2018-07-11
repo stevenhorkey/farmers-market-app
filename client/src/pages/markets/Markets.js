@@ -4,14 +4,13 @@ import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
 import FarmerCardMarketPage from '../../components/farmers/farmerCardMarketPage/';
 
-
 class Markets extends Component {
-
     state = {
         loading: true,
         market: [],
         farmers: []
     }
+
 
     getUrlVars()
     {
@@ -23,8 +22,8 @@ class Markets extends Component {
           vars[hash[0]] = hash[1];
       }
       return hashes;
-    }
 
+    }
     componentDidMount() {
         console.log(this.state)
         let queryNumber = this.getUrlVars();
@@ -45,9 +44,10 @@ class Markets extends Component {
                     })
             })
     }
-
     render() {
+
         const style ={
+
             'marketImg': {
                 backgroundImage: 'url(' + this.state.market.marketImage + ')',
                 backgroundPosition: 'center',
@@ -57,10 +57,10 @@ class Markets extends Component {
             }
         }
         return (
-
             this.state.loading ?
                 (null)
                 :
+
 
                 (<div className="container pb-5">
                         <div className="row">
@@ -89,6 +89,7 @@ class Markets extends Component {
                                     {  
                                         this.state.farmers.map((farmer, key)=>{
                                         return(
+
                                             <FarmerCardMarketPage
                                                 img={farmer.profileImage}
                                                 farmerId={farmer.id}
@@ -96,6 +97,7 @@ class Markets extends Component {
                                             />
                                         )
                                     })}
+
 
 
                                 </div>
@@ -108,9 +110,9 @@ class Markets extends Component {
                         {/* <!-- /.row --> */}
 
                     </div>
+
                 )
         )
     }
 }
-
 export default Markets;
