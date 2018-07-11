@@ -12,7 +12,7 @@ class Sidebar extends Component{
             <div className={this.props.page === "Products" || this.props.page === "NearbyMarkets" ? ("stickySidebar") : ("")}>
                 <h1 className="my-4 bhs text-center">{this.props.title}</h1>
                 <div className="card cardBorder sidebarCard">
-                <h6 className="card-header sidebarHeader text-center">Refine by {this.props.refine}</h6>
+                <h6 className="card-header sidebarHeader text-center">{this.props.heading}</h6>
                     <ul className="list-group list-group-flush">
                     {this.props.links.map(link => {
                     // console.log(link.onClick)

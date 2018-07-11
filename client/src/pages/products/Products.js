@@ -114,7 +114,7 @@ class Products extends Component {
     
                             {/* <h1 className="my-4 bhs text-center">Markets</h1> */}
     
-                            <Sidebar page={"Products"} links = {productLinks} title={"Products"} refine={"Market"}/>
+                            <Sidebar page={"Products"} links = {productLinks} title={"Products"} heading={"Refine by Market"}/>
     
                         </div>
     
