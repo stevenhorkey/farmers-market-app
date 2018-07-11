@@ -61,7 +61,7 @@ class NearbyMarkets extends Component {
 
                         <div className="col-lg-3">
                             {/* <h1 className="my-4 bhs text-center">Broaden Search</h1> */}
-                            <Sidebar links = {mileageLinks} title={"Refine Search"} refine={"Distance"}/>
+                            <Sidebar page = {"NearbyMarkets"} links = {mileageLinks} title={"Refine Search"} refine={"Distance"}/>
                         </div>
 
                         <div className="col-lg-9">

@@ -9,7 +9,7 @@ class Sidebar extends Component{
     render(){
         // console.log(this.props.requests.length)
         return(
-            <div className="stickySidebar">
+            <div className={this.props.page === "Products" || this.props.page === "NearbyMarkets" ? ("stickySidebar") : ("")}>
                 <h1 className="my-4 bhs text-center">{this.props.title}</h1>
                 <div className="card cardBorder sidebarCard">
                 <h6 className="card-header sidebarHeader text-center">Refine by {this.props.refine}</h6>
