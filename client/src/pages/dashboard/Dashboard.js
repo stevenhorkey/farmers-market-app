@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 import './Dashboard.css';
 import Sidebar from '../../components/sidebar/Sidebar';
@@ -11,7 +12,7 @@ import Categories from '../../components/products/categories/Categories';
 import Carousel from '../../components/carousel/Carousel';
 import MarketCardDashboard from '../../components/marketCardDashboard';
 import ProfileForm from '../../components/forms/ProfileForm';
-
+import FarmerCard from '../../components/farmers/farmerCard';
 import AddMarket from '../../components/modals/AddMarket';
 import AddProduct from '../../components/modals/AddProduct';
 import EditMarket from '../../components/modals/EditMarket';
@@ -43,6 +44,7 @@ class Dashboard extends Component {
             item: '',
             image: '',
             id: '',
+            associatedMarkets: [],
             marketName: '',
             marketImage: '',
             marketTime: '',
@@ -58,8 +60,10 @@ class Dashboard extends Component {
         };
     };
 
+
     //this function runs when the page successfully loads on the client side
     componentDidMount() {
+        
         console.log(this.state)
         console.log(localStorage.getItem('jwtToken'));
         //the first thing we do is put a jwtToken inside the axios request header
@@ -101,6 +105,17 @@ class Dashboard extends Component {
                             console.log(this.state)
                         })
                     });
+                    
+                    axios.get('/api/getAssociatedMarkets/' + userInfo.id)
+                    .then((marketResults) => {
+                        this.setState({
+                        associatedMarkets: marketResults.data
+                    })
+                        console.log(this.state)
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+
                 }
                 //if the user is a market organizer
                 //Vendor and Organizer dashboards are both loaded very similarly
@@ -436,6 +451,14 @@ class Dashboard extends Component {
         this.setState({manageMarket: "market"})
     }
 
+    viewFarmerPage = (e) => {
+        e.preventDefault();
+        console.log('hehehe')
+        return(
+            <Redirect to={'/exit'}/>
+        )
+    }
+
     manageJoinRequests = (e) => {
         e.preventDefault();
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
@@ -506,6 +529,10 @@ class Dashboard extends Component {
                                 {
                                     name: "Join a Market", 
                                     onClick: this.manageJoinMarket
+                                },
+                                {
+                                    name: "View My Page", 
+                                    urlLink: '/farmerspage/?'+this.state.user.id
                                 }
                             ];
         const marketLinks = [
@@ -520,7 +547,12 @@ class Dashboard extends Component {
                                 {
                                     name: "Manage Vendors",
                                     onClick: this.manageJoinRequests
-                                } 
+                                },
+                                ,
+                                {
+                                    name: "View My Page", 
+                                    urlLink: '/markets/?'+this.state.markets.id
+                                }
                             ];
         
         return (
@@ -538,6 +570,25 @@ class Dashboard extends Component {
                                 </div>
 
                                 <Sidebar links = {vendorLinks}/>
+                                <br/>
+                                <div className="card">
+                                    <div className="card-body">
+                                            {this.state.associatedMarkets ? <p className="card-title text-center bhs" id="farmerInfoTitle">Registered Markets:</p> : (null)}
+                                                {this.state.associatedMarkets.map(market => (
+                                                    <a href={'/markets/?'+market.id}>
+                                                        <div className='card py-3 mb-3'>
+                                                            <h4 className="market-container bhs text-center">{market.marketName}</h4>
+                                                                <div className='text-center'>
+                                                                {market.marketAddress}
+                                                                </div>
+                                                                <div className='text-center'>
+                                                                {market.marketTime}
+                                                                </div>
+                                                        </div>
+                                                    </a>
+                                                ))}
+                                    </div>
+                                </div>
                             </div>)
                             :(<div>
                                 <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
