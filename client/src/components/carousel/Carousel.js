@@ -2,27 +2,27 @@ import React, { Component } from 'react';
 
 import './Carousel.css';
 
-import fm1 from '../../assets/images/fm1.jpg';
-import fm2 from '../../assets/images/fm2.jpg';
-import fm3 from '../../assets/images/fm3.jpg';
+import car0 from '../../assets/images/car0.jpg';
+import car1 from '../../assets/images/car1.jpg';
+import car2 from '../../assets/images/car2.jpg';
 
-class Carousel extends Component{
+class Carousel extends Component {
 
     style = {
         img1: {
-            backgroundImage: 'url('+this.props.img1+')'
+            backgroundImage: 'url(' + this.props.img1 + ')'
         },
         img2: {
-            backgroundImage: 'url('+this.props.img2+')'
+            backgroundImage: 'url(' + this.props.img2 + ')'
         },
         img3: {
-            backgroundImage: 'url('+this.props.img3+')'
+            backgroundImage: 'url(' + this.props.img3 + ')'
         }
     }
 
 
-    render(){
-        return(
+    render() {
+        return (
 
             <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
                 <ol className="carousel-indicators">
@@ -32,18 +32,18 @@ class Carousel extends Component{
                 </ol>
                 <div className="carousel-inner" role="listbox">
 
-                <div className="carousel-item active">
-                    {/* <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"/> */}
-                    <div className="d-block img-fluid c-item" style={this.style.img1} alt="First slide"></div>
-                </div>
-                <div className="carousel-item">
-                    {/* <img className="d-block img-fluid" style={this.style.carousel} src={fm1} alt="Second slide"/> */}
-                    <div className="d-block img-fluid c-item" style={this.style.img2} alt="Second slide"></div>
-                </div>
-                <div className="carousel-item">
-                    {/* <img className="d-block img-fluid" style={this.style.carousel} src={fm1} alt="Third slide"/> */}
-                    <div className="d-block img-fluid c-item" style={this.style.img3} alt="Third slide"></div>
-                </div>
+                    <div className="carousel-item active">
+                        {/* <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"/> */}
+                        <div className="d-block img-fluid c-item" style={this.style.img1} alt="First slide"></div>
+                    </div>
+                    <div className="carousel-item">
+                        {/* <img className="d-block img-fluid" style={this.style.carousel} src={fm1} alt="Second slide"/> */}
+                        <div className="d-block img-fluid c-item" style={this.style.img2} alt="Second slide"></div>
+                    </div>
+                    <div className="carousel-item">
+                        {/* <img className="d-block img-fluid" style={this.style.carousel} src={fm1} alt="Third slide"/> */}
+                        <div className="d-block img-fluid c-item" style={this.style.img3} alt="Third slide"></div>
+                    </div>
 
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
