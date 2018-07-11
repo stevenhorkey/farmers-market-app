@@ -22,9 +22,9 @@ import ManageMarketRequests from '../../components/forms/ManageMarketRequests';
 
 
 // Images
-import img1 from '../../assets/images/car0.jpg';
-import img2 from '../../assets/images/car15.jpg';
-import img3 from '../../assets/images/car11.jpg';
+import img1 from '../../assets/images/img7.jpg';
+import img2 from '../../assets/images/img5.jpg';
+import img3 from '../../assets/images/img4.jpg';
 
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line

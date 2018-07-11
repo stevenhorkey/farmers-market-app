@@ -8,9 +8,9 @@ import Carousel from '../../components/carousel/Carousel';
 import FarmerCard from '../../components/farmers/farmerCard/FarmerCard';
 // import '../assets/images/wood.jpg';
 
-import img1 from '../../assets/images/car16.jpg';
-import img2 from '../../assets/images/fm1.jpg';
-import img3 from '../../assets/images/car2.jpg';
+import img1 from '../../assets/images/img3.jpg';
+import img2 from '../../assets/images/img8.jpg';
+import img3 from '../../assets/images/img9.jpg';
 
 class FarmersPage extends Component {
 
