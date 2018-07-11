@@ -67,7 +67,7 @@ class Hero extends Component {
                                     <h1 className="bhs"><i className="fab fa-pagelines"></i>{this.props.siteName}</h1>
                                     <span className="subheading">Connecting people to their communities and their food.</span>
                                 </div>
-                                <p className='text-center text-white'>Enter your zip code or search products to find local vendors!</p>
+                                <p className='text-center text-white'>Enter your zip code or search to find products and markets in your local area...</p>
                                 <div className='m-1 col-md-6 col-sm-8 col-xs-12 mx-auto'>
                                     <ZipInput
                                         handleChange={this.handleChange}

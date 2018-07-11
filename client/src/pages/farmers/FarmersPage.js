@@ -8,6 +8,10 @@ import Carousel from '../../components/carousel/Carousel';
 import FarmerCard from '../../components/farmers/farmerCard/FarmerCard';
 // import '../assets/images/wood.jpg';
 
+import img1 from '../../assets/images/img3.jpg';
+import img2 from '../../assets/images/img8.jpg';
+import img3 from '../../assets/images/img9.jpg';
+
 class FarmersPage extends Component {
 
     state = {
@@ -105,7 +109,11 @@ class FarmersPage extends Component {
 
                             <div className="col-lg-9">
 
-                                <Carousel />
+                                <Carousel
+                                img1={img1}
+                                img2={img2}
+                                img3={img3}
+                                />
 
                                 <div className="row">
 
