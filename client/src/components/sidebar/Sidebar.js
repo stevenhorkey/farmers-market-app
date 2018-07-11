@@ -2,12 +2,18 @@ import React, { Component, Fragment } from 'react';
 
 import './Sidebar.css';
 
+import './Sidebar.css'
+
 class Sidebar extends Component{
 
     render(){
         return(
-            <div className="list-group">
-                {this.props.links.map(link => {
+            <div className={this.props.page === "Products" || this.props.page === "NearbyMarkets" ? ("stickySidebar") : ("")}>
+                <h1 className="my-4 bhs text-center">{this.props.title}</h1>
+                <div className="card cardBorder sidebarCard">
+                <h6 className="card-header sidebarHeader text-center">Refine by {this.props.refine}</h6>
+                    <ul className="list-group list-group-flush">
+                    {this.props.links.map(link => {
                     // console.log(link.onClick)
                     let parentFunction = link.onClick;
                     let args;
@@ -25,7 +31,7 @@ class Sidebar extends Component{
                     }
                     return(
                         <Fragment>
-                            <a href={aLink} className="list-group-item h-100" onClick = {(e) => {parentFunction(e, ...args)}}>
+                            <li class="list-group-item"><a href={aLink} className="card-link h-100" onClick = {(e) => {parentFunction(e, ...args)}}>
                                 <span className=''>{link.name}</span>
                                 {link.name === 'Manage Vendors' && this.props.requests.length > 0 ? 
                                         (<span id='sidebar-notification' class="fa-stack fa-1x float-right">
@@ -35,11 +41,14 @@ class Sidebar extends Component{
                                 : (null)
                                 }
                             </a>
-                            
+                            </li>
                         </Fragment>
                     )
                     })
-                }
+                    }
+                    </ul>
+                </div>
+                
             </div>
         )
     }

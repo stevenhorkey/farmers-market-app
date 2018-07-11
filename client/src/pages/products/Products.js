@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import './Products.css';
+
 import Product from '../../components/products/product'
 import Categories from '../../components/products/categories'
 import Carousel from '../../components/carousel/Carousel';
@@ -110,9 +112,9 @@ class Products extends Component {
     
                         <div className="col-lg-3">
     
-                            <h1 className="my-4 bhs text-center">Markets</h1>
+                            {/* <h1 className="my-4 bhs text-center">Markets</h1> */}
     
-                            <Sidebar links = {productLinks}/>
+                            <Sidebar page={"Products"} links = {productLinks} title={"Products"} refine={"Market"}/>
     
                         </div>
     
