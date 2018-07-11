@@ -20,6 +20,12 @@ import CreateProduct from '../../components/buttons/CreateProduct'
 import JoinMarketRequest from '../../components/forms/JoinMarketRequest';
 import ManageMarketRequests from '../../components/forms/ManageMarketRequests';
 
+
+// Images
+import img1 from '../../assets/images/fm1.jpg';
+import img2 from '../../assets/images/fm2.jpg';
+import img3 from '../../assets/images/fm3.jpg';
+
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
 class Dashboard extends Component {
@@ -543,7 +549,11 @@ class Dashboard extends Component {
 
                     <div className="col-lg-9">
 
-                        <Carousel />
+                        <Carousel 
+                        img1={img1}
+                        img2={img2}
+                        img3={img3}
+                        />
 
                         <div className="row">
                         <div className='col'>
