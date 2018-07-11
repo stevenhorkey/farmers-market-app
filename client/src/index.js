@@ -81,7 +81,7 @@ class Site extends Component {
                             <Route path="/farmerspage" component={FarmersPage} />
                             <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/products" component={Products} />
-                            <Route exact path="/markets" component={Markets} />
+                            <Route path="/markets" component={Markets} />
                             <Route exact path="/nearbyMarkets" component={NearbyMarkets} />
                             <Route siteName={siteName} render={() => <Home siteName={siteName} />} />
 

@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: "https://www.rhinodigital.com/wp-content/uploads/2016/12/blank-user.jpg"
         },
         bio: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true
         }
     });

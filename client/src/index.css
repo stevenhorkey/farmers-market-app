@@ -10,12 +10,15 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+
 body i {
   font-family:'FontAwesome'!important;
 }
+
 a{
   color: #1d586b;
 }
+
 
 .btn, .form-control {
   border-radius: 2px;

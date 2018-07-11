@@ -1,5 +1,6 @@
 .plus-sign {
     font-size: 150px;
+    top: 5px;
     color: #CCCCCC;
     position: relative;
     transition: ease-in-out 100ms;

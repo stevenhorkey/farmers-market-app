@@ -133,6 +133,7 @@ class Products extends Component {
                                         item={element.item} 
                                         // price={element.price} 
                                         // description={element.description} 
+                                        hasFarmerLink = {true}
                                         img={element.image}
                                         userId={element.UserId}
                                         id={key} 

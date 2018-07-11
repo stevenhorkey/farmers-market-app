@@ -79,7 +79,7 @@ class Login extends Component {
                                         <input type="password" className="form-control border-top-0 border-left-0 border-right-0" id="loginPassword" placeholder="************" name='password' onChange={this.onChange} value={password} />
                                         <p className='text-center text-primary'>{this.state.pMessage}</p>
                                     </div>
-                                    <button type="submit" className="btn btn-primary text-uppercase px-3 pt-2">Continue &nbsp;<i className="ion-android-arrow-forward"> </i></button>
+                                    <button type="submit" className="btn btn-primary text-uppercase px-3 pt-2 w-100">Continue &nbsp;<i className="ion-android-arrow-forward"> </i></button>
                                 </form>
                             </section>
 

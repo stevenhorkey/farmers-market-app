@@ -15,7 +15,6 @@ class EditMarket extends Component{
             contentLabel="Example Modal">
             <h2>Edit Your Market</h2>
 
-            <div>Market Information</div>
             <form onSubmit={this.props.onSubmitUpdateMarket}>
                 <div className="form-group mt-4 mb-5">
                     <label htmlFor="market">Market Name</label>

@@ -152,16 +152,21 @@ router.post('/newMarket', passport.authenticate('jwt', { session: false }), func
 
   if (token) {
     console.log(req.user.dataValues.id);
+
+    if(req.body.marketImage === ''){
+      var image = 'https://cfmatl.org/wp-content/uploads/2016/01/Grant-Park-Farmers-Market.jpg'
+    } else {
+      var image = req.body.marketImage
+    }
+
     var newProduct = {
       marketName: req.body.marketName,
       marketAddress: req.body.marketAddress,
-      marketImage: req.body.marketImage,
+      marketImage: image,
       marketTime: req.body.marketTime,
       marketZip: req.body.marketZip,
       UserId: req.user.dataValues.id
     }
-
-    console.log("in if statement")
 
     db.Market.create(newProduct)
       .then(function (products, err) {
@@ -329,8 +334,11 @@ router.get('/populateMarketCard', function (req, res) {
     });
 });
 
-router.get('/populateMarketPage', function (req, res) {
-  db.Market.findAll({})
+router.get('/populateMarketPage/:id', function (req, res) {
+  let id = parseInt(req.params.id);
+  db.Market.findOne({
+    where: { id: id }
+  })
     .then(function (market, err) {
       if (err) return (err);
       else {
@@ -341,15 +349,30 @@ router.get('/populateMarketPage', function (req, res) {
 
 router.get('/populateFarmers/:id', function (req, res) {
   let id = parseInt(req.params.id);
-  db.User.findAll(
-    { where: { MarketId: id } })
-    .then(function (farmers, err) {
-      if (err) return (err);
-      else {
-        res(farmers);
+  
+  db.Request.findAll({
+    where: {MarketId: id, hasAccepted: true}
+  })
+  .then(function(requests, error){
+    if(error) throw error;
+    else {
+     let farmers = [];
+      requests.map((request)=>{
+        farmers.push(request.UserId)
+        })
+        db.User.findAll({
+          where: {
+            id: {[Op.in] : farmers}
+        }})
+        .then(function(farmers, error){
+          if(error) throw error;
+          else{
+            res.json(farmers)
+          }
+        })
       }
     });
-});
+  })
 
 
 //products routes- associated with farmers 
@@ -434,7 +457,6 @@ router.get('/retrieveRequests/:id', function (req, res) {
     if (error) throw error;
     else {
       if (market === null) {
-        console.log('oops')
         res.send([]);
       } else {
         db.Request.findAll({
@@ -455,6 +477,7 @@ router.get('/retrieveRequests/:id', function (req, res) {
 });
 
 router.put('/acceptRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
+  console.log('inside route')
   let requestIds = req.body.requestIds;
   db.Request.update({
     hasAccepted: true

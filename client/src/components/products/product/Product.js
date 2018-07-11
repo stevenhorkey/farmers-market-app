@@ -21,7 +21,7 @@ class Product extends Component {
                 {this.props.isDashboard ? (<div className="card h-100">
                                             <div className="card-img-top" style={style.productImg}></div>
                                             <div className="card-body">
-                                            <h4 className="card-title text-center">
+                                            <h4 className="card-title text-center text-capitalize">
                                                 {this.props.item}
                                             </h4>
                                             <h5>{this.props.price}</h5>
@@ -36,18 +36,28 @@ class Product extends Component {
                                                                         : (null)}
                                             </div>
                                         </div>)
-                                        :(<a href={"/farmerspage/?" + this.props.userId}>
+                                        : this.props.hasFarmerLink ? (<a href={"/farmerspage/?" + this.props.userId}>
                                             <div className="card h-100">
                                                 <img className="card-img-top" style={style.productImg}/>
                                                 <div className="card-body">
-                                                <h4 className="card-title">
+                                                <h4 className="card-title text-capitalize">
                                                     {this.props.item}
                                                 </h4>
                                                 <h5>{this.props.price}</h5>
                                                 <p className="card-text">{this.props.description}</p>
                                                 </div>
                                             </div>
-                                            </a>)}
+                                            </a>)
+                                                :   (<div className="card h-100">
+                                                        <img className="card-img-top" style={style.productImg}/>
+                                                        <div className="card-body">
+                                                            <h4 className="card-title">
+                                                                {this.props.item}
+                                                            </h4>
+                                                            <h5>{this.props.price}</h5>
+                                                            <p className="card-text">{this.props.description}</p>
+                                                        </div>
+                                                    </div>)}
                 
             </div>
         )

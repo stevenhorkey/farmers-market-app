@@ -24,16 +24,49 @@ class MarketCard extends Component {
 
 
     render() {
+        const style ={
+            marketImg: {
+                backgroundImage: 'url(' + this.props.marketImage + ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                width: '100%',
+                paddingTop: '100%'
+            },
+            upcomingMarketImg: {
+                backgroundImage: 'url(' + this.props.marketImage + ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                width: '100%',
+                height: '200px'
+            }
+        }
         return (
-            <div className="col-lg-4 col-md-6 mb-4 d-inline">
-                <div className="card h-100">
-                    <div className="card-body">
-                        <h3 className="card-title text-center">{this.props.marketName}</h3>
-                        <p className="card-text text-center">{this.props.marketLocation}</p>
-                        <p className="card-text text-center">{this.props.marketTime}</p>
+            <React.Fragment>
+                {this.props.isUpcomingMarkets ? (
+                    <div className="col-lg-4 col-md-6 mb-4 d-inline">
+                       <div className="card h-100">
+                            <img className="card-img-top" style={style.upcomingMarketImg}/>
+                            <div className="card-body">
+                                <h3 className="card-title text-center bhs">{this.props.marketName}</h3>
+                                    <p className="card-text text-center">{this.props.marketLocation}</p>
+                                    <p className="card-text text-center">{this.props.marketTime}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div >
+                )
+                :(<div className="col-lg-4 col-md-6 mb-4" key={this.props.marketId}>
+                    <a href={"/markets/?" + this.props.marketId}>
+                        <div className="card h-100">
+                            <img className="card-img-top" style={style.marketImg}/>
+                            <div className="card-body">
+                                <h3 className="card-title text-center bhs">{this.props.marketName}</h3>
+                                <p className="card-text text-center">{this.props.marketAddress}</p>
+                                <p className="card-text text-center">{this.props.marketTime}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>)} 
+            </React.Fragment>
         )
     }
 }

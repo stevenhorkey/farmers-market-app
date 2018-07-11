@@ -20,6 +20,12 @@ import CreateProduct from '../../components/buttons/CreateProduct'
 import JoinMarketRequest from '../../components/forms/JoinMarketRequest';
 import ManageMarketRequests from '../../components/forms/ManageMarketRequests';
 
+
+// Images
+import img1 from '../../assets/images/fm1.jpg';
+import img2 from '../../assets/images/fm2.jpg';
+import img3 from '../../assets/images/fm3.jpg';
+
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
 class Dashboard extends Component {
@@ -116,7 +122,8 @@ class Dashboard extends Component {
                                         backgroundImage: 'url(' + market.marketImage + ')',
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
-                                        width: '100%'
+                                        width: '100%',
+                                        height: '200px'
                                     }
                                 }
                             }
@@ -222,7 +229,8 @@ class Dashboard extends Component {
                                 backgroundImage: 'url(' + res.data.marketImage + ')',
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                width: '100%'
+                                width: '100%',
+                                height: '200px'
                             }
                         }
                         this.setState({ markets: res.data, modalIsOpenCreateMarket: false, marketName: '', marketZip: '', marketImage: '', marketTime: '', marketAddress: '' });
@@ -331,7 +339,8 @@ class Dashboard extends Component {
                                 backgroundImage: 'url(' + res.data.marketImage + ')',
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                width: '100%'
+                                width: '100%',
+                                height: '200px'
                             }
                         }
                         //reset the product state to have the 
@@ -451,6 +460,10 @@ class Dashboard extends Component {
             console.log(res);
             axios.get('/api/nearbyMarkets/' + this.state.user.id)
             .then((marketResponse) => {
+                let switches = document.querySelectorAll('input[name=joinRequest]');
+                for(let i=0; i < switches.length; i++){
+                    switches[i].checked = false
+                }
                 this.setState({nearbyMarkets: marketResponse.data})           
              })
         })
@@ -458,18 +471,23 @@ class Dashboard extends Component {
 
     onSubmitAcceptRequest = (e) => {
         e.preventDefault();
-        let checkedBoxes = document.querySelectorAll('input[name=acceptRequest]:checked');
+        let checkedBoxes = document.querySelectorAll('input[name=joinRequest]:checked');
         let requestIds = [];
 
         checkedBoxes.forEach(function(input) {
             requestIds.push(input.value)
         });
+        console.log(requestIds)
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.put('/api/acceptRequest', {requestIds})
         .then((res) => {
             console.log(res)
             axios.get('/api/retrieveRequests/' + this.state.user.id)
             .then((requestResponse) => {
+                let switches = document.querySelectorAll('input[name=joinRequest]');
+                for(let i=0; i < switches.length; i++){
+                    switches[i].checked = false
+                }
                 this.setState({requests: requestResponse.data})
             })
         })
@@ -514,7 +532,7 @@ class Dashboard extends Component {
                     <div className="col-lg-3">
                         {this.state.user.userType === "Vendor" ? 
                             (<div>
-                                <h1 className="mt-4 text-center bhs">{this.state.user.businessName || "Your Business Name"}</h1>
+                                <h1 className="mt-4 text-center bhs text-capitalize">{this.state.user.businessName || this.state.user.firstName + ' ' + this.state.user.lastName}</h1>
 
                                 <div className='my-3' style={this.style["profile-img"]}>
                                 </div>
@@ -522,14 +540,20 @@ class Dashboard extends Component {
                                 <Sidebar links = {vendorLinks}/>
                             </div>)
                             :(<div>
-                                <div>{this.state.markets !== null ? (<h1 className="my-4 text-center">{this.state.markets.marketName}</h1>) : (<h1 className="my-4 text-center">Your Market Name</h1>)}</div>
+                                <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
+                                <div className='my-3' style={this.style["profile-img"]}>
+                                </div>
                                 <Sidebar links = {marketLinks}/>
                             </div>)}
                     </div>
 
                     <div className="col-lg-9">
 
-                        <Carousel />
+                        <Carousel 
+                        img1={img1}
+                        img2={img2}
+                        img3={img3}
+                        />
 
                         <div className="row">
                         <div className='col'>
@@ -625,11 +649,12 @@ class Dashboard extends Component {
                                                         </MarketCardDashboard>
                                                     </div>)
                                             );
-                                        case "joinRequests": return (<ManageMarketRequests
-                                                                        requests = {this.state.requests}
-                                                                        onSubmitAcceptRequest = {(e) => { this.onSubmitAcceptRequest(e)} }
-                                                                        requestAccepted={this.state.requestAccepted}>
-                                                                    </ManageMarketRequests>)
+                                        case "joinRequests": return (
+                                        <ManageMarketRequests
+                                            requests = {this.state.requests}
+                                            onSubmitAcceptRequest = {(e) => { this.onSubmitAcceptRequest(e)} }
+                                            requestAccepted={this.state.requestAccepted}>
+                                        </ManageMarketRequests>)
                                         }
                                     })()}     
                                 </div>)

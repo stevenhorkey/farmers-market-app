@@ -12,7 +12,7 @@ class AddProduct extends Component{
                 onRequestClose={this.props.closeModalCreate}
                 // style={customStyles}
                 contentLabel="Example Modal">
-                <h2>Add a new Product to your inventory</h2>
+                <h2>Add a New Product to Your Inventory</h2>
                 <form onSubmit={this.props.onSubmitCreate}>
                     <div className="form-group mt-4 mb-5">
                         <label htmlFor="item">Product Name</label>
