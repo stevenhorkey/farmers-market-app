@@ -41,7 +41,6 @@ class FarmersPage extends Component {
         var queryNumber = this.getUrlVars();
 
         axios.get('/api/populateFarmerPage/' + queryNumber)
-            //need to finish this ^^^^^
             .then((res) => {
                 // console.log(res)    
                 let farmerData = res.data

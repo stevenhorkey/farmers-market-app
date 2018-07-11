@@ -7,7 +7,6 @@ import './Sidebar.css'
 class Sidebar extends Component{
 
     render(){
-        // console.log(this.props.requests.length)
         return(
             <div className={this.props.page === "Products" || this.props.page === "NearbyMarkets" ? ("stickySidebar") : ("")}>
                 <h1 className="my-4 bhs text-center">{this.props.title}</h1>
@@ -18,16 +17,21 @@ class Sidebar extends Component{
                     // console.log(link.onClick)
                     let parentFunction = link.onClick;
                     let args;
+                    var aLink;
                     if(link.marketId){
                         args = [link.marketId]
                     }
                     else{
                         args = []
                     }
-                    
+                    if(link.urlLink){
+                        aLink = link.urlLink
+                    } else {
+                        aLink = '/'+link.name;
+                    }
                     return(
                         <Fragment>
-                            <li class="list-group-item"><a href="/#" className="card-link h-100" onClick = {(e) => {parentFunction(e, ...args)}}>
+                            <li class="list-group-item"><a href={aLink} className="card-link h-100" onClick = {(e) => {parentFunction(e, ...args)}}>
                                 <span className=''>{link.name}</span>
                                 {link.name === 'Manage Vendors' && this.props.requests.length > 0 ? 
                                         (<span id='sidebar-notification' class="fa-stack fa-1x float-right">
