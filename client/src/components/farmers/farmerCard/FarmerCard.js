@@ -16,10 +16,10 @@ class FarmerCard extends Component {
                                 <h4 className="market-container"><i>{market.marketName}</i></h4>
                                 <ul>
                                  <li>
-                                     {market.marketAddress}
+                                    {market.marketAddress}
                                  </li>
                                  <li>
-                                     {market.marketTime}
+                                    {market.marketTime}
                                  </li>
                              </ul>
                           </div>))}

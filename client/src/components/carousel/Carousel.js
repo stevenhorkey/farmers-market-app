@@ -22,7 +22,8 @@ class Carousel extends Component{
                 </ol>
                 <div className="carousel-inner" role="listbox">
                 <div className="carousel-item active">
-                    <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"/>
+                    {/* <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"/> */}
+                    <div className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"></div>
                 </div>
                 <div className="carousel-item">
                     <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="Second slide"/>

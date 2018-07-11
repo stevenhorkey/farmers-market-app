@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-class JoinMarketRequest extends Component {
+class ManageMarketRequests extends Component {
     render(){
         let requestsExist = Array.isArray(this.props.requests);
         console.log(requestsExist)
@@ -24,8 +24,8 @@ class JoinMarketRequest extends Component {
                                     <table className="table">
                                         <thead className="thead-light">
                                             <tr>
-                                            <th scope="col-2">Vendor:</th>
-                                            <th scope="col-10">Name</th>
+                                            <th scope="col-6">Vendor:</th>
+                                            <th scope="col-6">Name</th>
                                             {/* <th scope="col-6">Business Name</th> */}
                                             </tr>
                                         </thead>
@@ -36,7 +36,7 @@ class JoinMarketRequest extends Component {
                                                     <tr>
                                                         <td scope="row">
                                                             <label className="switch ">
-                                                                <input name="joinRequest" type="checkbox" value={request.id}/>
+                                                                <input name="acceptRequest" type="checkbox" value={request.id}/>
                                                                 <span className="slider round"></span>
                                                             </label>
                                                         </td>
@@ -65,4 +65,4 @@ class JoinMarketRequest extends Component {
     }
 }
 
-export default JoinMarketRequest;
+export default ManageMarketRequests;

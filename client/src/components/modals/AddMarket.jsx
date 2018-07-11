@@ -11,9 +11,8 @@ class AddMarket extends Component{
                 onRequestClose={this.props.closeModalCreateMarket}
                 // style={customStyles}
                 contentLabel="Example Modal">
-            <h2>Add a new Market</h2>
+            <h2>Add a New Market</h2>
                                     
-            <div>Market Information</div>
             <form onSubmit={this.props.onSubmitCreateMarket}>
                 <div className="form-group mt-4 mb-5">
                     <label htmlFor="market">Market Name</label>
