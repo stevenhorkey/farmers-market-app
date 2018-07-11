@@ -24,7 +24,6 @@ import FarmersPage from './pages/farmers/FarmersPage';
 import Products from './pages/products/Products';
 import Markets from './pages/markets/Markets';
 import NearbyMarkets from './pages/nearbyMarkets/NearbyMarkets';
-// import NoMatch from './pages/NoMatch/NoMatch';
 import Test from './components/test/Test';
 import Axios from 'axios';
 

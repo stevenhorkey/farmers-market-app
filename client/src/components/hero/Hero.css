@@ -14,14 +14,12 @@ header.masthead {
   }
 
   .taprootLogo{
-    /* margin-top: 25px; */
-    height: 440px;
+    margin-top: 25px;
+    height: 250px;
     width: auto;
   }
 
-  .sitename{
-    padding-top:20px;
-  }
+  
   
   header.masthead .overlay {
     position: absolute;
@@ -36,7 +34,7 @@ header.masthead {
   header.masthead .page-heading,
   header.masthead .post-heading,
   header.masthead .site-heading {
-    padding: 50px 0 40px;
+    padding: 40px 0 20px;
     color: white;
   }
   
@@ -85,14 +83,14 @@ header.masthead {
   
   header.masthead .post-heading .meta,
   header.masthead .post-heading .subheading {
-    line-height: 1.1;
+    line-height: 1.0;
     display: block;
   }
   
   header.masthead .post-heading .subheading {
     font-size: 24px;
     font-weight: 600;
-    margin: 10px 0 30px;
+    margin: 0 0 10px;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
