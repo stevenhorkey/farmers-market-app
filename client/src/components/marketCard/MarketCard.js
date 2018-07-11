@@ -31,6 +31,13 @@ class MarketCard extends Component {
                 backgroundSize: 'cover',
                 width: '100%',
                 paddingTop: '100%'
+            },
+            upcomingMarketImg: {
+                backgroundImage: 'url(' + this.props.marketImage + ')',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                width: '100%',
+                height: '200px'
             }
         }
         return (
@@ -38,6 +45,7 @@ class MarketCard extends Component {
                 {this.props.isUpcomingMarkets ? (
                     <div className="col-lg-4 col-md-6 mb-4 d-inline">
                        <div className="card h-100">
+                            <img className="card-img-top" style={style.upcomingMarketImg}/>
                             <div className="card-body">
                                 <h3 className="card-title text-center bhs">{this.props.marketName}</h3>
                                     <p className="card-text text-center">{this.props.marketLocation}</p>
