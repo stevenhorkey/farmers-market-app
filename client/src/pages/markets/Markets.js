@@ -72,20 +72,20 @@ class Markets extends Component {
                             {/* <h1 className="my-4 bhs text-center">About This Market</h1> */}
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
 
-                                <h1 className="my-5 bhs text-center">{this.state.market.marketName}</h1>
+                                <h1 className="mt-5 mb-4 bhs text-center">{this.state.market.marketName}</h1>
                                 {/* <img className="profileImg"  style = {style}/> */}
                                 <div className="card">
                                     <div className = "card-img-top" style = {style.marketImg}></div>
-                                    <div className="card-body">
-                                        <h4>Market Location</h4>
+                                    <div className="card-body text-center">
+                                        <h4 className='bhs'>Market Location</h4>
                                         <p>{this.state.market.marketAddress}</p>
-                                        <h4>Market Schedule</h4>
-                                        <p>{this.state.market.marketTime}</p>
+                                        <h4 className='bhs'>Market Schedule</h4>
+                                        <p className='mb-0'>{this.state.market.marketTime}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="col-lg-9">
+                            <div className="col-lg-9 mt-4">
 
                                 <Carousel
                                 img1={img1}

@@ -14,6 +14,16 @@
 }
 
 
+#notification-circle{
+    font-size: 35px;
+}
+#sidebar-notification{
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+}
+
+
 @media only screen and (max-width: 992px){
     .stickySidebar {
         position: static;
@@ -24,7 +34,6 @@
         text-align: center;
     }
 }
-
 
 
 @media only screen and (min-width: 993px){
@@ -46,4 +55,3 @@
         position: fixed;
         width: 16%;
     }
-}

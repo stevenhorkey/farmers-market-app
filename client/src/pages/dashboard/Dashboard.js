@@ -518,7 +518,7 @@ class Dashboard extends Component {
                                     onClick: this.manageMarket
                                 },
                                 {
-                                    name: "Manage Join Requests",
+                                    name: "Manage Vendors",
                                     onClick: this.manageJoinRequests
                                 } 
                             ];
@@ -543,7 +543,8 @@ class Dashboard extends Component {
                                 <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
                                 <div className='my-3' style={this.style["profile-img"]}>
                                 </div>
-                                <Sidebar links = {marketLinks}/>
+                                <Sidebar requests={this.state.requests} links = {marketLinks}/>
+            
                             </div>)}
                     </div>
 
