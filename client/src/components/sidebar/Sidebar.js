@@ -7,7 +7,7 @@ import './Sidebar.css'
 class Sidebar extends Component{
 
     render(){
-        console.log(this.props.requests.length)
+        // console.log(this.props.requests.length)
         return(
             <div className="stickySidebar">
                 <h1 className="my-4 bhs text-center">{this.props.title}</h1>
