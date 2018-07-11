@@ -5,6 +5,9 @@ import Carousel from '../../components/carousel';
 import SearchBar from '../../components/products/searchbar';
 import Sidebar from '../../components/sidebar/Sidebar'
 
+import img1 from '../../assets/images/img2.jpg';
+import img2 from '../../assets/images/img7.jpg';
+import img3 from '../../assets/images/img8.jpg';
 
 class NearbyMarkets extends Component {
 
@@ -65,7 +68,11 @@ class NearbyMarkets extends Component {
                                     searchInput={this.state.searchInput}
                                 />
                             </div>
-                            <Carousel />
+                            <Carousel
+                            img1={img1}
+                            img2={img2}
+                            img3={img3}
+                            />
                             <div className="row">
                                 {this.state.markets.map((market, key) => {
                                     return (

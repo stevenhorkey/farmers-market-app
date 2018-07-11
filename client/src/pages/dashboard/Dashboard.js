@@ -22,9 +22,9 @@ import ManageMarketRequests from '../../components/forms/ManageMarketRequests';
 
 
 // Images
-import img1 from '../../assets/images/fm1.jpg';
-import img2 from '../../assets/images/fm2.jpg';
-import img3 from '../../assets/images/fm3.jpg';
+import img1 from '../../assets/images/img7.jpg';
+import img2 from '../../assets/images/img5.jpg';
+import img3 from '../../assets/images/img4.jpg';
 
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
@@ -471,7 +471,7 @@ class Dashboard extends Component {
 
     onSubmitAcceptRequest = (e) => {
         e.preventDefault();
-        let checkedBoxes = document.querySelectorAll('input[name=joinRequest]:checked');
+        let checkedBoxes = document.querySelectorAll('input[name=acceptRequest]:checked');
         let requestIds = [];
 
         checkedBoxes.forEach(function(input) {
@@ -484,7 +484,7 @@ class Dashboard extends Component {
             console.log(res)
             axios.get('/api/retrieveRequests/' + this.state.user.id)
             .then((requestResponse) => {
-                let switches = document.querySelectorAll('input[name=joinRequest]');
+                let switches = document.querySelectorAll('input[name=acceptRequest]');
                 for(let i=0; i < switches.length; i++){
                     switches[i].checked = false
                 }
@@ -575,7 +575,7 @@ class Dashboard extends Component {
                                         (<div className="w-100">
                                             <div className="row">
                                                 <div className='col'>
-                                                    <h1 className='bhs'>Products</h1>
+                                                    <h1 className='bhs text-center'>Products</h1>
                                                 </div>
                                             </div>
                                             <div>
@@ -585,7 +585,7 @@ class Dashboard extends Component {
                                         : (<div className="">
                                             <div className="row">
                                                 <div className='col'>
-                                                    <h1 className='bhs'>Products</h1>
+                                                    <h1 className='bhs text-center'>Products</h1>
                                                 </div>
                                             </div>
                                             <div>
@@ -610,7 +610,7 @@ class Dashboard extends Component {
                                         <Fragment>
                                             <div className="row">
                                             <div className='col'>
-                                                <h1 className='bhs'>Join A Market</h1>
+                                                <h1 className='bhs text-center'>Join A Market</h1>
                                             </div>
                                             </div>
                                             <JoinMarketRequest 

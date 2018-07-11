@@ -8,6 +8,10 @@ import SearchBar from '../../components/products/searchbar';
 import Sidebar from '../../components/sidebar/Sidebar'
 import { WSAVERNOTSUPPORTED } from 'constants';
 
+import img1 from '../../assets/images/img6.jpg';
+import img2 from '../../assets/images/img10.jpg';
+import img3 from '../../assets/images/img3.jpg';
+
 class Products extends Component {
 
     state = {
@@ -121,7 +125,11 @@ class Products extends Component {
                                 />
                             </div>
     
-                            <Carousel />
+                            <Carousel
+                            img1={img1}
+                            img2={img2}
+                            img3={img3}
+                            />
     
                             <div className="row">
     

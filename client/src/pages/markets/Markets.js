@@ -4,6 +4,10 @@ import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
 import FarmerCardMarketPage from '../../components/farmers/farmerCardMarketPage/';
 
+import img1 from '../../assets/images/img9.jpg';
+import img2 from '../../assets/images/img11.jpg';
+import img3 from '../../assets/images/img14.jpg';
+
 class Markets extends Component {
     state = {
         loading: true,
@@ -83,7 +87,11 @@ class Markets extends Component {
 
                             <div className="col-lg-9">
 
-                                <Carousel />
+                                <Carousel
+                                img1={img1}
+                                img2={img2}
+                                img3={img3}
+                                />
 
                                 <div className="row">
                                     {  

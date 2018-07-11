@@ -15,3 +15,11 @@ footer .copyright {
     text-align: center;
     font-weight: 300;
 }
+
+footer .fa-stack:hover {
+    color: #1d586b;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 100%;
+}

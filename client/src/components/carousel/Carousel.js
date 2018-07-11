@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import './Carousel.css';
 
-import car0 from '../../assets/images/car0.jpg';
-import car1 from '../../assets/images/car1.jpg';
-import car2 from '../../assets/images/car2.jpg';
 
 class Carousel extends Component {
 
@@ -31,7 +28,6 @@ class Carousel extends Component {
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div className="carousel-inner" role="listbox">
-
                     <div className="carousel-item active">
                         {/* <img className="d-block img-fluid" style={style.carousel} src={fm1} alt="First slide"/> */}
                         <div className="d-block img-fluid c-item" style={this.style.img1} alt="First slide"></div>
@@ -44,7 +40,6 @@ class Carousel extends Component {
                         {/* <img className="d-block img-fluid" style={this.style.carousel} src={fm1} alt="Third slide"/> */}
                         <div className="d-block img-fluid c-item" style={this.style.img3} alt="Third slide"></div>
                     </div>
-
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
