@@ -575,7 +575,7 @@ class Dashboard extends Component {
                                         (<div className="w-100">
                                             <div className="row">
                                                 <div className='col'>
-                                                    <h1 className='bhs'>Products</h1>
+                                                    <h1 className='bhs text-center'>Products</h1>
                                                 </div>
                                             </div>
                                             <div>
@@ -585,7 +585,7 @@ class Dashboard extends Component {
                                         : (<div className="">
                                             <div className="row">
                                                 <div className='col'>
-                                                    <h1 className='bhs'>Products</h1>
+                                                    <h1 className='bhs text-center'>Products</h1>
                                                 </div>
                                             </div>
                                             <div>
@@ -610,7 +610,7 @@ class Dashboard extends Component {
                                         <Fragment>
                                             <div className="row">
                                             <div className='col'>
-                                                <h1 className='bhs'>Join A Market</h1>
+                                                <h1 className='bhs text-center'>Join A Market</h1>
                                             </div>
                                             </div>
                                             <JoinMarketRequest 

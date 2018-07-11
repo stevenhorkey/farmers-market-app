@@ -36,7 +36,7 @@ class Footer extends Component {
                     </li>
                     </ul>
                     <p className="copyright text-white mt-3 bhs">Copyright &copy; {this.props.siteName} 2018</p>
-                    <p className="copyright text-white mt-3 subheading">Designed and built by <a className="text-white" target="_blank" href="https://www.linkedin.com/in/steven-horkey/"> Steven Horkey </a>,<a className="text-white" target="_blank" href="https://www.linkedin.com/in/cncodes/"> Colin Nelson </a>,<a className="text-white" target="_blank" href="https://www.linkedin.com/in/killianmatthew/"> Matt Killian </a>,<a className="text-white" target="_blank" href="https://www.linkedin.com/in/patricia-martinez-dev/"> Patricia Martinez </a>, & <a className="text-white" target="_blank" href="https://www.linkedin.com/in/rene-vasquez-296856149/"> RJ Vasquez </a></p>
+                    <p className="copyright text-white mt-3 subheading">Designed and built by <a className="text-white" target="_blank" href="https://www.linkedin.com/in/steven-horkey/">Steven Horkey</a>, <a className="text-white" target="_blank" href="https://www.linkedin.com/in/cncodes/">Colin Nelson</a>, <a className="text-white" target="_blank" href="https://www.linkedin.com/in/killianmatthew/">Matt Killian</a>, <a className="text-white" target="_blank" href="https://www.linkedin.com/in/patricia-martinez-dev/">Patricia Martinez</a>, & <a className="text-white" target="_blank" href="https://www.linkedin.com/in/rene-vasquez-296856149/">RJ Vasquez</a>.</p>
                 </div>
                 </div>
             </div>
