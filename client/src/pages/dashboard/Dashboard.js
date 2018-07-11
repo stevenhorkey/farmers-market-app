@@ -484,7 +484,7 @@ class Dashboard extends Component {
             console.log(res)
             axios.get('/api/retrieveRequests/' + this.state.user.id)
             .then((requestResponse) => {
-                let switches = document.querySelectorAll('input[name=joinRequest]');
+                let switches = document.querySelectorAll('input[name=acceptRequest]');
                 for(let i=0; i < switches.length; i++){
                     switches[i].checked = false
                 }
