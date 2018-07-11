@@ -477,6 +477,7 @@ router.get('/retrieveRequests/:id', function (req, res) {
 });
 
 router.put('/acceptRequest', passport.authenticate('jwt', { session: false }), function (req, res) {
+  console.log('inside route')
   let requestIds = req.body.requestIds;
   db.Request.update({
     hasAccepted: true

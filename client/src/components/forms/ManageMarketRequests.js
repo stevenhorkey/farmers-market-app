@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-class JoinMarketRequest extends Component {
+class ManageMarketRequests extends Component {
     render(){
         let requestsExist = Array.isArray(this.props.requests);
         console.log(requestsExist)
@@ -65,4 +65,4 @@ class JoinMarketRequest extends Component {
     }
 }
 
-export default JoinMarketRequest;
+export default ManageMarketRequests;
