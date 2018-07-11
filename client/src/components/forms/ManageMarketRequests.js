@@ -13,7 +13,7 @@ class ManageMarketRequests extends Component {
             <Fragment>
                 <div className="row">
                     <div className='col'>
-                        <h1 className='bhs'>Market Requests</h1>
+                        <h1 className='bhs text-center'>Market Requests</h1>
                     </div>
                 </div>
                 <div className="card p-2">

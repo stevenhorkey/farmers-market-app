@@ -7,7 +7,7 @@ class MarketCardDashboard extends Component {
             <Fragment>
                 <div className="row">
                     <div className='col'>
-                        <h1 className='bhs'>My Market</h1>
+                        <h1 className='bhs text-center'>My Market</h1>
                     </div>
                 </div>
                 <div className="mb-4">

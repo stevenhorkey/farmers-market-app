@@ -471,7 +471,7 @@ class Dashboard extends Component {
 
     onSubmitAcceptRequest = (e) => {
         e.preventDefault();
-        let checkedBoxes = document.querySelectorAll('input[name=joinRequest]:checked');
+        let checkedBoxes = document.querySelectorAll('input[name=acceptRequest]:checked');
         let requestIds = [];
 
         checkedBoxes.forEach(function(input) {
