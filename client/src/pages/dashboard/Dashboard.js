@@ -465,18 +465,23 @@ class Dashboard extends Component {
 
     onSubmitAcceptRequest = (e) => {
         e.preventDefault();
-        let checkedBoxes = document.querySelectorAll('input[name=acceptRequest]:checked');
+        let checkedBoxes = document.querySelectorAll('input[name=joinRequest]:checked');
         let requestIds = [];
 
         checkedBoxes.forEach(function(input) {
             requestIds.push(input.value)
         });
+        console.log(requestIds)
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.put('/api/acceptRequest', {requestIds})
         .then((res) => {
             console.log(res)
             axios.get('/api/retrieveRequests/' + this.state.user.id)
             .then((requestResponse) => {
+                let switches = document.querySelectorAll('input[name=joinRequest]');
+                for(let i=0; i < switches.length; i++){
+                    switches[i].checked = false
+                }
                 this.setState({requests: requestResponse.data})
             })
         })
