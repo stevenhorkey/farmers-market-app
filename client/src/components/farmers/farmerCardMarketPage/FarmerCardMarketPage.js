@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './FarmerCardMarketPage.css';
 
+import Flip from 'react-reveal/Flip';
+
 class FarmerCardMarketPage extends Component {
     render(){
         const style = {
@@ -13,12 +15,13 @@ class FarmerCardMarketPage extends Component {
             }
         }
         return(
+            <Flip bottom>
             <div className="col-lg-4 col-md-6 mb-4" key={this.props.id}>
                 <a href={"/farmerspage/?" + this.props.farmerId}>
-                    <div className="card h-100">
+                    <div className="card h-100 on-hover">
                         <img className="card-img-top" style={style.farmerImg}/>
                         <div className="card-body">
-                            <h4 className="card-title text-center">
+                            <h4 className="card-title text-center text-capitalize">
                                 {this.props.farmerName}
                             </h4>
                             <h5>{this.props.price}</h5>
@@ -27,6 +30,7 @@ class FarmerCardMarketPage extends Component {
                     </div>
                 </a>
             </div>
+            </Flip>
         )
     }
 }

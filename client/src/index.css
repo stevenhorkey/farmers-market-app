@@ -1,10 +1,6 @@
-/* * {
-  -webkit-transition: all 20ms ease-in-out;
-  -moz-transition: all 20ms ease-in-out;
-  -ms-transition: all 20ms ease-in-out;
-  -o-transition: all 20ms ease-in-out;
-  transition: all 20ms ease-in-out;
-} */
+* {
+  
+}
 body {
   margin: 0;
   padding: 0;
@@ -18,7 +14,27 @@ body i {
 a{
   color: #1d586b;
 }
+a:hover {
+  color: #174150;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+.on-hover{
+  -webkit-transition: all 150ms ease-in-out;
+  -moz-transition: all 150ms ease-in-out;
+  -ms-transition: all 150ms ease-in-out;
+  -o-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+.on-hover:hover{
+  -webkit-transform: scale(1.06);
+  -moz-transform: scale(1.06);
+  -o-transform: scale(1.06);
+  transform: scale(1.06);
+  /* display: inline-block; */
+  cursor: pointer;
+}
 
 .btn, .form-control {
   border-radius: 2px;
@@ -27,15 +43,15 @@ a{
 }
 
 .btn-primary {
-  background-color: #174150;
+  background-color: #1d586b;
   border-color: #1d586b;
   /* padding: 5px; */
   border-radius: 2px;
 }
 
 .btn-primary:hover {
-  background-color: #2087a9;
-  border-color: #2087a9;
+  background-color: #174150;
+  border-color: #174150;
 }
 
 .btn-secondary {
@@ -56,6 +72,11 @@ a{
 
 .card {
   border-radius: 2px;
+  border: solid 1px #1d586b;
+  
+}
+.card-header:first-child{
+  border-radius: 0;
 }
 .display-4 {
   font-weight: 100;

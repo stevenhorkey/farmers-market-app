@@ -44,7 +44,7 @@ class MarketCard extends Component {
             <React.Fragment>
                 {this.props.isUpcomingMarkets ? (
                     <div className="col-lg-4 col-md-6 mb-4 d-inline">
-                       <div className="card h-100">
+                       <div className="card h-100 on-hover">
                             <img className="card-img-top" style={style.upcomingMarketImg}/>
                             <div className="card-body">
                                 <h3 className="card-title text-center bhs">{this.props.marketName}</h3>
@@ -56,7 +56,7 @@ class MarketCard extends Component {
                 )
                 :(<div className="col-lg-4 col-md-6 mb-4" key={this.props.marketId}>
                     <a href={"/markets/?" + this.props.marketId}>
-                        <div className="card h-100">
+                        <div className="card h-100 on-hover">
                             <img className="card-img-top" style={style.marketImg}/>
                             <div className="card-body">
                                 <h3 className="card-title text-center bhs">{this.props.marketName}</h3>

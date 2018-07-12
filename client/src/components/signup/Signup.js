@@ -5,6 +5,9 @@ import { Link, Redirect } from 'react-router-dom';
 
 import './Signup.css';
 
+import Bounce from 'react-reveal/Bounce';
+
+
 class Signup extends Component {
 
     constructor() {
@@ -82,6 +85,7 @@ class Signup extends Component {
             <main className="signup">
                 <div className="bg pb-5 pt-5">
                     <div className="container">
+                        <Bounce top>
                         <div className="mt-5 card w-580 mx-auto p-5">
                             <header className="text-center">
 
@@ -134,6 +138,7 @@ class Signup extends Component {
                                 </form>
                             </section>
                         </div>
+                        </Bounce>
                     </div>
                 </div>
             </main>)

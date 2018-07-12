@@ -23,9 +23,11 @@ import ManageMarketRequests from '../../components/forms/ManageMarketRequests';
 
 
 // Images
-import img1 from '../../assets/images/img7.jpg';
+import img1 from '../../assets/images/img17.jpg';
 import img2 from '../../assets/images/img5.jpg';
-import img3 from '../../assets/images/img4.jpg';
+import img3 from '../../assets/images/img13.jpg';
+
+import Fade from 'react-reveal/Fade';
 
 //this file has quite a bit of states, this is because the page handles many different use cases, however, this page should probably
 //be broken up into multiple files down the line
@@ -561,6 +563,7 @@ class Dashboard extends Component {
                 <div className="">
 
                 <div className="row">
+                    <Fade bottom>
                     <div className="col-lg-3">
                         {this.state.user.userType === "Vendor" ? 
                             (<div>
@@ -571,24 +574,30 @@ class Dashboard extends Component {
 
                                 <Sidebar heading = {"Settings"} links = {vendorLinks}/>
                                 <br/>
+                                {this.state.associatedMarkets ? (
                                 <div className="card">
+                                    <div className='card-header sidebarHeader'>
+                                        Registered Markets:
+                                    </div>
                                     <div className="card-body">
-                                            {this.state.associatedMarkets ? <p className="card-title text-center bhs" id="farmerInfoTitle">Registered Markets:</p> : (null)}
-                                                {this.state.associatedMarkets.map(market => (
-                                                    <a href={'/markets/?'+market.id}>
-                                                        <div className='card py-3 mb-3'>
-                                                            <h4 className="market-container bhs text-center">{market.marketName}</h4>
-                                                                <div className='text-center'>
-                                                                {market.marketAddress}
-                                                                </div>
-                                                                <div className='text-center'>
-                                                                {market.marketTime}
-                                                                </div>
+                                        {this.state.associatedMarkets.map(market => (
+                                            <a href={'/markets/?'+market.id}>
+                                                <div className='card py-3 mb-3 on-hover'>
+                                                    <h4 className="market-container bhs text-center">{market.marketName}</h4>
+                                                        <div className='text-center'>
+                                                        {market.marketAddress}
                                                         </div>
-                                                    </a>
-                                                ))}
+                                                        <div className='text-center'>
+                                                        {market.marketTime}
+                                                        </div>
+                                                </div>
+                                            </a>
+                                        ))}
                                     </div>
                                 </div>
+
+                                ) : (null)}
+                                
                             </div>)
                             :(<div>
                                 <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
@@ -598,6 +607,7 @@ class Dashboard extends Component {
             
                             </div>)}
                     </div>
+                    </Fade>
 
                     <div className="col-lg-9">
 
@@ -686,6 +696,11 @@ class Dashboard extends Component {
                                                 this.state.markets === null ?
                                                     (<div>
                                                         <div>
+                                                            <div className="row">
+                                                                <div className='col'>
+                                                                    <h1 className='bhs text-center'>My Market</h1>
+                                                                </div>
+                                                            </div>
                                                             <button className="btn btn-primary w-100" onClick={this.openModalCreateMarket} id="createMarket">Add a Market</button>
                                                             {/* <h6>You don{"'"}t have a market.....Would you like to create one?</h6>  */}
                                                         </div>

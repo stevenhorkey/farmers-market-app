@@ -4,9 +4,11 @@ import Carousel from '../../components/carousel/Carousel';
 import SearchBar from '../../components/products/searchbar';
 import FarmerCardMarketPage from '../../components/farmers/farmerCardMarketPage/';
 
-import img1 from '../../assets/images/img9.jpg';
-import img2 from '../../assets/images/img11.jpg';
-import img3 from '../../assets/images/img14.jpg';
+import img1 from '../../assets/images/img14.jpg';
+import img2 from '../../assets/images/img8.jpg';
+import img3 from '../../assets/images/img17.jpg';
+
+import Fade from 'react-reveal/Fade';
 
 class Markets extends Component {
     state = {
@@ -28,6 +30,7 @@ class Markets extends Component {
       return hashes;
 
     }
+    
     componentDidMount() {
         console.log(this.state)
         let queryNumber = this.getUrlVars();
@@ -68,6 +71,7 @@ class Markets extends Component {
 
                 (<div className="container pb-5">
                         <div className="row">
+                            <Fade bottom>
                             <div className="col-lg-3">
                             {/* <h1 className="my-4 bhs text-center">About This Market</h1> */}
                                 {/* // should maybe be vendor name not first name and last name ie company or farm name  */}
@@ -75,6 +79,7 @@ class Markets extends Component {
                                 <h1 className="mt-5 mb-4 bhs text-center">{this.state.market.marketName}</h1>
                                 {/* <img className="profileImg"  style = {style}/> */}
                                 <div className="card">
+                                    <div className='card-header sidebarHeader text-center'>Market Information</div>
                                     <div className = "card-img-top" style = {style.marketImg}></div>
                                     <div className="card-body text-center">
                                         <h4 className='bhs'>Market Location</h4>
@@ -84,6 +89,7 @@ class Markets extends Component {
                                     </div>
                                 </div>
                             </div>
+                            </Fade>
 
                             <div className="col-lg-9 mt-4">
 

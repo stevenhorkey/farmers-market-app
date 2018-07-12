@@ -6,7 +6,7 @@ class SearchBar extends Component{
 
     render(){
         return(
-            <div className="input-group mb-3">
+            <div className="input-group mb-3 searchbar">
                 <input type="text" 
                 name='searchInput'
                 onChange={this.props.handleChange}

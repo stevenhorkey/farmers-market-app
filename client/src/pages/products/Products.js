@@ -10,9 +10,10 @@ import SearchBar from '../../components/products/searchbar';
 import Sidebar from '../../components/sidebar/Sidebar'
 import { WSAVERNOTSUPPORTED } from 'constants';
 
-import img1 from '../../assets/images/img6.jpg';
-import img2 from '../../assets/images/img10.jpg';
-import img3 from '../../assets/images/img5.jpg';
+import img1 from '../../assets/images/img17.jpg';
+import img2 from '../../assets/images/img14.jpg';
+import img3 from '../../assets/images/img13.jpg';
+
 
 class Products extends Component {
 
@@ -107,9 +108,8 @@ class Products extends Component {
             let products = this.state.products;
             return (
                 <div className="container pb-5 pt-3">
-    
+                
                     <div className="row">
-    
                         <div className="col-lg-3">
     
                             {/* <h1 className="my-4 bhs text-center">Markets</h1> */}

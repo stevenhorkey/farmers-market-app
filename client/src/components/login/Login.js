@@ -4,6 +4,9 @@ import { Link, Redirect } from 'react-router-dom';
 
 import "./Login.css";
 
+import Bounce from 'react-reveal/Bounce';
+
+
 class Login extends Component {
 
     constructor() {
@@ -59,6 +62,7 @@ class Login extends Component {
                 <main className="login">
                     <div className="bg py-5">
                         <div className="container">
+                        <Bounce top>
                         <div className="mt-5 card w-580 mx-auto p-5">
                             <header className="text-center">
                                 <h1><strong>Log In</strong></h1>
@@ -81,6 +85,7 @@ class Login extends Component {
                             </section>
 
                         </div>
+                        </Bounce>
                         </div>
                     </div>
                 </main>

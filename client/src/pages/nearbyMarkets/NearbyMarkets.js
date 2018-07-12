@@ -5,9 +5,9 @@ import Carousel from '../../components/carousel';
 import SearchBar from '../../components/products/searchbar';
 import Sidebar from '../../components/sidebar/Sidebar'
 
-import img1 from '../../assets/images/img2.jpg';
-import img2 from '../../assets/images/img7.jpg';
-import img3 from '../../assets/images/img8.jpg';
+import img1 from '../../assets/images/img17.jpg';
+import img2 from '../../assets/images/img15.jpg';
+import img3 from '../../assets/images/img10.jpg';
 
 class NearbyMarkets extends Component {
 

@@ -31,7 +31,7 @@ class Sidebar extends Component{
                     }
                     return(
                         <Fragment>
-                            <li class="list-group-item"><a href={aLink} className="card-link h-100" onClick = {(e) => {parentFunction(e, ...args)}}>
+                            <li className="list-group-item"><a href={aLink} className="card-link h-100" onClick = {(e) => {parentFunction(e, ...args)}}>
                                 <span className=''>{link.name}</span>
                                 {link.name === 'Manage Vendors' && this.props.requests.length > 0 ? 
                                         (<span id='sidebar-notification' class="fa-stack fa-1x float-right">
