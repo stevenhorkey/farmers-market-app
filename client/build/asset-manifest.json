@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.707c2736.css",
-  "main.css.map": "static/css/main.707c2736.css.map",
-  "main.js": "static/js/main.5b9edf6d.js",
-  "main.js.map": "static/js/main.5b9edf6d.js.map",
+  "main.css": "static/css/main.f04d38fa.css",
+  "main.css.map": "static/css/main.f04d38fa.css.map",
+  "main.js": "static/js/main.6b8ec916.js",
+  "main.js.map": "static/js/main.6b8ec916.js.map",
   "static/media/fontawesome-webfont.eot": "static/media/fontawesome-webfont.674f50d2.eot",
   "static/media/fontawesome-webfont.svg?v=4.7.0": "static/media/fontawesome-webfont.912ec66d.svg",
   "static/media/fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
@@ -17,6 +17,5 @@
   "static/media/img5.jpg": "static/media/img5.fdf12fdf.jpg",
   "static/media/img7.jpg": "static/media/img7.2822e7a8.jpg",
   "static/media/img8.jpg": "static/media/img8.4425bdae.jpg",
-  "static/media/insignia.png": "static/media/insignia.dca6d3b8.png",
-  "static/media/wood.jpg": "static/media/wood.482d9efe.jpg"
+  "static/media/insignia.png": "static/media/insignia.dca6d3b8.png"
 }

@@ -602,7 +602,7 @@ class Dashboard extends Component {
                                 
                             </div>)
                             :(<div>
-                                <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
+                                <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs text-capitalize">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
                                 <div className='my-3' style={this.style["profile-img"]}>
                                 </div>
                                 <Sidebar heading = {"Settings"} requests={this.state.requests} links = {marketLinks}/>

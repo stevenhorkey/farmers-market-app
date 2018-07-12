@@ -129,9 +129,7 @@ a:hover {
 #content{
   position: relative;
   top: 55px;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.75),rgba(255, 255, 255, 0.75)) ,url('./assets/images/wood.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
+  background-color: #ffffff;
+background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)) , url("https://www.transparenttextures.com/patterns/tileable-wood.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
