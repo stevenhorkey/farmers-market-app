@@ -549,14 +549,16 @@ class Dashboard extends Component {
                                 {
                                     name: "Manage Vendors",
                                     onClick: this.manageJoinRequests
-                                },
-                                ,
-                                {
-                                    name: "View My Page", 
-                                    urlLink: '/markets/?'+this.state.markets.id
                                 }
                             ];
-        
+        // If they have a market, add view my page to their dashboard sidebar
+        if(this.state.markets !== null){
+            marketLinks.push({
+                name: "View My Page", 
+                urlLink: '/markets/?'+this.state.markets.id
+            })
+        } 
+
         return (
             <div className='dashboard'>
                 <div className='container py-4'>
