@@ -21,7 +21,7 @@ class Carousel extends Component {
     render() {
         return (
 
-            <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
+            <div id="carouselExampleIndicators" className="carousel slide my-4 box-shadow" data-ride="carousel">
                 <ol className="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>

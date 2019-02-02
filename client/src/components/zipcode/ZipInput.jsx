@@ -6,7 +6,7 @@ class ZipInput extends Component {
 
     render() {
         return (
-            <div className="input-group mb-3">
+            <div className="input-group mb-3 box-shadow">
                 <input type="text"
                     name='zipInput'
                     onChange={this.props.handleChange}

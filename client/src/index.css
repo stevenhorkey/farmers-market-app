@@ -20,6 +20,12 @@ a:hover {
   cursor: pointer;
 }
 
+.box-shadow{
+  -webkit-box-shadow: 0 10px 6px -6px #00000090;
+	   -moz-box-shadow: 0 10px 6px -6px #00000090;
+          box-shadow: 0 10px 6px -6px #00000090;
+}
+
 .on-hover{
   -webkit-transition: all 150ms ease-in-out;
   -moz-transition: all 150ms ease-in-out;
@@ -73,6 +79,9 @@ a:hover {
 .card {
   border-radius: 2px;
   border: solid 1px #1d586b;
+  -webkit-box-shadow: 0 10px 6px -6px #00000090;
+	   -moz-box-shadow: 0 10px 6px -6px #00000090;
+          box-shadow: 0 10px 6px -6px #00000090;
   
 }
 .card-header:first-child{

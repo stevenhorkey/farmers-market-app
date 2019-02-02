@@ -83,7 +83,7 @@ class Dashboard extends Component {
                     width: '100%',
                     borderRadius: '50%',
                     paddingTop: '100%',
-                    border: 'solid 2px #1d586b'
+                    // border: 'solid 2px #1d586b'
                 }
             }
             //if the response from the server includes success:true (aka is logged in)
@@ -571,7 +571,7 @@ class Dashboard extends Component {
                             (<div>
                                 <h1 className="mt-4 text-center bhs text-capitalize">{this.state.user.businessName || this.state.user.firstName + ' ' + this.state.user.lastName}</h1>
 
-                                <div className='my-3' style={this.style["profile-img"]}>
+                                <div className='my-3 box-shadow' style={this.style["profile-img"]}>
                                 </div>
 
                                 <Sidebar heading = {"Settings"} links = {vendorLinks}/>
@@ -603,7 +603,7 @@ class Dashboard extends Component {
                             </div>)
                             :(<div>
                                 <div>{this.state.user.businessName === null ? (<h1 className="my-4 text-center bhs text-capitalize">{this.state.user.firstName + ' ' + this.state.user.lastName}</h1>) : (<h1 className="my-4 text-center bhs">{this.state.user.businessName}</h1>)}</div>
-                                <div className='my-3' style={this.style["profile-img"]}>
+                                <div className='my-3 box-shadow' style={this.style["profile-img"]}>
                                 </div>
                                 <Sidebar heading = {"Settings"} requests={this.state.requests} links = {marketLinks}/>
             

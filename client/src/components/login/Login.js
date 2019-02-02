@@ -63,7 +63,7 @@ class Login extends Component {
                     <div className="bg py-5">
                         <div className="container">
                         <Bounce top>
-                        <div className="mt-5 card w-580 mx-auto p-5">
+                        <div className="mt-5 card box-shadow w-580 mx-auto p-5">
                             <header className="text-center">
                                 <h1><strong>Log In</strong></h1>
                                 
