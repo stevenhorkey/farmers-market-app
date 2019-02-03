@@ -1,0 +1,25 @@
+{
+    "development": {
+      "username": "root",
+      "password": "yekroh",
+      "database": "farmers_market_app",
+      "host": "127.0.0.1",
+      "dialect": "mysql",
+      "port": 3306
+    },
+    "test": {
+      "username": "root",
+      "password": null,
+      "database": "database_test",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "rh8igdp1mnz98dol",
+      "password": "d95iwpxmhyddud9i",
+      "database": "i4u1v9yqc6jrmpx1",
+      "host": "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "dialect": "mysql",
+      "port": 3306
+    }
+  }

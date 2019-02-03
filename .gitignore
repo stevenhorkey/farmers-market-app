@@ -63,4 +63,4 @@ typings/
 .next
 
 # config for db 
-config.json
+# config.json
