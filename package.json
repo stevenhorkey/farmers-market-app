@@ -28,7 +28,7 @@
     "server": "nodemon ./bin/www",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "install": "cd client && yarn install",
-    "build": "cd client && yarn build"
+    "build": "cd client && react-scripts build"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"
