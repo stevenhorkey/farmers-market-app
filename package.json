@@ -23,11 +23,11 @@
     "serve-favicon": "^2.5.0"
   },
   "scripts": {
-    "start": " yarn build && node ./bin/www",
-    "client": "cd client && yarn start",
+    "start": " npm build && node ./bin/www",
+    "client": "cd client && npm start",
     "server": "nodemon ./bin/www",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "install": "cd client && yarn install",
+    "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
+    "install": "cd client && npm install",
     "build": "cd client && react-scripts build"
   },
   "devDependencies": {
