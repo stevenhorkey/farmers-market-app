@@ -7,10 +7,13 @@ var PORT = process.env.PORT || "3001";
 var apiRoutes = require('./routes/api-routes');
 var app = express();
 var auth = require('./routes/auth');
+require('dotenv').config()
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
+// console.log('here',process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'production') {
   console.log('in the static express build');
   app.use(express.static(path.join(__dirname, '/client/build')));
@@ -34,7 +37,7 @@ app.use(function (err, req, res, next) {
 
   // Send the error message
   res.status(err.status || 500);
-  res.send('error');
+  res.send(err.status);
 });
 
 module.exports = app;
