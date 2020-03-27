@@ -7,7 +7,7 @@ var PORT = process.env.PORT || "3001";
 var apiRoutes = require('./routes/api-routes');
 var app = express();
 var auth = require('./routes/auth');
-require('dotenv').config()
+require('dotenv').config();
 
 
 app.use(logger('dev'));

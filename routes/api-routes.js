@@ -28,7 +28,10 @@ var generateHash = function (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 }
 
-
+router.get('/test', function(req, res){
+  console.log('hit');
+  res.json('test');
+})
 
 router.get('/populateProducts', function (req, res) {
   db.Product.findAll({
